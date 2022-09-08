@@ -1,8 +1,8 @@
 ---
-name: Update request
-about: Suggest an update of code for this project
-title: "[UPDATE] "
-labels: ''
+name: Feature request - Single Task
+about: Suggest an idea for this project
+title: "[FEATURE] "
+labels: enhancement, request
 assignees: Glassait
 
 ---
