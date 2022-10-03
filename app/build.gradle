@@ -9,7 +9,7 @@ android {
         applicationId "com.glassait.androidproject"
         minSdk 24
         targetSdk 33
-        versionCode 01
+        versionCode 02
         versionName 'AndroidProject V0.1'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -25,10 +25,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+    namespace 'com.glassait.androidproject'
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'

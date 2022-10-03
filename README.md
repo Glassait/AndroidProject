@@ -25,7 +25,7 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ![Android](https://img.shields.io/badge/ANDROID_(Nougat)-7.0-blue)
 ![SDK_min](https://img.shields.io/badge/Min_SDK-24-blue)
 ![SDK_target](https://img.shields.io/badge/Target_SDK-33-blue)
-![Gradle](https://img.shields.io/badge/GRABLE-7.3.3-blue)
+![Gradle](https://img.shields.io/badge/GRABLE-7.3.0-blue)
 ![JAVA](https://img.shields.io/badge/JAVA_Version-11-blue)
 
 ## Dependency
@@ -46,4 +46,4 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [ ] Report / Ban
 - [ ] Notification
 - [ ] Profile
-- [ ] Paramètre
+- [ ] Parameter
