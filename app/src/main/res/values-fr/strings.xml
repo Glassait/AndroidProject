@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Bienvenue</string>
+    <string name="sign_up">Inscription</string>
+    <string name="sign_in">Connexion</string>
+</resources>

@@ -36,10 +36,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // DATABASE DEPENDENCY
-    def room_version = "2.4.3"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    testImplementation "androidx.room:room-testing:$room_version"
-    implementation "androidx.room:room-rxjava3:$room_version"
+    // DATABASE DEPENDENCY (ROOM)
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    testImplementation "androidx.room:room-testing:2.4.3"
+    implementation "androidx.room:room-rxjava3:2.4.3"
 }

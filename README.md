@@ -1,7 +1,7 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.1-green)
-![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)  
+![Version](https://img.shields.io/badge/version-0.2-green)
+![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
 ![GitHub milestones](https://img.shields.io/github/milestones/all/Glassait/AndroidProject)
