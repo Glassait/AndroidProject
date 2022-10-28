@@ -17,12 +17,16 @@
     <style name="Text.Title">
         <item name="android:textColor">@color/primary_night</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">67sp</item>
+        <item name="android:textSize">70sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="Box">
         <item name="android:background">@drawable/box_border_night</item>
         <item name="android:textColor">@color/on_box_night</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="fullButton" parent="Button">
@@ -33,5 +37,9 @@
     <style name="emptyButton" parent="Button">
         <item name="android:background">@drawable/empty_button_night</item>
         <item name="android:textColor">@color/on_box_night</item>
+    </style>
+
+    <style name="arrowButton" parent="ReturnButton">
+        <item name="android:background">@drawable/back_button_night</item>
     </style>
 </resources>

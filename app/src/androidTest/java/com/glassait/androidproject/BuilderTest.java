@@ -7,8 +7,8 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.glassait.androidproject.database.AppDatabase_Impl;
-import com.glassait.androidproject.database.Builder;
+import com.glassait.androidproject.model.database.AppDatabase_Impl;
+import com.glassait.androidproject.model.database.Builder;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,11 @@ public class BuilderTest {
      */
     @Test
     public void build() {
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertTrue(new Builder().buildDatabase(appContext) instanceof AppDatabase_Impl);
+        Context appContext = InstrumentationRegistry.getInstrumentation()
+                                                    .getTargetContext();
+        Builder builder = Builder.getInstance();
+        builder.buildDatabase(appContext);
+
+        assertTrue(builder.getAppDatabase() instanceof AppDatabase_Impl);
     }
 }

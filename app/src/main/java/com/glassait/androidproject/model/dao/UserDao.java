@@ -1,4 +1,4 @@
-package com.glassait.androidproject.dao;
+package com.glassait.androidproject.model.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -7,7 +7,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.glassait.androidproject.entity.User;
+import com.glassait.androidproject.model.entity.User;
 
 import java.util.List;
 
@@ -17,10 +17,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
  * Interface defining all {@link Query} for the @Entity {@link User}
- *
- * Some query are async query and return a {@link Completable} to handle it we need to transform the
- * {@link Completable} in {@link Disposable} with {@link Completable#subscribe()} and after to dispose
- * it with {@link Disposable#dispose()}
+ * <br><br>
+ * Some query are async query and return a {@link Completable} to handle it we need to transform the {@link Completable} in {@link Disposable} with {@link Completable#subscribe()} and after to dispose it with {@link Disposable#dispose()}
  */
 @Dao
 public interface UserDao {
@@ -32,21 +30,22 @@ public interface UserDao {
     @Query("SELECT * FROM user")
     List<User> getAll();
 
-
     /**
      * Query the {@link User} with the uid
      *
-     * @param uid int - The uid of the {@link User}
+     * @param email String - The uid of the {@link User}
+     *
      * @return Single<User>
      */
-    @Query("SELECT * FROM user WHERE uid = :uid")
-    Single<User> getUserFromUID(int uid);
+    @Query("SELECT * FROM user WHERE email = :email")
+    Single<User> getUserFromEmail(String email);
 
     /**
      * Insert an user inside the table
      * This is a asynchronous one-shot queries: https://developer.android.com/training/data-storage/room/async-queries#one-shot
      *
      * @param user {@link User} - The user to put inside the table
+     *
      * @return Completable
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -54,6 +53,7 @@ public interface UserDao {
 
     /**
      * @param user {@link User} The user to update
+     *
      * @return Completable
      */
     @Update
@@ -61,9 +61,11 @@ public interface UserDao {
 
     /**
      * Delete an user inside the table
+     * <p>
      * This is a asynchronous one-shot queries: https://developer.android.com/training/data-storage/room/async-queries#one-shot
      *
      * @param user {@link User} - The user to delete inside the table
+     *
      * @return Completable
      */
     @Delete
