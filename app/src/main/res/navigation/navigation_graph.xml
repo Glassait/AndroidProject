@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation_graph"
+        app:startDestination="@id/startMenu">
+
+    <fragment
+            android:id="@+id/startMenu"
+            android:name="com.glassait.androidproject.view.StartMenuFragment"
+            android:label="fragment_start_menu"
+            tools:layout="@layout/fragment_start_menu" />
+    <fragment
+            android:id="@+id/sign_up"
+            android:name="com.glassait.androidproject.view.SignUpFragment"
+            android:label="fragment_sign_up"
+            tools:layout="@layout/fragment_sign_up" />
+</navigation>

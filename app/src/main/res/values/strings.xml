@@ -1,6 +1,22 @@
 <resources>
-    <string name="app_name" translatable="false">Tool Changer</string>
-    <string name="welcome">Welcome</string>
-    <string name="sign_up">Sign Up</string>
-    <string name="sign_in">Sign In</string>
+    <string name="name.app" translatable="false">Tool Changer</string>
+    <string name="upper_title_welcome">Welcome</string>
+    <string name="upper_text_sign_up">Sign Up</string>
+    <string name="upper_text_sign_in">Sign In</string>
+    <string name="upper_label_last_name">Last name</string>
+    <string name="upper_label_first_name">First name</string>
+    <string name="upper_label_email">Email</string>
+    <string name="upper_label_phone">Phone</string>
+    <string name="upper_label_address">Address</string>
+    <string name="upper_label_city">City</string>
+    <string name="upper_label_country">Country</string>
+    <string name="upper_label_password">Password</string>
+    <string name="text_accept_eula">By clicking the sign up button you accept the EULA</string>
+    <string name="error_went_wrong_database">Something went wrong with the database</string>
+    <string name="error_all_fields_not_filled">Not all fields are filled in!</string>
+    <string name="error_email_already_used">Email already used</string>
+    <string name="error_cannot_be_empty">Cannot be empty</string>
+    <string name="error_incorrect_email">Incorrect email</string>
+    <string name="upper_label_postal_code">Postcode</string>
+    <string name="error_incorrect_phone">Incorrect phone number</string>
 </resources>

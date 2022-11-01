@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="welcome">Bienvenue</string>
-    <string name="sign_up">Inscription</string>
-    <string name="sign_in">Connexion</string>
+    <string name="upper_title_welcome">Bienvenue</string>
+    <string name="upper_text_sign_up">Inscription</string>
+    <string name="upper_text_sign_in">Connexion</string>
+    <string name="upper_label_last_name">Nom</string>
+    <string name="upper_label_first_name">Prénom</string>
+    <string name="upper_label_email">Mail</string>
+    <string name="upper_label_phone">Téléphone</string>
+    <string name="upper_label_address">Adresse</string>
+    <string name="upper_label_city">Ville</string>
+    <string name="upper_label_country">Pays</string>
+    <string name="upper_label_password">Mot de passe</string>
+    <string name="text_accept_eula">En cliquant sur le bouton inscription, vous acceptez les GCU</string>
+    <string name="error_went_wrong_database">Quelque chose c\'est mal passé avec la base de données</string>
+    <string name="error_all_fields_not_filled">Tous les champs ne sont pas remplies</string>
+    <string name="error_email_already_used">L\'email est déjà utilisé</string>
+    <string name="error_cannot_be_empty">Ne peut être vide</string>
+    <string name="error_incorrect_email">Mail incorrecte</string>
+    <string name="upper_label_postal_code">Code Postal</string>
+    <string name="error_incorrect_phone">Téléphone incorrecte</string>
 </resources>

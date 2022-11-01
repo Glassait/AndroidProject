@@ -14,19 +14,34 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Text.regular30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
     <style name="Text.Title">
         <item name="android:textColor">@color/primary_light</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">67sp</item>
+        <item name="android:textSize">70sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
     </style>
 
     <style name="Box">
         <item name="android:background">@drawable/box_border_light</item>
         <item name="android:textColor">@color/on_box_light_2</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 
     <style name="Button">
         <item name="android:textSize">30sp</item>
+        <item name="android:width">300dp</item>
+        <item name="android:height">65dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
 
     <style name="fullButton" parent="Button">
@@ -37,5 +52,14 @@
     <style name="emptyButton" parent="Button">
         <item name="android:background">@drawable/empty_button_light</item>
         <item name="android:textColor">@color/on_box_light</item>
+    </style>
+
+    <style name="ReturnButton">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">70dp</item>
+    </style>
+
+    <style name="arrowButton" parent="ReturnButton">
+        <item name="android:background">@drawable/back_button_light</item>
     </style>
 </resources>
