@@ -10,6 +10,7 @@ import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.After;
 import org.junit.Test;
 
 public class UUIDTest {
@@ -128,34 +129,6 @@ public class UUIDTest {
     }
 
     /**
-     * Test the deletion of file.
-     * <p>
-     * Delete all files uses for the test
-     *
-     * @see UUID#UUID(Context, String)
-     * @see UUID#deleteUUIDFile()
-     * @see UUID#readUUIDFromFile()
-     * @see org.junit.Assert#assertTrue(boolean)
-     * @see org.junit.Assert#assertNull(Object)
-     */
-    @Test
-    public void deleteUUIDFile() {
-        UUID uuid = new UUID(
-                mContext,
-                mEmail
-        );
-        UUID uuid1 = new UUID(
-                mContext,
-                mEmail + "1"
-        );
-
-        assertTrue(uuid.deleteUUIDFile());
-        assertTrue(uuid1.deleteUUIDFile());
-        assertNull(uuid.readUUIDFromFile());
-        assertNull(uuid1.readUUIDFromFile());
-    }
-
-    /**
      * Test the deletion of none existing UUID file
      *
      * @see UUID#UUID(Context, String)
@@ -172,5 +145,36 @@ public class UUIDTest {
         );
         assertFalse(uuid.deleteUUIDFile());
         assertNull(uuid.readUUIDFromFile());
+    }
+
+    /**
+     * Test the deletion of file.
+     * <p>
+     * Delete all files uses for the test
+     *
+     * @see UUID#UUID(Context, String)
+     * @see UUID#deleteUUIDFile()
+     * @see UUID#readUUIDFromFile()
+     * @see org.junit.Assert#assertTrue(boolean)
+     * @see org.junit.Assert#assertNull(Object)
+     */
+    @After
+    public void deleteUUIDFile() {
+        UUID uuid = new UUID(
+                mContext,
+                mEmail
+        );
+        UUID uuid1 = new UUID(
+                mContext,
+                mEmail + "1"
+        );
+        UUID uuid2 = new UUID(
+                mContext,
+                "tendzinroffler@gmail.com"
+        );
+
+        uuid.deleteUUIDFile();
+        uuid1.deleteUUIDFile();
+        uuid2.deleteUUIDFile();
     }
 }

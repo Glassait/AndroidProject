@@ -148,7 +148,8 @@ public class SignUpFragment extends Fragment {
      * Logic for the sign up button on click event.
      * <p>
      * First of all check if the email is already registered. After check if all EditText are
-     * filled. After check if the mail is correctly formed. Finally create the user in the database.
+     * filled. After check if the mail and the phone are correctly formed. Finally create the user
+     * in the database.
      * <p>
      * All error are display with {@link Toast} message.
      *
@@ -157,6 +158,8 @@ public class SignUpFragment extends Fragment {
      * @see #checkIfEmailIsAlreadyUse()
      * @see #checkIfAllEtAreFilled()
      * @see #checkEmail()
+     * @see #checkPhone()
+     * @see #createAndInsertUserInDb()
      * @see Toast#makeText(Context, int, int)
      */
     private void onClickRegister(View view) {
@@ -167,6 +170,8 @@ public class SignUpFragment extends Fragment {
                          Toast.LENGTH_SHORT
                  )
                  .show();
+            mEmailEt.setError(mRoot.getResources()
+                                   .getString(R.string.error_email_already_used));
         } else if (checkIfAllEtAreFilled()) {
             if (checkEmail()) {
                 if (checkPhone()) {
@@ -202,12 +207,10 @@ public class SignUpFragment extends Fragment {
      * <p>
      * If the length of the string get from the EditText is equals to 0 then we set an error on the
      * EditText.
-     * <p>
-     * Return false if the EditText is empty, true otherwise.
      *
-     * @param et EditText
+     * @param et The editText to check
      *
-     * @return boolean
+     * @return True if the editText is filled, false otherwise
      *
      * @see EditText#setError(CharSequence)
      */
@@ -224,7 +227,7 @@ public class SignUpFragment extends Fragment {
     /**
      * Check if all EditText of the screen are filled
      *
-     * @return boolean
+     * @return True if all EditText of the screen are filled, false otherwise
      *
      * @see #checkIfEtIsFilled(EditText)
      */
@@ -243,7 +246,7 @@ public class SignUpFragment extends Fragment {
      * Do a search of the mail in the database, if a user with this email if found return false,
      * otherwise return true.
      *
-     * @return boolean
+     * @return True if the email is already in the database, false otherwise
      *
      * @see #checkIfEtIsFilled(EditText)
      * @see UserDao#getUserFromEmail(String)
@@ -267,11 +270,12 @@ public class SignUpFragment extends Fragment {
 
     /**
      * Logic for handling the onFocusChange event.
+     * <p>
      * Is the element lose the focus then we check if is was filled or not.
      *
      * @param ignoredView View
-     * @param hasFocus    boolean
-     * @param input       EditText
+     * @param hasFocus    If the element is focused or not
+     * @param input       The editText where the event is applied
      *
      * @see #checkIfEtIsFilled(EditText)
      */
@@ -280,13 +284,13 @@ public class SignUpFragment extends Fragment {
     }
 
     /**
-     * Check if the email is correctly formatted.
+     * Check if the email is correctly formatted and encode it.
      * <p>
      * If not set an error on the input and return false.
      * <p>
-     * Use the {@link Email} class to realise the check
+     * Use the {@link Email#checkEmail()} to realise the check
      *
-     * @return boolean
+     * @return True if the email is correctly formatted, false otherwise
      *
      * @see Email#checkEmail()
      * @see Email#setEmail(String)
@@ -306,13 +310,13 @@ public class SignUpFragment extends Fragment {
     }
 
     /**
-     * Check if the phone is correctly formatted.
+     * Check if the phone is correctly formatted and encode it.
      * <p>
      * If not set an error on the input and return false.
      * <p>
-     * Use the {@link Phone} class to realise the check
+     * Use the {@link Phone#checkPhone()} to realise the check
      *
-     * @return boolean
+     * @return True if the phone is correctly formatted, false otherwise
      *
      * @see Phone#setPhone(String)
      * @see Phone#encode(String)
@@ -333,13 +337,28 @@ public class SignUpFragment extends Fragment {
 
     /**
      * Create the new user and insert it in the database
+     * <p>
+     * Create also a uuid for the user and store it in a file.
+     * <p>
      * If the insert is successful/fail then display a {@link Toast} message
      *
      * @see User#User(String, String, String, String, String, String, String, UUID)
      * @see UserDao#insert(User)
+     * @see com.glassait.androidproject.common.utils.UUID#UUID(Context, String)
+     * @see com.glassait.androidproject.common.utils.UUID#generateUUID()
+     * @see com.glassait.androidproject.common.utils.UUID#storeUUIDInFile()
+     * @see com.glassait.androidproject.common.utils.UUID#getUuid()
      * @see Toast#makeText(Context, int, int)
      */
     private void createAndInsertUserInDb() {
+        com.glassait.androidproject.common.utils.UUID uuid =
+                new com.glassait.androidproject.common.utils.UUID(
+                        mRoot.getContext(),
+                        mEmail.getEmail()
+                );
+        uuid.generateUUID();
+        uuid.storeUUIDInFile();
+
         User user = new User(
                 mFirstNameEt.getText()
                             .toString(),
@@ -355,10 +374,7 @@ public class SignUpFragment extends Fragment {
                        .toString(),
                 mCountryEt.getText()
                           .toString(),
-                new com.glassait.androidproject.common.utils.UUID(
-                        mRoot.getContext(),
-                        mEmail.getEmail()
-                ).getUuid()
+                uuid.getUuid()
         );
 
         // TODO: Change the complete part in the subscribe when the second activity is created

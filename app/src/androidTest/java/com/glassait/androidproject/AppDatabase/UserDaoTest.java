@@ -43,7 +43,7 @@ public class UserDaoTest {
     private static final AppDatabase APP_DATABASE;
 
     static {
-        System.out.println("Dazot");
+        USER.uid = 1;
         APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
                                              .getTargetContext();
         BUILDER = Builder.getInstance();

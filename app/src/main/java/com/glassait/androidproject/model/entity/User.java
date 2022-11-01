@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.glassait.androidproject.common.utils.Checker;
+
 import java.util.UUID;
 
 /**
@@ -19,23 +21,25 @@ public class User {
      * The {@link PrimaryKey} is a uid and is auto generate.
      * Inside the constructor the uid is check to not be less than 0
      * <br><br>
-     * All other fields are encode with {@link TextUtils#htmlEncode(String)}
-     * And trim with {@link String#trim}
+     * All other fields are encode with {@link TextUtils#htmlEncode(String)}, more information
+     * {@link Checker#encode(String)}
+     * <p>
+     * And trim with {@link String#trim} (Remove spaces before and after the string).
      *
-     * @param firstName String
-     * @param lastName  String
-     * @param email     String
-     * @param phone     String
-     * @param address   String
-     * @param city      String
-     * @param country   String
-     * @param uuid      String
+     * @param firstName The first name of the user
+     * @param lastName  The last name of the user
+     * @param email     The mail address of the user
+     * @param phone     The phone number of the user
+     * @param address   The postal address of the user
+     * @param city      The city of the user
+     * @param country   The country of the user
+     * @param uuid      The uuid of the user
      *
      * @see TextUtils#htmlEncode(String)
      */
     public User(String firstName, String lastName, String email, String phone, String address,
                 String city, String country, UUID uuid) {
-        uid = uid <= 0 ? 1 : uid;
+//        uid = uid <= 0 ? 1 : uid;
         this.firstName = TextUtils.htmlEncode(firstName.trim());
         this.lastName = TextUtils.htmlEncode(lastName.trim());
         this.email = TextUtils.htmlEncode(email.trim());

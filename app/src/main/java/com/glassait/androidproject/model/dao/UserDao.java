@@ -25,7 +25,7 @@ public interface UserDao {
     /**
      * Return all data of all users inside the table
      *
-     * @return List<User>
+     * @return All user in the table
      */
     @Query("SELECT * FROM user")
     List<User> getAll();
@@ -33,40 +33,46 @@ public interface UserDao {
     /**
      * Query the {@link User} with the uid
      *
-     * @param email String - The uid of the {@link User}
+     * @param email The mail of the {@link User}
      *
-     * @return Single<User>
+     * @return The user with the mail, else throw the
+     * {@link androidx.room.rxjava3.EmptyResultSetException} exception
      */
     @Query("SELECT * FROM user WHERE email = :email")
     Single<User> getUserFromEmail(String email);
 
     /**
      * Insert an user inside the table
-     * This is a asynchronous one-shot queries: https://developer.android.com/training/data-storage/room/async-queries#one-shot
+     * <p>
+     * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      *
-     * @param user {@link User} - The user to put inside the table
+     * @param user The user to put inside the table
      *
-     * @return Completable
+     * @return The completable to subscribe
+     *
+     * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insert(User user);
 
     /**
-     * @param user {@link User} The user to update
+     * @param user The user to update
      *
-     * @return Completable
+     * @return The completable to subscribe
      */
     @Update
     Completable update(User user);
 
     /**
-     * Delete an user inside the table
+     * Delete the user inside the table
      * <p>
-     * This is a asynchronous one-shot queries: https://developer.android.com/training/data-storage/room/async-queries#one-shot
+     * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      *
-     * @param user {@link User} - The user to delete inside the table
+     * @param user The user to delete inside the table
      *
-     * @return Completable
+     * @return The completable to subscribe
+     *
+     * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      */
     @Delete
     Completable delete(User user);
