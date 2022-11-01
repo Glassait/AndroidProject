@@ -1,6 +1,5 @@
 package com.glassait.androidproject.model.database;
 
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
@@ -13,7 +12,7 @@ import com.glassait.androidproject.model.entity.User;
  * Add the {@link androidx.room.Entity} inside the @Database
  * And the DAO in methode
  */
-@Database(version = 5, entities = {User.class}, autoMigrations = @AutoMigration(from = 4, to = 5))
+@Database(version = 1, entities = {User.class})
 public abstract class AppDatabase extends RoomDatabase {
     // DAO for user table
     public abstract UserDao userDao();

@@ -1,81 +1,51 @@
 package com.glassait.androidproject.common.utils;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-
-import java.util.regex.Pattern;
-
 /**
- * Is class is for handle the check of the phone
+ * Is class is for handle the check of the phone number during register process
  */
 public class Phone extends Checker {
-    private String mPreviousPhone = "";
-    private String mPhone         = "";
+    private String mCurrentPhone = "";
 
+    /**
+     * Constructor for the phone handler
+     * The regex pattern is store in the abstract class {@link Checker}
+     * <p>
+     * For testing the regex pattern is live you can use this web site: <a href="https://regex101.com/">regex101</a>.
+     * With the different example is the unit test
+     *
+     * @see <a href="https://regex101.com/">regex101</a>
+     */
     public Phone() {
         // Regex pattern used to match phone addresses, see PhoneTest
         // for example of right/ wrong phone
-        super("^[+][0-9]{1,4}[0-9]{8,9}$");
+        super("^[+][1-9][0-9]{0,3}[0-9]{8,10}$");
     }
 
     /**
-     * Check if the phone is correctly formatted with the regex pattern
+     * Check if the phone is correctly formatted with the regex pattern.
+     * To seen how it's works check {@link Checker#checkValue(String)}
      *
-     * @return boolean
+     * @return True if the phone is correctly formatted, false otherwise
      *
-     * @see Pattern#matcher(CharSequence)
+     * @see Checker#checkValue(String)
      */
     public boolean checkPhone() {
-        return super.checkValue(mPhone);
+        return super.checkValue(mCurrentPhone);
     }
 
     /**
-     * Getter for the phone
-     *
-     * @return String
+     * @return The current phone number
      */
     public String getPhone() {
-        return mPhone;
+        return mCurrentPhone;
     }
 
     /**
-     * Setter for the phone.
-     * The phone is encoded
+     * The phone has to be encode before with {@link Phone#encode(String)} or {@link Checker#encode(String)}.
      *
-     * @param phone String
-     *
-     * @see #checkVersion(String)
+     * @param phone The phone number
      */
-    public void setEmail(String phone) {
-        checkVersion(phone);
-    }
-
-    /**
-     * Setter for the phone from an edit text.
-     * The phone is encoded
-     *
-     * @param input EditText
-     *
-     * @see #checkVersion(String)
-     */
-    public void setEmail(EditText input) {
-        checkVersion(input.getText()
-                          .toString());
-    }
-
-    /**
-     * Check if the value is different from the previous value.
-     * If true replace the current data store with the new value.
-     *
-     * @param value String
-     *
-     * @see TextUtils#htmlEncode(String)
-     */
-    private void checkVersion(String value) {
-        value = TextUtils.htmlEncode(value);
-        if (!mPreviousPhone.equals(value)) {
-            mPreviousPhone = mPhone;
-            mPhone = value;
-        }
+    public void setPhone(String phone) {
+        mCurrentPhone = phone;
     }
 }

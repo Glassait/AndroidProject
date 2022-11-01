@@ -31,13 +31,13 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ## Dependency
 
 ![ROOM](https://img.shields.io/badge/ROOM-2.4.3-red)
-![rxjava](https://img.shields.io/badge/rxjava3:2.4.3-red)
+![rxjava](https://img.shields.io/badge/RXJava3-2.4.3-red)
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
 ![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
 
 ## Requirement
 
-- [x] Database
+- [x] Database (local)
 - [x] Sign up
 - [ ] Sign in
 - [ ] Search

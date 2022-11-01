@@ -20,6 +20,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.UUID;
+
 import kotlin.jvm.JvmStatic;
 
 @RunWith(AndroidJUnit4.class)
@@ -36,11 +38,12 @@ public class UserDaoTest {
             "15 road field",
             "city",
             "country",
-            "password"
+            UUID.randomUUID()
     );
     private static final AppDatabase APP_DATABASE;
 
     static {
+        System.out.println("Dazot");
         APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
                                              .getTargetContext();
         BUILDER = Builder.getInstance();
@@ -80,6 +83,7 @@ public class UserDaoTest {
     @AfterClass
     @JvmStatic
     public static void close() {
+        System.out.println("after class");
         APP_DATABASE.close();
     }
 

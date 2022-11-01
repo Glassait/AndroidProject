@@ -22,6 +22,7 @@ public class Builder {
                                    AppDatabase.class,
                                    name
                            )
+                           .fallbackToDestructiveMigration()
                            .allowMainThreadQueries()
                            .build();
     }

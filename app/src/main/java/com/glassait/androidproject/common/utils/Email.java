@@ -1,17 +1,21 @@
 package com.glassait.androidproject.common.utils;
 
-import android.text.TextUtils;
-import android.widget.EditText;
-
-import java.util.regex.Pattern;
-
 /**
- * Is class is for handle the check of the email address
+ * Is class is for handle the check of the email address during register process
  */
 public class Email extends Checker {
-    private String mPreviousEmail = "";
-    private String mEmail         = "";
+    private String mCurrentEmail = "";
 
+    /**
+     * Constructor for the email handler
+     * The regex pattern is store in the abstract class {@link Checker}
+     * <p>
+     * For testing the regex pattern is live you can use this web site:
+     * <a href="https://regex101.com/">regex101</a>.
+     * With the different example is the unit test
+     *
+     * @see <a href="https://regex101.com/">regex101</a>
+     */
     public Email() {
         // Regex pattern used to match email addresses, see EmailTest
         // for example of right/ wrong email
@@ -19,63 +23,31 @@ public class Email extends Checker {
     }
 
     /**
-     * Check if the email is correctly formatted with the regex pattern
-     *
-     * @return boolean
-     *
-     * @see Pattern#matcher(CharSequence)
-     */
-    public boolean checkEmail() {
-        return super.checkValue(mEmail);
-    }
-
-    /**
-     * Getter for the email
-     *
-     * @return String
+     * @return The current email address
      */
     public String getEmail() {
-        return mEmail;
+        return mCurrentEmail;
     }
 
     /**
-     * Setter for the email.
-     * The email is encoded
+     * Check if the email is correctly formatted with the regex pattern.
+     * To seen how it's works check {@link Checker#checkValue(String)}
      *
-     * @param email String
+     * @return True ig the mail address is correctly formatted, else false
      *
-     * @see #checkVersion(String)
+     * @see Checker#checkValue(String)
+     */
+    public boolean checkEmail() {
+        return super.checkValue(mCurrentEmail);
+    }
+
+    /**
+     * The email has to be encoded before with {@link Email#encode(String)} or
+     * {@link Checker#encode(String)}.
+     *
+     * @param email The mail address
      */
     public void setEmail(String email) {
-        checkVersion(email);
-    }
-
-    /**
-     * Setter for the email from an edit text.
-     * The email is encoded
-     *
-     * @param input EditText
-     *
-     * @see #checkVersion(String)
-     */
-    public void setEmail(EditText input) {
-        checkVersion(input.getText()
-                          .toString());
-    }
-
-    /**
-     * Check if the value is different from the previous value.
-     * If true replace the current data store with the new value.
-     *
-     * @param value String
-     *
-     * @see TextUtils#htmlEncode(String)
-     */
-    private void checkVersion(String value) {
-        value = TextUtils.htmlEncode(value);
-        if (!mPreviousEmail.equals(value)) {
-            mPreviousEmail = mEmail;
-            mEmail = value;
-        }
+        mCurrentEmail = email;
     }
 }

@@ -6,6 +6,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.UUID;
+
 /**
  * Class defining the user of the app
  */
@@ -27,12 +29,12 @@ public class User {
      * @param address   String
      * @param city      String
      * @param country   String
-     * @param password  String
+     * @param uuid      String
      *
      * @see TextUtils#htmlEncode(String)
      */
     public User(String firstName, String lastName, String email, String phone, String address,
-                String city, String country, String password) {
+                String city, String country, UUID uuid) {
         uid = uid <= 0 ? 1 : uid;
         this.firstName = TextUtils.htmlEncode(firstName.trim());
         this.lastName = TextUtils.htmlEncode(lastName.trim());
@@ -41,7 +43,7 @@ public class User {
         this.address = TextUtils.htmlEncode(address.trim());
         this.city = TextUtils.htmlEncode(city.trim());
         this.country = TextUtils.htmlEncode(country.trim());
-        this.password = TextUtils.htmlEncode(password.trim());
+        this.uuid = uuid;
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -68,6 +70,6 @@ public class User {
     @ColumnInfo(name = "country")
     public String country;
 
-    @ColumnInfo(name = "password")
-    public String password;
+    @ColumnInfo(name = "uuid")
+    public UUID uuid;
 }

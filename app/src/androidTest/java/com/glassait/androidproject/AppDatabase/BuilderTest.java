@@ -1,4 +1,4 @@
-package com.glassait.androidproject;
+package com.glassait.androidproject.AppDatabase;
 
 import static org.junit.Assert.assertTrue;
 

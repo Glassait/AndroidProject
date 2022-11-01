@@ -24,6 +24,7 @@ public class StartMenuFragment extends Fragment {
         TextView signUp = root.findViewById(R.id.start_menu_sign_up_button);
 
         NavController navController = NavHostFragment.findNavController(this);
+        // Navigate to the sign up fragment
         signUp.setOnClickListener(view -> navController.navigate(R.id.sign_up));
 
         return root;

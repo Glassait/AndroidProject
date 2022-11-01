@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "69d5955a2dd84035d9aeeafa96954420",
+    "identityHash": "9208f87b09545e3c5aa5134c64b873c5",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `city` TEXT, `country` TEXT, `password` TEXT, PRIMARY KEY(`uid`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `city` TEXT, `country` TEXT, `uuid` BLOB)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -57,9 +57,9 @@
             "notNull": false
           },
           {
-            "fieldPath": "password",
-            "columnName": "password",
-            "affinity": "TEXT",
+            "fieldPath": "uuid",
+            "columnName": "uuid",
+            "affinity": "BLOB",
             "notNull": false
           }
         ],
@@ -67,7 +67,7 @@
           "columnNames": [
             "uid"
           ],
-          "autoGenerate": false
+          "autoGenerate": true
         },
         "indices": [],
         "foreignKeys": []
@@ -76,7 +76,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '69d5955a2dd84035d9aeeafa96954420')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9208f87b09545e3c5aa5134c64b873c5')"
     ]
   }
 }

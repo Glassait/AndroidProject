@@ -16,6 +16,7 @@
     <string name="error_all_fields_not_filled">Tous les champs ne sont pas remplies</string>
     <string name="error_email_already_used">L\'email est déjà utilisé</string>
     <string name="error_cannot_be_empty">Ne peut être vide</string>
-    <string name="error_inccorect_email">Mail incorrecte</string>
+    <string name="error_incorrect_email">Mail incorrecte</string>
     <string name="upper_label_postal_code">Code Postal</string>
+    <string name="error_incorrect_phone">Téléphone incorrecte</string>
 </resources>

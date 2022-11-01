@@ -16,6 +16,7 @@
     <string name="error_all_fields_not_filled">Not all fields are filled in!</string>
     <string name="error_email_already_used">Email already used</string>
     <string name="error_cannot_be_empty">Cannot be empty</string>
-    <string name="error_inccorect_email">Incorrect email</string>
+    <string name="error_incorrect_email">Incorrect email</string>
     <string name="upper_label_postal_code">Postcode</string>
+    <string name="error_incorrect_phone">Incorrect phone number</string>
 </resources>

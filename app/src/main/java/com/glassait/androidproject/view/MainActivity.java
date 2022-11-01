@@ -1,6 +1,5 @@
 package com.glassait.androidproject.view;
 
-import android.os.Binder;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
