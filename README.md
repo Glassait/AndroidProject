@@ -39,7 +39,7 @@ The use of geolocation to access the nearest offers and a search bar to look for
 
 - [x] Database (local)
 - [x] Sign up
-- [ ] Sign in
+- [x] Sign in
 - [ ] Search
 - [ ] Localization
 - [ ] Chat
