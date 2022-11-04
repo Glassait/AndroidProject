@@ -19,4 +19,8 @@
     <string name="error_incorrect_email">Mail incorrecte</string>
     <string name="upper_label_postal_code">Code Postal</string>
     <string name="error_incorrect_phone">Téléphone incorrecte</string>
+    <string name="upper_title_connection">Connexion</string>
+    <string name="text_new_phone">Il semblerait que vous tentez de vous connecter avec un nouveau téléphone.</string>
+    <string name="text_email_send">Un email a été envoyé à l’adresse mail renseignée. Vous pouvez retourné à l\'écran de connexion</string>
+    <string name="error_failed_to_connect">Erreur de connexion, email invalide</string>
 </resources>

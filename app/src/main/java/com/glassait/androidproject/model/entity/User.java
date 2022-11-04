@@ -6,7 +6,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.glassait.androidproject.common.utils.Checker;
+import com.glassait.androidproject.common.utils.checker.Checker;
 
 import java.util.UUID;
 

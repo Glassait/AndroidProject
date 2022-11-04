@@ -3,16 +3,26 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/navigation_graph"
-        app:startDestination="@id/startMenu">
+        app:startDestination="@id/start_menu_fragment">
 
     <fragment
-            android:id="@+id/startMenu"
+            android:id="@+id/start_menu_fragment"
             android:name="com.glassait.androidproject.view.StartMenuFragment"
             android:label="fragment_start_menu"
             tools:layout="@layout/fragment_start_menu" />
     <fragment
-            android:id="@+id/sign_up"
+            android:id="@+id/sign_up_fragment"
             android:name="com.glassait.androidproject.view.SignUpFragment"
             android:label="fragment_sign_up"
             tools:layout="@layout/fragment_sign_up" />
+    <fragment
+            android:id="@+id/sign_in_fragment"
+            android:name="com.glassait.androidproject.view.SignInFragment"
+            android:label="fragment_sign_in"
+            tools:layout="@layout/fragment_sign_in" />
+    <fragment
+            android:id="@+id/new_location_fragment"
+            android:name="com.glassait.androidproject.view.NewLocationFragment"
+            android:label="fragment_new_location"
+            tools:layout="@layout/fragment_new_location" />
 </navigation>
