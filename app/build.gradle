@@ -4,15 +4,23 @@ plugins {
 
 android {
     compileSdk 33
+    namespace 'com.glassait.androidproject'
 
     defaultConfig {
         applicationId "com.glassait.androidproject"
-        minSdk 24
+        minSdk 33
         targetSdk 33
-        versionCode 01
+        versionCode 02
         versionName 'AndroidProject V0.1'
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
 
     buildTypes {
@@ -21,24 +29,34 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+    //Test
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
-    // DATABASE DEPENDENCY
-    def room_version = "2.4.3"
-    implementation("androidx.room:room-runtime:$room_version")
-    annotationProcessor("androidx.room:room-compiler:$room_version")
-    testImplementation "androidx.room:room-testing:$room_version"
-    implementation "androidx.room:room-rxjava3:$room_version"
+    // DATABASE DEPENDENCY (ROOM)
+    implementation("androidx.room:room-runtime:2.4.3")
+    annotationProcessor("androidx.room:room-compiler:2.4.3")
+    testImplementation "androidx.room:room-testing:2.4.3"
+    implementation "androidx.room:room-rxjava3:2.4.3"
+
+    //Navigation
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
 }

@@ -1,7 +1,7 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.1-green)
-![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)  
+![Version](https://img.shields.io/badge/version-0.2-green)
+![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
 ![GitHub milestones](https://img.shields.io/github/milestones/all/Glassait/AndroidProject)
@@ -23,21 +23,23 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ## Technologies
 
 ![Android](https://img.shields.io/badge/ANDROID_(Nougat)-7.0-blue)
-![SDK_min](https://img.shields.io/badge/Min_SDK-24-blue)
+![SDK_min](https://img.shields.io/badge/Min_SDK-33-blue)
 ![SDK_target](https://img.shields.io/badge/Target_SDK-33-blue)
-![Gradle](https://img.shields.io/badge/GRABLE-7.3.3-blue)
+![Gradle](https://img.shields.io/badge/GRABLE-7.3.1-blue)
 ![JAVA](https://img.shields.io/badge/JAVA_Version-11-blue)
 
 ## Dependency
 
 ![ROOM](https://img.shields.io/badge/ROOM-2.4.3-red)
+![rxjava](https://img.shields.io/badge/RXJava3-2.4.3-red)
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
+![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
 
 ## Requirement
 
-- [x] Database
-- [ ] Sign up
-- [ ] Sign in
+- [x] Database (local)
+- [x] Sign up
+- [x] Sign in
 - [ ] Search
 - [ ] Localization
 - [ ] Chat
@@ -46,4 +48,4 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [ ] Report / Ban
 - [ ] Notification
 - [ ] Profile
-- [ ] Paramètre
+- [ ] Parameter
