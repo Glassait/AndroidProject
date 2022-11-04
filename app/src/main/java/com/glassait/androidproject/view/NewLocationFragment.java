@@ -12,24 +12,21 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
 
-public class StartMenuFragment extends Fragment {
+public class NewLocationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(
-                R.layout.fragment_start_menu,
+        // Inflate the layout for this fragment
+        View mRoot = inflater.inflate(
+                R.layout.fragment_new_location,
                 container,
                 false
         );
-        TextView signUpButton = root.findViewById(R.id.start_menu_sign_up_button);
-        TextView signInButton = root.findViewById(R.id.start_menu_sign_in_button);
 
+        TextView      backButton    = mRoot.findViewById(R.id.new_location_back_btn);
         NavController navController = NavHostFragment.findNavController(this);
-        // Navigate to the sign up fragment
-        signUpButton.setOnClickListener(view -> navController.navigate(R.id.sign_up_fragment));
-        // Navigate to the sign in fragment
-        signInButton.setOnClickListener(view -> navController.navigate(R.id.sign_in_fragment));
+        backButton.setOnClickListener(view -> navController.navigate(R.id.sign_in_fragment));
 
-        return root;
+        return mRoot;
     }
 }

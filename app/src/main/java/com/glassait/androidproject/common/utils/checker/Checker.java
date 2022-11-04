@@ -1,4 +1,4 @@
-package com.glassait.androidproject.common.utils;
+package com.glassait.androidproject.common.utils.checker;
 
 import android.text.TextUtils;
 
