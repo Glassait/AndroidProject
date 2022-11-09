@@ -23,4 +23,18 @@
     <string name="text_new_phone">Il semblerait que vous tentez de vous connecter avec un nouveau téléphone.</string>
     <string name="text_email_send">Un email a été envoyé à l’adresse mail renseignée. Vous pouvez retourné à l\'écran de connexion</string>
     <string name="error_failed_to_connect">Erreur de connexion, email invalide</string>
+    <string name="upper_avatar_default">P</string>
+    <string name="link_see_all"><u>Tout voir</u></string>
+    <string name="label_in_the_area">Dans les environs</string>
+    <string name="offer_image_of_the_tool">Image de l\'outil</string>
+    <string name="offer_title">Titre de l\'offre</string>
+    <string name="offer_last_first_name">Nom Prénom</string>
+    <string name="offer_city">Ville</string>
+    <string name="offer_add_one">Ajouter une offre</string>
+    <string name="offer_your">Vos offres</string>
+    <string name="offer_my_reservation">Mes réservations</string>
+    <string name="offer_do_a_reservation">Faire une réservation</string>
+    <string name="menu_search">Chercher</string>
+    <string name="menu_home">Accueil</string>
+    <string name="menu_chat">Conversation</string>
 </resources>

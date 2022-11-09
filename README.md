@@ -1,6 +1,6 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.2-green)
+![Version](https://img.shields.io/badge/version-0.3-green)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
@@ -34,12 +34,13 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ![rxjava](https://img.shields.io/badge/RXJava3-2.4.3-red)
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
 ![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
+![Compose Material 3](https://img.shields.io/badge/Compose_Material_3-1.1.0-alpha01-red)
 
 ## Requirement
 
 - [x] Database (local)
 - [x] Sign up
-- [x] Sign in
+- [x] Sign in - (with auto-connect)
 - [ ] Search
 - [ ] Localization
 - [ ] Chat

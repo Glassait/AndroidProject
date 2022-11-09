@@ -10,8 +10,8 @@ android {
         applicationId "com.glassait.androidproject"
         minSdk 33
         targetSdk 33
-        versionCode 02
-        versionName 'AndroidProject V0.1'
+        versionCode 03
+        versionName 'AndroidProject V0.3'
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -37,6 +37,7 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
     }
 }
 
@@ -44,6 +45,11 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation "androidx.coordinatorlayout:coordinatorlayout:1.2.0"
+
+    // Compose Material 3
+    implementation "androidx.compose.material3:material3:1.1.0-alpha01"
+    implementation "androidx.compose.material3:material3-window-size-class:1.1.0-alpha01"
 
     //Test
     testImplementation 'junit:junit:4.13.2'

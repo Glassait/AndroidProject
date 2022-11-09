@@ -36,15 +36,16 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="0dp"
-                style="@style/Box"
+                style="@style/Box.full_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_width="0dp"
                 app:layout_constraintTop_toBottomOf="@+id/title_new_location_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="1.0"
-                android:layout_marginTop="150dp">
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginTop="125dp"
+                android:layout_marginBottom="175dp">
 
             <TextView
                     android:text="@string/text_new_phone"
