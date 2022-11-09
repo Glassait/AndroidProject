@@ -1,17 +1,13 @@
 <resources>
 
-    <style name="Theme.AndroidProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AndroidProject"
+            parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/background_night</item>
         <item name="android:textColor">@color/on_background_night</item>
     </style>
 
     <style name="Text">
         <item name="android:textColor">@color/on_background_night</item>
-    </style>
-
-    <style name="Text.bold24">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="Text.Title">
@@ -24,22 +20,52 @@
     </style>
 
     <style name="Box">
-        <item name="android:background">@drawable/box_border_night</item>
-        <item name="android:textColor">@color/on_box_night</item>
+        <item name="android:textColor">@color/on_box_light_2</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="fullButton" parent="Button">
+    <style name="Box.top_radius">
+        <item name="android:background">@drawable/box_border_top_radius_night</item>
+    </style>
+
+    <style name="Box.full_radius">
+        <item name="android:background">@drawable/box_border_full_radius_night</item>
+    </style>
+
+    <style name="Box.full_radius.button">
+        <item name="android:background">@drawable/box_border_full_radius_night</item>
+    </style>
+
+    <style name="fullButton"
+            parent="@style/Button">
         <item name="android:background">@drawable/full_button_night</item>
         <item name="android:textColor">@color/on_primary_night</item>
     </style>
 
-    <style name="emptyButton" parent="Button">
+    <style name="emptyButton"
+            parent="@style/Button">
         <item name="android:background">@drawable/empty_button_night</item>
         <item name="android:textColor">@color/on_box_night</item>
     </style>
 
-    <style name="arrowButton" parent="ReturnButton">
+    <style name="arrowButton"
+            parent="@style/ReturnButton">
         <item name="android:background">@drawable/back_button_night</item>
+    </style>
+
+    <style name="profileButton"
+            parent="@style/Profile">
+        <item name="android:backgroundTint">@color/primary_night</item>
+    </style>
+
+    <style name="plus">
+        <item name="android:background">@drawable/round_plus_night</item>
+    </style>
+
+    <style name="navigation_bar.bottom">
+        <item name="android:background">@color/primary_night</item>
+        <item name="itemBackground">@drawable/not_selected_item_night</item>
+        <item name="itemTextColor">@color/on_background_night</item>
+        <item name="itemIconTint">@color/on_background_night</item>
     </style>
 </resources>

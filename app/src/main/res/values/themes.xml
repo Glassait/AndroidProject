@@ -1,6 +1,7 @@
 <resources>
 
-    <style name="Theme.AndroidProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.AndroidProject"
+            parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/background_light</item>
         <item name="android:textColor">@color/on_background_light</item>
     </style>
@@ -9,13 +10,40 @@
         <item name="android:textColor">@color/on_background_light</item>
     </style>
 
-    <style name="Text.bold24">
-        <item name="android:textSize">24sp</item>
+    <style name="Light">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="Text.light18"
+            parent="Light">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Bold">
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Text.bold20"
+            parent="Bold">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Text.bold24"
+            parent="Bold">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="Text.bold32"
+            parent="Bold">
+        <item name="android:textSize">32sp</item>
     </style>
 
     <style name="Text.regular30">
         <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="Text.regular45">
+        <item name="android:textSize">45sp</item>
     </style>
 
     <style name="Text.Title">
@@ -28,9 +56,20 @@
     </style>
 
     <style name="Box">
-        <item name="android:background">@drawable/box_border_light</item>
         <item name="android:textColor">@color/on_box_light_2</item>
         <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Box.top_radius">
+        <item name="android:background">@drawable/box_border_top_radius_light</item>
+    </style>
+
+    <style name="Box.full_radius">
+        <item name="android:background">@drawable/box_border_full_radius_light</item>
+    </style>
+
+    <style name="Box.full_radius.button">
+        <item name="android:background">@drawable/button_box_border_full_radius</item>
     </style>
 
     <style name="Button">
@@ -44,23 +83,45 @@
         <item name="android:focusable">true</item>
     </style>
 
-    <style name="fullButton" parent="Button">
+    <style name="fullButton"
+            parent="@style/Button">
         <item name="android:background">@drawable/full_button_light</item>
         <item name="android:textColor">@color/on_primary_light</item>
     </style>
 
-    <style name="emptyButton" parent="Button">
+    <style name="emptyButton"
+            parent="@style/Button">
         <item name="android:background">@drawable/empty_button_light</item>
         <item name="android:textColor">@color/on_box_light</item>
     </style>
 
-    <style name="ReturnButton">
+    <style name="ReturnButton"
+            parent="@style/Text.regular45">
         <item name="android:layout_width">70dp</item>
         <item name="android:layout_height">70dp</item>
     </style>
 
-    <style name="arrowButton" parent="ReturnButton">
+    <style name="arrowButton"
+            parent="@style/ReturnButton">
         <item name="android:background">@drawable/back_button_light</item>
+    </style>
+
+    <style name="Profile"
+            parent="@style/ReturnButton">
+        <item name="android:layout_marginTop">7dp</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:elevation">0dp</item>
+        <item name="borderWidth">0dp</item>
+        <item name="fabCustomSize">70dp</item>
+        <item name="maxImageSize">105dp</item>
+        <item name="android:layout_gravity">top|end</item>
+        <item name="android:contentDescription">Profile Button</item>
+        <item name="android:src">@drawable/profile_foreground</item>
+    </style>
+
+    <style name="profileButton"
+            parent="@style/Profile">
+        <item name="android:backgroundTint">@color/on_background_night</item>
     </style>
 
     <style name="Theme.AndroidProject.NoActionBar">
@@ -68,7 +129,20 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.AndroidProject.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="plus">
+        <item name="android:background">@drawable/round_plus_light</item>
+    </style>
 
-    <style name="Theme.AndroidProject.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="navigation_bar">
+        <item name="android:layout_gravity">bottom</item>
+        <item name="itemIconSize">35dp</item>
+        <item name="itemPaddingTop">0dp</item>
+    </style>
+
+    <style name="navigation_bar.bottom">
+        <item name="android:background">@color/primary_light</item>
+        <item name="itemBackground">@drawable/not_selected_item_light</item>
+        <item name="itemTextColor">@color/on_background_light</item>
+        <item name="itemIconTint">@color/on_background_light</item>
+    </style>
 </resources>

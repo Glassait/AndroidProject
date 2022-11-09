@@ -42,7 +42,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_height="1327dp"
-                    style="@style/Box"
+                    style="@style/Box.top_radius"
                     android:layout_width="0dp"
                     android:id="@+id/constraintLayout"
                     app:layout_constraintStart_toStartOf="parent"
