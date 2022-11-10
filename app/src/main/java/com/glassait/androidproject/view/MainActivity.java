@@ -1,5 +1,6 @@
 package com.glassait.androidproject.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,5 +15,11 @@ public class MainActivity extends AppCompatActivity {
         Builder.getInstance()
                .buildDatabase(this);
         setContentView(R.layout.activity_main);
+
+        Intent intent = new Intent(
+                this,
+                ScanningActivity.class
+        );
+        startActivity(intent);
     }
 }

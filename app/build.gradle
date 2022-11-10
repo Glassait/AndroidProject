@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.glassait.androidproject"
-        minSdk 33
+        minSdk 24
         targetSdk 33
         versionCode 02
         versionName 'AndroidProject V0.1'
@@ -55,4 +55,7 @@ dependencies {
     //Navigation
     implementation 'androidx.navigation:navigation-fragment:2.5.3'
     implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+    //Code scanner
+    implementation 'com.google.mlkit:barcode-scanning:17.0.2'
 }
