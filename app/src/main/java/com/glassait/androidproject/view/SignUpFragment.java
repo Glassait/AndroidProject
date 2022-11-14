@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.checker.Phone;
 import com.glassait.androidproject.common.utils.file.Cache;
+import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -349,7 +350,7 @@ public class SignUpFragment extends EmailValidator {
                                                                       user.uid
                                                               );
                             Cache cache = new Cache(
-                                    "user_id",
+                                    Secret.USER_FILE,
                                     mRoot.getContext()
                             );
                             cache.createFile();

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "817047215352",
+    "project_id": "androidproject-227a9",
+    "storage_bucket": "androidproject-227a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:817047215352:android:b812b1774b45397e012f0d",
+        "android_client_info": {
+          "package_name": "com.glassait.androidproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "817047215352-9jiagucmdpa13tlrp44r086ej8dm1v34.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBC8Vi32kYIV2JCkS5wNBtD7W3AhL68euo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "817047215352-9jiagucmdpa13tlrp44r086ej8dm1v34.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

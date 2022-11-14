@@ -35,7 +35,7 @@
                 android:id="@+id/title_sign_in_tv" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_height="295dp"
+                android:layout_height="wrap_content"
                 style="@style/Box.top_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

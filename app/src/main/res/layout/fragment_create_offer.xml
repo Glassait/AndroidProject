@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.CreateOfferFragment">
+
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollX="0px"
+                android:scrollbarStyle="insideInset"
+                android:fadeScrollbars="true"
+                android:isScrollContainer="true">
+
+            <TextView
+                    style="@style/arrowButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="7dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="7dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintVertical_bias="0.0"
+                    android:id="@+id/create_offer_back_btn" />
+
+            <TextView
+                    android:text="@string/upper_text_create_offer"
+                    style="@style/Text.Title"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="85dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/title_create_offer_tv"
+                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_height="wrap_content"
+                    style="@style/Box.top_radius"
+                    android:layout_width="0dp"
+                    android:id="@+id/constraintLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/title_create_offer_tv"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintHorizontal_bias="0.0">
+
+                <ImageView
+                        android:layout_width="225dp"
+                        android:layout_height="225dp"
+                        android:id="@+id/create_offer_tool_image"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginTop="21dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        style="@style/upload_image"
+                        android:contentDescription="@string/content_description_image_of_the_tools" />
+
+                <TextView
+                        android:text="@string/upper_label_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/create_offer_title_tv"
+                        style="@style/Text.regular30"
+                        android:background="#00FFFFFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="150dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:labelFor="@id/create_offer_title_et"
+                        android:layout_marginTop="40dp"
+                        app:layout_constraintTop_toBottomOf="@+id/create_offer_tool_image" />
+
+                <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/create_offer_title_et"
+                        style="@style/Text.regular30"
+                        android:hint="@string/upper_label_title"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintTop_toBottomOf="@+id/create_offer_title_tv"
+                        android:autofillHints="name" />
+
+                <TextView
+                        android:text="@string/label_select_category"
+                        android:id="@+id/create_offer_category_label"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        style="@style/Text.regular30"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginEnd="25dp"
+                        android:background="#00FFFFFF"
+                        app:layout_constraintTop_toBottomOf="@+id/create_offer_title_et"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                <HorizontalScrollView
+                        app:layout_constraintTop_toBottomOf="@+id/create_offer_category_label"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:id="@+id/create_offer_category_HSV"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:scrollbars="none"
+                        android:background="#00FFFFFF">
+
+                    <com.google.android.material.chip.ChipGroup
+                            app:singleLine="true"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:id="@+id/create_offer_chip_group"
+                            app:chipSpacingHorizontal="20dp"
+                            android:background="#00FFFFFF"
+                            app:singleSelection="true"
+                            app:selectionRequired="true">
+
+                        <com.google.android.material.chip.Chip
+                                style="@style/category_chips"
+                                android:id="@+id/create_offer_chip_electric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/chips_electric"
+                                android:layout_marginStart="20dp" />
+
+                        <com.google.android.material.chip.Chip
+                                style="@style/category_chips"
+                                android:id="@+id/create_offer_chip_thermal"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/chips_thermal" />
+
+                        <com.google.android.material.chip.Chip
+                                style="@style/category_chips"
+                                android:id="@+id/create_offer_chip_manual"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/chips_manual"
+                                android:layout_marginEnd="30dp" />
+
+                    </com.google.android.material.chip.ChipGroup>
+                </HorizontalScrollView>
+
+                <TextView
+                        android:text="@string/upper_create_offer_button"
+                        android:id="@+id/create_offer_create_offer_btn"
+                        style="@style/fullButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="45dp"
+                        app:layout_constraintTop_toBottomOf="@+id/create_offer_category_HSV"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_marginBottom="80dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

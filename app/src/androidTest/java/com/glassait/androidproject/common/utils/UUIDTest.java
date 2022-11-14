@@ -8,13 +8,18 @@ import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.glassait.androidproject.common.utils.file.UUID;
 
 import org.junit.After;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+@RunWith(AndroidJUnit4.class)
+@SmallTest
 public class UUIDTest {
     private final Context mContext = InstrumentationRegistry.getInstrumentation()
                                                             .getTargetContext();
@@ -28,8 +33,6 @@ public class UUIDTest {
      * @see UUID#UUID(Context, String)
      * @see UUID#getUuid()
      * @see UUID#getFileName()
-     * @see org.junit.Assert#assertNull(Object)
-     * @see org.junit.Assert#assertEquals(Object, Object)
      */
     @Test
     public void initOfTheClass() {
@@ -49,7 +52,6 @@ public class UUIDTest {
      *
      * @see UUID#UUID(Context, String)
      * @see UUID#generateUUID()
-     * @see org.junit.Assert#assertNull(Object)
      */
     @Test
     public void generatingUUID() {
@@ -66,7 +68,6 @@ public class UUIDTest {
      *
      * @see UUID#UUID(Context, String)
      * @see UUID#storeUUID()
-     * @see org.junit.Assert#assertTrue(boolean)
      */
     @Test
     public void storeUUIDInFileWithoutGeneratingUUIDBefore() {
@@ -83,7 +84,6 @@ public class UUIDTest {
      * @see UUID#UUID(Context, String)
      * @see UUID#generateUUID()
      * @see UUID#storeUUID()
-     * @see org.junit.Assert#assertTrue(boolean)
      */
     @Test
     public void storeUUIDInFile() {
@@ -101,8 +101,6 @@ public class UUIDTest {
      * @see UUID#UUID(Context, String)
      * @see UUID#storeUUID()
      * @see UUID#readUUIDFile()
-     * @see org.junit.Assert#assertTrue(boolean)
-     * @see org.junit.Assert#assertNotNull(Object)
      */
     @Test
     public void readUUIDFromFile() {
@@ -119,7 +117,6 @@ public class UUIDTest {
      *
      * @see UUID#UUID(Context, String)
      * @see UUID#readUUIDFile()
-     * @see org.junit.Assert#assertNotNull(Object)
      */
     @Test
     public void readUUIDFromFileNotCreated() {
@@ -136,8 +133,6 @@ public class UUIDTest {
      * @see UUID#UUID(Context, String)
      * @see UUID#deleteUUIDFile()
      * @see UUID#readUUIDFile()
-     * @see org.junit.Assert#assertTrue(boolean)
-     * @see org.junit.Assert#assertNull(Object)
      */
     @Test
     public void deleteUUIDFileWithFileNotExists() {
@@ -157,8 +152,6 @@ public class UUIDTest {
      * @see UUID#UUID(Context, String)
      * @see UUID#deleteUUIDFile()
      * @see UUID#readUUIDFile()
-     * @see org.junit.Assert#assertTrue(boolean)
-     * @see org.junit.Assert#assertNull(Object)
      */
     @After
     public void deleteUUIDFile() {

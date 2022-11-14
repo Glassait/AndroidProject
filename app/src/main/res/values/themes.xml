@@ -19,6 +19,11 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="Text.light25"
+            parent="Light">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="Bold">
         <item name="android:textStyle">bold</item>
     </style>
@@ -144,5 +149,28 @@
         <item name="itemBackground">@drawable/not_selected_item_light</item>
         <item name="itemTextColor">@color/on_background_light</item>
         <item name="itemIconTint">@color/on_background_light</item>
+    </style>
+
+    <style name="upload_image">
+        <item name="android:src">@drawable/upload_file_light</item>
+    </style>
+
+    <style name="ChipsParent"
+            parent="@style/Text.light25">
+        <item name="android:checkable">true</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipIconSize">20dp</item>
+        <item name="chipEndPadding">10dp</item>
+        <item name="chipStartPadding">3dp</item>
+        <item name="chipMinHeight">40dp</item>
+    </style>
+
+    <style name="category_chips"
+            parent="@style/ChipsParent">
+        <item name="android:textColor">@color/primary_light</item>
+        <item name="chipIcon">@drawable/plus_light</item>
+        <item name="checkedIcon">@drawable/checked_light</item>
+        <item name="chipBackgroundColor">@color/on_primary_light</item>
+        <item name="chipStrokeColor">@color/primary_light</item>
     </style>
 </resources>

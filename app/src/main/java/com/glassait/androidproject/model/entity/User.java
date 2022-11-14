@@ -2,11 +2,13 @@ package com.glassait.androidproject.model.entity;
 
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.glassait.androidproject.common.utils.checker.Checker;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -20,7 +22,6 @@ public class User implements Serializable {
      * Constructor for the {@link Entity} User
      * <br><br>
      * The {@link PrimaryKey} is a uid and is auto generate.
-     * Inside the constructor the uid is check to not be less than 0
      * <br><br>
      * All other fields are encode with {@link TextUtils#htmlEncode(String)}, more information
      * {@link Checker#encode(String)}
@@ -38,8 +39,10 @@ public class User implements Serializable {
      *
      * @see TextUtils#htmlEncode(String)
      */
-    public User(String firstName, String lastName, String email, String phone, String address,
-                String city, String country, UUID uuid) {
+    @SafeParcelable.Constructor
+    public User(@NonNull String firstName, @NonNull String lastName, @NonNull String email,
+                @NonNull String phone, @NonNull String address, @NonNull String city,
+                @NonNull String country, UUID uuid) {
         this.firstName = TextUtils.htmlEncode(firstName.trim());
         this.lastName = TextUtils.htmlEncode(lastName.trim());
         this.email = TextUtils.htmlEncode(email.trim());

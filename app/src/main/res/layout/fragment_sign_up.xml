@@ -41,7 +41,7 @@
                     app:layout_constraintBottom_toTopOf="@+id/constraintLayout" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_height="1327dp"
+                    android:layout_height="wrap_content"
                     style="@style/Box.top_radius"
                     android:layout_width="0dp"
                     android:id="@+id/constraintLayout"

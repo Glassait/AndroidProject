@@ -37,4 +37,13 @@
     <string name="menu_search">Chercher</string>
     <string name="menu_home">Accueil</string>
     <string name="menu_chat">Conversation</string>
+    <string name="upper_text_create_offer">Créer une offre</string>
+    <string name="content_description_image_of_the_tools">Image de l\'outil</string>
+    <string name="upper_label_title">Titre de l\'annonce</string>
+    <string name="upper_create_offer_button">Poster</string>
+    <string name="label_select_category">Sélectionner une categorie</string>
+    <string name="chips_electric">Électrique</string>
+    <string name="chips_thermal">Thermique</string>
+    <string name="chips_manual">Manuelle</string>
+    <string name="error_to_long_30">Doit avoir moins de 30 charatères</string>
 </resources>

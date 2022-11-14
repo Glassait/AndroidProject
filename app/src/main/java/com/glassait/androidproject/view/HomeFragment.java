@@ -8,21 +8,22 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
 
 public class HomeFragment extends Fragment {
-    View mRoot;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mRoot = inflater.inflate(
+        View mRoot = inflater.inflate(
                 R.layout.fragment_home,
                 container,
                 false
         );
+        NavController navController = NavHostFragment.findNavController(this);
 
         TextView in_the_area_see_all = mRoot.findViewById(R.id.fragment_home_see_all_in_area_tv);
         in_the_area_see_all.setOnClickListener(View -> {
@@ -43,11 +44,9 @@ public class HomeFragment extends Fragment {
             System.out.println("See all the reservation");
         });
 
+        // On click listener to navigate to the creation of offer
         ConstraintLayout add_offer = mRoot.findViewById(R.id.fragment_home_add_offer);
-        add_offer.setOnClickListener(View -> {
-            // TODO change to the fragment for creating an offer
-            System.out.println("Add a offer");
-        });
+        add_offer.setOnClickListener(View -> navController.navigate(R.id.create_offer_fragment));
 
         ConstraintLayout do_reservation = mRoot.findViewById(R.id.fragment_home_do_reservation);
         do_reservation.setOnClickListener(View -> {

@@ -68,4 +68,17 @@
         <item name="itemTextColor">@color/on_background_night</item>
         <item name="itemIconTint">@color/on_background_night</item>
     </style>
+
+    <style name="upload_image">
+        <item name="android:src">@drawable/upload_file_night</item>
+    </style>
+
+    <style name="category_chips"
+            parent="@style/ChipsParent">
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="chipIcon">@drawable/plus_night</item>
+        <item name="checkedIcon">@drawable/checked_night</item>
+        <item name="chipBackgroundColor">@color/on_primary_night</item>
+        <item name="chipStrokeColor">@color/primary_night</item>
+    </style>
 </resources>

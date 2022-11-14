@@ -40,4 +40,14 @@
     <string name="menu_search">Search</string>
     <string name="menu_home">Home</string>
     <string name="menu_chat">Chat</string>
+    <string name="upper_text_create_offer">Create offer</string>
+    <string name="content_description_image_of_the_tools">Image of the tools</string>
+    <string name="upper_label_title">Title of the offer</string>
+    <string name="upper_create_offer_button">Create</string>
+    <string name="label_select_category">Select one category</string>
+    <string name="chips_electric">Electric</string>
+    <string name="chips_thermal">Thermal</string>
+    <string name="chips_manual">Manual</string>
+    <string name="error_to_long_30">Must have less than 30 characters</string>
+    <string name="error_during_upload_image">Error append when getting image</string>
 </resources>

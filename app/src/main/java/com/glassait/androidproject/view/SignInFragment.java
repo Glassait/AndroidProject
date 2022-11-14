@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.file.UUID;
+import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -43,10 +44,9 @@ public class SignInFragment extends EmailValidator {
                 container,
                 false
         );
+        mNavigation = NavHostFragment.findNavController(this);
 
         TextView backButton = mRoot.findViewById(R.id.sign_in_back_btn);
-
-        mNavigation = NavHostFragment.findNavController(this);
         backButton.setOnClickListener(view -> mNavigation.navigate(R.id.start_menu_fragment));
 
         // Email editText
@@ -137,7 +137,7 @@ public class SignInFragment extends EmailValidator {
                                                        user[0].uid
                                                );
                         Cache cache = new Cache(
-                                "user_id",
+                                Secret.USER_FILE,
                                 mRoot.getContext()
                         );
                         cache.createFile();
