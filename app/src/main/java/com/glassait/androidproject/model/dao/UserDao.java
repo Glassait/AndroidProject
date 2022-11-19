@@ -79,4 +79,16 @@ public interface UserDao {
      */
     @Delete
     Completable delete(User user);
+
+    /**
+     * Delete all the {@link User} inside the table
+     * <p>
+     * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
+     *
+     * @return The completable to subscribe
+     *
+     * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
+     */
+    @Query("DELETE FROM user")
+    Completable deleteAll();
 }

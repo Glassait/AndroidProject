@@ -6,33 +6,29 @@
         <item name="android:textColor">@color/on_background_night</item>
     </style>
 
-    <style name="Text">
+    <style name="Text"
+            parent="@style/TextParameters">
         <item name="android:textColor">@color/on_background_night</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="Text.Title">
+    <style name="Title"
+            parent="@style/TitleParameters">
         <item name="android:textColor">@color/primary_night</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">70sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="Box">
-        <item name="android:textColor">@color/on_box_light_2</item>
-        <item name="android:layout_width">match_parent</item>
+    <style name="editText"
+            parent="@style/editTextParameters">
+        <item name="android:background">@drawable/edit_text_background_night</item>
     </style>
 
-    <style name="Box.top_radius">
+    <style name="top_radius"
+            parent="@style/Box">
         <item name="android:background">@drawable/box_border_top_radius_night</item>
     </style>
 
-    <style name="Box.full_radius">
-        <item name="android:background">@drawable/box_border_full_radius_night</item>
-    </style>
-
-    <style name="Box.full_radius.button">
+    <style name="full_radius"
+            parent="@style/Box">
         <item name="android:background">@drawable/box_border_full_radius_night</item>
     </style>
 
@@ -48,17 +44,17 @@
         <item name="android:textColor">@color/on_box_night</item>
     </style>
 
-    <style name="arrowButton"
-            parent="@style/ReturnButton">
+    <style name="returnButton"
+            parent="@style/RoundButton">
         <item name="android:background">@drawable/back_button_night</item>
     </style>
 
     <style name="profileButton"
-            parent="@style/Profile">
+            parent="@style/ProfileButtonParameters">
         <item name="android:backgroundTint">@color/primary_night</item>
     </style>
 
-    <style name="plus">
+    <style name="round_plus">
         <item name="android:background">@drawable/round_plus_night</item>
     </style>
 
@@ -73,7 +69,7 @@
         <item name="android:src">@drawable/upload_file_night</item>
     </style>
 
-    <style name="category_chips"
+    <style name="categoryChips"
             parent="@style/ChipsParent">
         <item name="android:textColor">@color/primary_night</item>
         <item name="chipIcon">@drawable/plus_night</item>

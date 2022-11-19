@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.glassait.androidproject"
-        minSdk 33
+        minSdk 29
         targetSdk 33
         versionCode 03
         versionName 'AndroidProject V0.3'
@@ -54,15 +54,19 @@ dependencies {
     implementation "androidx.compose.material3:material3-window-size-class:1.1.0-alpha01"
 
     // Import the BoM for the Firebase platform
-    implementation platform('com.google.firebase:firebase-bom:31.0.2')
+    implementation platform('com.google.firebase:firebase-bom:31.0.3')
     // Add the dependency for the Cloud Storage library
     implementation 'com.google.firebase:firebase-storage'
 
     // JUnit dependency
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+
     // UI Test
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test:runner:1.5.1'
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.5.0'
 
     // DATABASE DEPENDENCY (ROOM)
     implementation("androidx.room:room-runtime:2.4.3")

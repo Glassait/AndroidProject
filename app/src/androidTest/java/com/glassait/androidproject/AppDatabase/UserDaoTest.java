@@ -44,7 +44,7 @@ public class UserDaoTest {
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_insert() {
+    public void insert() {
         User user = new User(
                 "First name",
                 "Last name",
@@ -80,7 +80,7 @@ public class UserDaoTest {
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_insertWithNullUser() {
+    public void insertWithNullUser() {
         final boolean[] userIsInsert = {false};
         int numberOfUsersBefore = mUserDao.getAll()
                                           .size();
@@ -110,7 +110,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_updateOneElement() {
+    public void updateOneElement() {
         User user = new User(
                 "First name",
                 "Last name",
@@ -157,7 +157,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_updateMultipleElements() {
+    public void updateMultipleElements() {
         User user = new User(
                 "First name",
                 "Last name",
@@ -218,7 +218,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_updateWithNullUser() {
+    public void updateWithNullUser() {
         final boolean[] userIsUpdate = {false};
 
         mUserDao.update(null)
@@ -237,7 +237,7 @@ public class UserDaoTest {
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_getAll() {
+    public void getAll() {
         assertTrue(mUserDao.getAll()
                            .size() >= 0);
     }
@@ -250,7 +250,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_getUserFromEmail() {
+    public void getUserFromEmail() {
         User user = new User(
                 "First name",
                 "Last name",
@@ -287,7 +287,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_getUserFromEmailWithErrorHandling() {
+    public void getUserFromEmailWithErrorHandling() {
         final User[] user = new User[1];
         mUserDao.getUserFromEmail("newemail@mail.com")
                 .subscribe(
@@ -308,7 +308,7 @@ public class UserDaoTest {
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_deleteOneUser() {
+    public void deleteOneUser() {
         int numberOfUsersBefore = mUserDao.getAll()
                                           .size();
         User user = new User(
@@ -345,7 +345,7 @@ public class UserDaoTest {
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_deleteAllTestUsers() {
+    public void deleteAllTestUsers() {
         List<User> listOfUsers         = mUserDao.getAll();
         int        numberOfUsersBefore = listOfUsers.size();
 

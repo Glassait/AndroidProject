@@ -6,79 +6,121 @@
         <item name="android:textColor">@color/on_background_light</item>
     </style>
 
-    <style name="Text">
+    <style name="TextParameters">
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="Text"
+            parent="@style/TextParameters">
         <item name="android:textColor">@color/on_background_light</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="Light">
+    <style name="normal"
+            parent="@style/Text">
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:autoSizeMaxTextSize">35dp</item>
+        <item name="android:autoSizeMinTextSize">25sp</item>
+    </style>
+
+    <style name="normal.little">
+        <item name="android:autoSizeMaxTextSize">25dp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+    </style>
+
+    <style name="Light"
+            parent="@style/Text">
         <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
     </style>
 
-    <style name="Text.light18"
-            parent="Light">
-        <item name="android:textSize">18sp</item>
+    <style name="link"
+            parent="@style/Light">
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
     </style>
 
-    <style name="Text.light25"
-            parent="Light">
-        <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="Bold">
+    <style name="Bold_Parent"
+            parent="@style/Text">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.bold20"
-            parent="Bold">
-        <item name="android:textSize">20sp</item>
+    <style name="bold"
+            parent="@style/Bold_Parent">
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
     </style>
 
-    <style name="Text.bold24"
-            parent="Bold">
-        <item name="android:textSize">24sp</item>
-    </style>
-
-    <style name="Text.bold32"
-            parent="Bold">
-        <item name="android:textSize">32sp</item>
-    </style>
-
-    <style name="Text.regular30">
-        <item name="android:textSize">30sp</item>
-    </style>
-
-    <style name="Text.regular45">
+    <style name="regular30"
+            parent="@style/Text">
         <item name="android:textSize">45sp</item>
     </style>
 
-    <style name="Text.Title">
-        <item name="android:textColor">@color/primary_light</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">70sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="TitleParameters"
+            parent="@style/Bold_Parent">
+        <item name="android:autoSizeMinTextSize">35sp</item>
+        <item name="android:autoSizeMaxTextSize">70sp</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginTop">75dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="Title"
+            parent="@style/TitleParameters">
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <style name="Input"
+            parent="Text">
+        <item name="android:autoSizeMinTextSize">20sp</item>
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="label"
+            parent="@style/Input">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+
+    <style name="editTextParameters"
+            parent="@style/Input">
+        <item name="android:layout_height">60dp</item>
+        <item name="layout_goneMarginBottom">30dp</item>
+        <item name="android:textSize">35sp</item>
+        <item name="android:textColorHint">#757575</item>
+    </style>
+
+    <style name="editText"
+            parent="@style/editTextParameters">
+        <item name="android:background">@drawable/edit_text_background_light</item>
     </style>
 
     <style name="Box">
-        <item name="android:textColor">@color/on_box_light_2</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="Box.top_radius">
+    <style name="top_radius"
+            parent="@style/Box">
         <item name="android:background">@drawable/box_border_top_radius_light</item>
     </style>
 
-    <style name="Box.full_radius">
+    <style name="full_radius"
+            parent="@style/Box">
         <item name="android:background">@drawable/box_border_full_radius_light</item>
     </style>
 
-    <style name="Box.full_radius.button">
-        <item name="android:background">@drawable/button_box_border_full_radius</item>
-    </style>
-
-    <style name="Button">
-        <item name="android:textSize">30sp</item>
+    <style name="Button"
+            parent="Text">
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:autoSizeMinTextSize">25sp</item>
         <item name="android:width">300dp</item>
         <item name="android:height">65dp</item>
         <item name="android:gravity">center</item>
@@ -86,6 +128,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
     <style name="fullButton"
@@ -100,32 +144,31 @@
         <item name="android:textColor">@color/on_box_light</item>
     </style>
 
-    <style name="ReturnButton"
-            parent="@style/Text.regular45">
-        <item name="android:layout_width">70dp</item>
-        <item name="android:layout_height">70dp</item>
+    <style name="RoundButton">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
     </style>
 
-    <style name="arrowButton"
-            parent="@style/ReturnButton">
+    <style name="returnButton"
+            parent="@style/RoundButton">
         <item name="android:background">@drawable/back_button_light</item>
     </style>
 
-    <style name="Profile"
-            parent="@style/ReturnButton">
+    <style name="ProfileButtonParameters"
+            parent="@style/RoundButton">
         <item name="android:layout_marginTop">7dp</item>
         <item name="android:layout_marginEnd">7dp</item>
         <item name="android:elevation">0dp</item>
         <item name="borderWidth">0dp</item>
-        <item name="fabCustomSize">70dp</item>
-        <item name="maxImageSize">105dp</item>
+        <item name="fabCustomSize">49.5dp</item>
+        <item name="maxImageSize">75.5dp</item>
         <item name="android:layout_gravity">top|end</item>
         <item name="android:contentDescription">Profile Button</item>
         <item name="android:src">@drawable/profile_foreground</item>
     </style>
 
     <style name="profileButton"
-            parent="@style/Profile">
+            parent="@style/ProfileButtonParameters">
         <item name="android:backgroundTint">@color/on_background_night</item>
     </style>
 
@@ -134,7 +177,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="plus">
+    <style name="round_plus">
         <item name="android:background">@drawable/round_plus_light</item>
     </style>
 
@@ -156,21 +199,70 @@
     </style>
 
     <style name="ChipsParent"
-            parent="@style/Text.light25">
+            parent="@style/Light">
         <item name="android:checkable">true</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipIconSize">20dp</item>
         <item name="chipEndPadding">10dp</item>
         <item name="chipStartPadding">3dp</item>
         <item name="chipMinHeight">40dp</item>
+        <item name="android:layout_width">170dp</item>
     </style>
 
-    <style name="category_chips"
+    <style name="categoryChips"
             parent="@style/ChipsParent">
         <item name="android:textColor">@color/primary_light</item>
         <item name="chipIcon">@drawable/plus_light</item>
         <item name="checkedIcon">@drawable/checked_light</item>
         <item name="chipBackgroundColor">@color/on_primary_light</item>
         <item name="chipStrokeColor">@color/primary_light</item>
+    </style>
+
+    <!--  OFFER STYLE  -->
+    <style name="offer"
+            parent="@style/full_radius">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">320dp</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
+    <style name="offer.category"
+            parent="@style/bold">
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_width">200dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="offer.seeAll"
+            parent="@style/link">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">150dp</item>
+        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:layout_marginBottom">15dp</item>
+    </style>
+
+    <style name="offer.title"
+            parent="@style/bold">
+        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_width">265dp</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="offer.image">
+        <item name="android:layout_height">180dp</item>
+        <item name="android:layout_width">180dp</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <style name="offer.text"
+            parent="@style/normal.little">
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_width">250dp</item>
+        <item name="android:layout_marginStart">0dp</item>
+        <item name="android:layout_marginEnd">0dp</item>
+        <item name="android:textAlignment">center</item>
     </style>
 </resources>

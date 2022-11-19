@@ -35,11 +35,20 @@ public interface OfferDao {
      *
      * @param creatorId The mail of the {@link User}
      *
-     * @return The user with the mail, else throw the
-     * {@link androidx.room.rxjava3.EmptyResultSetException} exception
+     * @return The list of offers of the user
      */
     @Query("SELECT * FROM offer WHERE creator_id = :creatorId")
     List<Offer> getAllOffersFromCreatorId(int creatorId);
+
+    /**
+     * Query the count of {@link Offer} with the creator id
+     *
+     * @param creatorId The mail of the {@link User}
+     *
+     * @return The number of offer the user has.
+     */
+    @Query("SELECT COUNT(*) FROM offer WHERE creator_id = :creatorId")
+    int getCountOffersOfCreator(int creatorId);
 
     /**
      * Insert an {@link Offer} inside the table
@@ -78,4 +87,16 @@ public interface OfferDao {
      */
     @Delete
     Completable delete(Offer offer);
+
+    /**
+     * Delete all the {@link Offer} inside the table
+     * <p>
+     * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
+     *
+     * @return The completable to subscribe
+     *
+     * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
+     */
+    @Query("DELETE FROM offer")
+    Completable deleteAll();
 }

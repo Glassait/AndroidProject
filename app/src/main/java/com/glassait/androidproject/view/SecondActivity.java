@@ -35,9 +35,11 @@ public class SecondActivity extends AppCompatActivity {
             return true;
         });
 
-        User user = getIntent().getSerializableExtra(
-                "USER",
-                User.class
-        );
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
+            User user = getIntent().getSerializableExtra(
+                    "USER",
+                    User.class
+            );
+        }
     }
 }

@@ -23,7 +23,7 @@ public class NewLocationFragment extends Fragment {
                 false
         );
 
-        TextView      backButton    = mRoot.findViewById(R.id.new_location_back_btn);
+        TextView      backButton    = mRoot.findViewById(R.id.fragment_new_location_back_btn);
         NavController navController = NavHostFragment.findNavController(this);
         backButton.setOnClickListener(view -> navController.navigate(R.id.sign_in_fragment));
 

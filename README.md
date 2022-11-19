@@ -33,7 +33,7 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ![ROOM](https://img.shields.io/badge/ROOM-2.4.3-red)
 ![rxjava](https://img.shields.io/badge/RXJava3-2.4.3-red)
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
-![Espresso-core](https://img.shields.io/badge/Espresso_Core-3.5.0-red)
+![Espresso](https://img.shields.io/badge/Espresso_Core-3.5.0-red)
 ![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
 ![Compose Material 3](https://img.shields.io/badge/Compose_Material_3-1.1.0-alpha01-red)
 ![Firebase Bom](https://img.shields.io/badge/Firebase_Bom_31.0.2-red)
@@ -43,6 +43,7 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [x] Database (local)
 - [x] Sign up
 - [x] Sign in - (with auto-connect)
+- [x] Create offer - (Failed to upload image to the firebase)
 - [ ] Search
 - [ ] Localization
 - [ ] Chat

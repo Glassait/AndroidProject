@@ -1,12 +1,6 @@
 package com.glassait.androidproject.view;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -14,42 +8,38 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.GetUserFromFile;
-import com.glassait.androidproject.model.dao.UserDao;
+import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
+import com.glassait.androidproject.model.entity.Offer;
 import com.glassait.androidproject.model.entity.User;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
 public class CreateOfferFragment extends Fragment {
     // View part
     private       View        mRoot;
-    private       ImageView   mToolImage;
-    private       Uri         mImageUri;
+    //    private       ImageView            mToolImage;
     private       Chip        mSelectedChip;
+    //    private       ParcelFileDescriptor mParcelFileDescriptor;
     // Database part
     private final AppDatabase mAppDatabase = Builder.getInstance()
                                                     .getAppDatabase();
-    private final UserDao     mUserDao     = mAppDatabase.userDao();
+    private final OfferDao    mOfferDao    = mAppDatabase.offerDao();
     private       User        mUser;
 
+     /*//Fail to implements the upload to the firebase
     // ResultLauncher part
     // Code from https://developer.android.com/training/permissions/requesting
     private final ActivityResultLauncher<String> requestPermissionLauncher       =
@@ -58,15 +48,8 @@ public class CreateOfferFragment extends Fragment {
                     isGranted -> {
                         if (isGranted) {
                             System.out.println("granted");
-                            // Permission is granted. Continue the action or workflow in your
-                            // app.
                         } else {
                             System.out.println("denied");
-                            // Explain to the user that the feature is unavailable because the
-                            // feature requires a permission that the user has denied. At the
-                            // same time, respect the user's decision. Don't link to system
-                            // settings in an effort to convince the user to change their
-                            // decision.
                         }
                     }
             );
@@ -77,9 +60,20 @@ public class CreateOfferFragment extends Fragment {
                     result -> {
                         if (result.getResultCode() == Activity.RESULT_OK
                                 && result.getData() != null) {
-                            mImageUri = result.getData()
-                                              .getData();
-                            mToolImage.setImageURI(mImageUri);
+                            Uri uri = result.getData()
+                                            .getData();
+                            try {
+                                mParcelFileDescriptor = mRoot.getContext()
+                                                             .getContentResolver()
+                                                             .openFileDescriptor(
+                                                                     uri,
+                                                                     "r",
+                                                                     null
+                                                             );
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                            mToolImage.setImageURI(uri);
                             mToolImage.setBackgroundColor(mRoot.getResources()
                                                                .getColor(
                                                                        R.color.transparent,
@@ -95,7 +89,7 @@ public class CreateOfferFragment extends Fragment {
                                  .show();
                         }
                     }
-            );
+            );*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -109,19 +103,20 @@ public class CreateOfferFragment extends Fragment {
 
         getUser();
 
+        // Fail to implements the upload to the firebase
         // Create a Cloud Storage reference from the app
-        StorageReference storageRef =
-                FirebaseStorage.getInstance("gs://androidproject-227a9.appspot.com")
-                               .getReference();
+//        StorageReference storageRef = FirebaseStorage.getInstance()
+//                                                     .getReference();
 
         NavController navController = NavHostFragment.findNavController(this);
 
         // On click listener to return to the previous fragment
-        TextView backButton = mRoot.findViewById(R.id.create_offer_back_btn);
+        TextView backButton = mRoot.findViewById(R.id.fragment_create_offer_back_btn);
         backButton.setOnClickListener(view -> navController.navigate(R.id.home_fragment));
 
+         /* //Fail to implements the upload to the firebase
         // On click listener to get a image from the gallery (also check the permission)
-        mToolImage = mRoot.findViewById(R.id.create_offer_tool_image);
+        mToolImage = mRoot.findViewById(R.id.fragment_create_offer_tool_image);
         mToolImage.setOnClickListener(View -> {
             //Code from https://developer.android.com/training/permissions/requesting
             int permission = ContextCompat.checkSelfPermission(
@@ -138,24 +133,25 @@ public class CreateOfferFragment extends Fragment {
                     || Build.MODEL.contains("sdk_gphone")) {
                 requestImageFromGalleryLauncher.launch(new Intent(Intent.ACTION_PICK).setType("image/*"));
             }
-        });
+        });*/
 
-        EditText title = mRoot.findViewById(R.id.create_offer_title_et);
+        EditText title = mRoot.findViewById(R.id.fragment_create_offer_title_et);
         title.setOnFocusChangeListener((v, hasFocus) -> OnFocusChangeListener(
                 title,
                 hasFocus
         ));
 
-        ChipGroup chipGroup = mRoot.findViewById(R.id.create_offer_chip_group);
+        ChipGroup chipGroup = mRoot.findViewById(R.id.fragment_create_offer_chip_group);
         chipGroup.setSelectionRequired(true);
         chipGroup.setOnCheckedStateChangeListener((group, checkedId) -> OnCheckedStateChangeListener(
                 chipGroup,
                 checkedId
         ));
 
-        TextView createOfferButton = mRoot.findViewById(R.id.create_offer_create_offer_btn);
+        TextView createOfferButton =
+                mRoot.findViewById(R.id.fragment_create_offer_create_offer_btn);
         createOfferButton.setOnClickListener(v -> {
-            if (mImageUri == null) {
+            /*if (mParcelFileDescriptor == null) {
                 Toast.makeText(
                              mRoot.getContext(),
                              "You must upload an image",
@@ -167,9 +163,10 @@ public class CreateOfferFragment extends Fragment {
                                                            R.color.error,
                                                            null
                                                    ));
-            } else if (title.getText()
-                            .toString()
-                            .length() < 1) {
+            } else*/
+            if (title.getText()
+                     .toString()
+                     .length() < 1) {
                 title.setError(mRoot.getResources()
                                     .getString(R.string.error_cannot_be_empty));
             } else if (title.getText()
@@ -190,9 +187,50 @@ public class CreateOfferFragment extends Fragment {
                                                           null
                                                   ));
             } else {
-                System.out.println("Everything is ok");
-                System.out.println(mImageUri);
-                StorageReference mountainImagesRef = storageRef.child(String.valueOf(mImageUri));
+                Offer offer = new Offer(
+                        title.getText()
+                             .toString(),
+                        "",
+                        mUser.uid
+                );
+
+                offer.storage_ref = mUser.uid + "_offer_" + offer.uid;
+                /*// Fail to implements the upload to the firebase
+                StorageReference offerRef = storageRef.child(firebaseImageRef);
+
+                // Get the data from an ImageView as bytes
+                // Code from https://firebase.google.com/docs/storage/android/upload-files#java
+                InputStream stream = new FileInputStream(mParcelFileDescriptor.getFileDescriptor());
+                UploadTask uploadTask = offerRef.putStream(stream);
+                uploadTask.addOnFailureListener(exception -> {
+                              // Handle unsuccessful uploads
+                              System.out.println("Failed to upload");
+                              exception.printStackTrace();
+                          })
+                          .addOnSuccessListener(taskSnapshot -> {
+                              // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                              // ...
+                              System.out.println("Success to upload");
+                              mOfferDao.insert(offer)
+                                       .subscribe(
+                                               () -> System.out.println("Success to put inside the database"),
+                                               Throwable::printStackTrace
+                                       )
+                                       .dispose();
+                          });*/
+                mOfferDao.insert(offer)
+                         .subscribe(
+                                 () -> System.out.println("Success to put inside the database"),
+                                 Throwable::printStackTrace
+                         )
+                         .dispose();
+                Toast.makeText(
+                             mRoot.getContext(),
+                             "Offer create",
+                             Toast.LENGTH_LONG
+                     )
+                     .show();
+                navController.navigate(R.id.home_fragment);
             }
         });
 

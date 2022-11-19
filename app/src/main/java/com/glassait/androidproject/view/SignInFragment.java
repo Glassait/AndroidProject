@@ -46,11 +46,11 @@ public class SignInFragment extends EmailValidator {
         );
         mNavigation = NavHostFragment.findNavController(this);
 
-        TextView backButton = mRoot.findViewById(R.id.sign_in_back_btn);
+        TextView backButton = mRoot.findViewById(R.id.fragment_sign_in_back_btn);
         backButton.setOnClickListener(view -> mNavigation.navigate(R.id.start_menu_fragment));
 
         // Email editText
-        mEmailEt = mRoot.findViewById(R.id.sign_in_email_et);
+        mEmailEt = mRoot.findViewById(R.id.fragment_sign_in_email_et);
         mEmailEt.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) checkEmail(
                     mEmailEt,
@@ -58,7 +58,7 @@ public class SignInFragment extends EmailValidator {
             );
         });
 
-        TextView signInButton = mRoot.findViewById(R.id.sign_in_connection_button);
+        TextView signInButton = mRoot.findViewById(R.id.fragment_sign_in_connection_button);
         signInButton.setOnClickListener(this::onClickListener);
 
         return mRoot;

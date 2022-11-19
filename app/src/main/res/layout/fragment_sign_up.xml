@@ -1,333 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
+        tools:context=".view.SignUpFragment"
         android:layout_height="match_parent"
-        tools:context=".view.SignUpFragment">
+        android:layout_width="match_parent">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+        <TextView
+                style="@style/returnButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintVertical_bias="0.007"
+                android:id="@+id/fragment_sign_up_back_btn" />
+
+        <TextView
+                android:text="@string/upper_text_sign_up"
+                style="@style/Title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/fragment_sign_up_title_tv"
+                android:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scrollX="0px"
-                android:scrollbarStyle="insideInset"
-                android:fadeScrollbars="true"
-                android:isScrollContainer="true">
+                style="@style/top_radius"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="100dp"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_title_tv">
 
             <TextView
-                    style="@style/arrowButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginStart="7dp"
+                    android:text="@string/upper_label_first_name"
+                    android:id="@+id/fragment_sign_up_first_name_tv"
+                    style="@style/label"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="7dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintVertical_bias="0.0"
-                    android:id="@+id/sign_up_back_btn" />
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_first_name_et" />
+
+            <EditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/fragment_sign_up_first_name_et"
+                    style="@style/editText"
+                    android:hint="@string/upper_label_first_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_first_name_tv"
+                    android:importantForAutofill="no"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_last_name_tv"
+                    android:autoSizeTextType="uniform"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_last_name"
+                    android:id="@+id/fragment_sign_up_last_name_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_first_name_et"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_last_name_et" />
+
+            <EditText
+                    android:inputType="textPersonName"
+                    android:id="@+id/fragment_sign_up_last_name_et"
+                    style="@style/editText"
+                    android:hint="@string/upper_label_last_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_last_name_tv"
+                    android:importantForAutofill="no"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_email_tv"
+                    android:autoSizeTextType="uniform"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_email"
+                    android:id="@+id/fragment_sign_up_email_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_last_name_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_email_et" />
+
+            <EditText
+                    android:inputType="textEmailAddress"
+                    android:id="@+id/fragment_sign_up_email_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_email_tv"
+                    android:hint="@string/upper_label_email"
+                    style="@style/editText"
+                    android:importantForAutofill="no"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_phone_tv"
+                    android:autoSizeTextType="uniform"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_phone"
+                    android:id="@+id/fragment_sign_up_phone_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_email_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_phone_et" />
+
+            <EditText
+                    android:inputType="phone"
+                    android:id="@+id/fragment_sign_up_phone_et"
+                    android:hint="@string/upper_label_phone"
+                    style="@style/editText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_phone_tv"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_address_tv"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_address"
+                    android:id="@+id/fragment_sign_up_address_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_phone_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_address_et" />
+
+            <EditText
+                    android:inputType="textPostalAddress"
+                    android:id="@+id/fragment_sign_up_address_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_address_tv"
+                    android:hint="@string/upper_label_address"
+                    style="@style/editText"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_postal_code_tv"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_postal_code"
+                    android:id="@+id/fragment_sign_up_postal_code_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_address_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_postal_code_et" />
+
+            <EditText
+                    android:inputType="textPostalAddress"
+                    android:id="@+id/fragment_sign_up_postal_code_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_postal_code_tv"
+                    android:hint="@string/upper_label_postal_code"
+                    style="@style/editText"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_city_tv"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_city"
+                    android:id="@+id/fragment_sign_up_city_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_postal_code_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_city_et" />
+
+            <EditText
+                    android:inputType="textPostalAddress"
+                    android:id="@+id/fragment_sign_up_city_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_city_tv"
+                    android:hint="@string/upper_label_city"
+                    style="@style/editText"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_country_tv"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/upper_label_country"
+                    android:id="@+id/fragment_sign_up_country_tv"
+                    style="@style/label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_city_et"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_country_et" />
+
+            <EditText
+                    android:inputType="textPostalAddress"
+                    android:id="@+id/fragment_sign_up_country_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_country_tv"
+                    android:hint="@string/upper_label_country"
+                    style="@style/editText"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_eula_tv"
+                    tools:ignore="DuplicateSpeakableTextCheck" />
+
+            <TextView
+                    android:text="@string/text_accept_eula"
+                    style="@style/normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_country_et"
+                    android:id="@+id/fragment_sign_up_eula_tv"
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginBottom="21dp"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_sign_up_register_btn"
+                    android:layout_height="125dp"
+                    android:textAlignment="center" />
 
             <TextView
                     android:text="@string/upper_text_sign_up"
-                    style="@style/Text.Title"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="85dp"
+                    android:id="@+id/fragment_sign_up_register_btn"
+                    style="@style/fullButton"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:id="@+id/title_sign_up_tv"
-                    app:layout_constraintBottom_toTopOf="@+id/constraintLayout" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_height="wrap_content"
-                    style="@style/Box.top_radius"
-                    android:layout_width="0dp"
-                    android:id="@+id/constraintLayout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_sign_up_tv"
-                    android:layout_marginTop="30dp"
-                    app:layout_constraintHorizontal_bias="0.0">
-
-                <TextView
-                        android:text="@string/upper_label_first_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_first_name_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginTop="40dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="226dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:labelFor="@id/sign_up_first_name_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/sign_up_first_name_et"
-                        style="@style/Text.regular30"
-                        android:hint="@string/upper_label_first_name"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_first_name_tv"
-                        android:autofillHints="name" />
-
-                <TextView
-                        android:text="@string/upper_label_last_name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_last_name_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_first_name_et"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:labelFor="@id/sign_up_last_name_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="61dp"
-                        android:inputType="textPersonName"
-                        android:ems="10"
-                        android:id="@+id/sign_up_last_name_et"
-                        style="@style/Text.regular30"
-                        android:hint="@string/upper_label_last_name"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_last_name_tv"
-                        android:autofillHints="name" />
-
-                <TextView
-                        android:text="@string/upper_label_email"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_email_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_last_name_et"
-                        android:labelFor="@id/sign_up_email_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textEmailAddress"
-                        android:ems="10"
-                        android:id="@+id/sign_up_email_et"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_email_tv"
-                        android:hint="@string/upper_label_email"
-                        style="@style/Text.regular30"
-                        android:autofillHints="emailAddress" />
-
-                <TextView
-                        android:text="@string/upper_label_phone"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_phone_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_email_et"
-                        android:labelFor="@id/sign_up_phone_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="phone"
-                        android:ems="10"
-                        android:id="@+id/sign_up_phone_et"
-                        android:hint="@string/upper_label_phone"
-                        style="@style/Text.regular30"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_phone_tv"
-                        android:autofillHints="phone" />
-
-                <TextView
-                        android:text="@string/upper_label_address"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_address_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_phone_et"
-                        android:labelFor="@id/sign_up_address_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:ems="10"
-                        android:id="@+id/sign_up_address_et"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_address_tv"
-                        android:hint="@string/upper_label_address"
-                        style="@style/Text.regular30"
-                        android:autofillHints="postalAddress" />
-
-                <TextView
-                        android:text="@string/upper_label_postal_code"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_postal_code_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_address_et"
-                        android:labelFor="@id/sign_up_city_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:ems="10"
-                        android:id="@+id/sign_up_postal_code_et"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_postal_code_tv"
-                        android:hint="@string/upper_label_postal_code"
-                        style="@style/Text.regular30"
-                        android:autofillHints="postalAddress" />
-
-                <TextView
-                        android:text="@string/upper_label_city"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_city_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_postal_code_et"
-                        android:labelFor="@id/sign_up_city_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:ems="10"
-                        android:id="@+id/sign_up_city_et"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_city_tv"
-                        android:hint="@string/upper_label_city"
-                        style="@style/Text.regular30"
-                        android:autofillHints="postalAddress" />
-
-                <TextView
-                        android:text="@string/upper_label_country"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/sign_up_country_tv"
-                        style="@style/Text.regular30"
-                        android:background="#00FFFFFF"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="17dp"
-                        android:layout_marginEnd="229dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        android:layout_marginTop="22dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_city_et"
-                        android:labelFor="@id/sign_up_country_et" />
-
-                <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:inputType="textPostalAddress"
-                        android:ems="10"
-                        android:id="@+id/sign_up_country_et"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="15dp"
-                        android:layout_marginEnd="15dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_country_tv"
-                        android:hint="@string/upper_label_country"
-                        style="@style/Text.regular30"
-                        android:autofillHints="postalAddress" />
-
-                <TextView
-                        android:text="@string/text_accept_eula"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:background="#00FFFFFF"
-                        style="@style/Text.regular30"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginStart="10dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginTop="30dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_country_et"
-                        android:textAlignment="center"
-                        android:id="@+id/sign_up_eula_tv" />
-
-                <TextView
-                        android:text="@string/upper_text_sign_up"
-                        android:id="@+id/sign_up_register_btn"
-                        style="@style/fullButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="30dp"
-                        app:layout_constraintTop_toBottomOf="@+id/sign_up_eula_tv"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="30dp" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_eula_tv"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:autoSizeTextType="uniform" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</FrameLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

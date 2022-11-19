@@ -15,6 +15,7 @@ import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.Offer;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -42,7 +43,7 @@ public class OfferDaoTest {
      * @see OfferDao#getAll()
      */
     @Test
-    public void userDAO_insert() {
+    public void insert() {
         Offer offer = new Offer(
                 "title",
                 "testing",
@@ -71,7 +72,7 @@ public class OfferDaoTest {
      * @see OfferDao#getAll()
      */
     @Test
-    public void userDAO_insertWithNullUser() {
+    public void insertWithNullUser() {
         final boolean[] offerIsInsert = {false};
         int numberOfOffersBefore = mOfferDao.getAll()
                                             .size();
@@ -103,7 +104,7 @@ public class OfferDaoTest {
      * @see OfferDao#insert(Offer)
      */
     @Test
-    public void userDAO_updateOneElement() {
+    public void updateOneElement() {
         Offer offer = new Offer(
                 "title",
                 "testing",
@@ -146,7 +147,7 @@ public class OfferDaoTest {
      * @see OfferDao#getAllOffersFromCreatorId(int)
      */
     @Test
-    public void userDAO_updateMultipleElements() {
+    public void updateMultipleElements() {
         Offer offer = new Offer(
                 "title",
                 "testing",
@@ -196,7 +197,7 @@ public class OfferDaoTest {
      * Test the update function of {@link OfferDao}
      */
     @Test
-    public void userDAO_updateWithNullUser() {
+    public void updateWithNullUser() {
         final boolean[] userIsUpdate = {false};
 
         mOfferDao.update(null)
@@ -215,7 +216,7 @@ public class OfferDaoTest {
      * @see OfferDao#getAll(
      */
     @Test
-    public void userDAO_getAll() {
+    public void getAll() {
         assertTrue(mOfferDao.getAll()
                             .size() >= 0);
     }
@@ -229,7 +230,7 @@ public class OfferDaoTest {
      * @see OfferDao#insert(Offer)
      */
     @Test
-    public void userDAO_getAllOffersFromCreatorId() {
+    public void getAllOffersFromCreatorId() {
         Offer offer = new Offer(
                 "title",
                 "testing",
@@ -252,6 +253,21 @@ public class OfferDaoTest {
                 offer.creatorId,
                 offerGet.creatorId
         );
+    }
+
+    @Test
+    public void getCountOffersOfCreator() {
+        Offer offer = new Offer(
+                "title",
+                "testing",
+                1
+        );
+        offer.uid = 1;
+        mOfferDao.insert(offer)
+                 .subscribe()
+                 .dispose();
+
+        assertTrue(mOfferDao.getCountOffersOfCreator(offer.creatorId) > 0);
     }
 
     /**
@@ -292,8 +308,8 @@ public class OfferDaoTest {
      * @see OfferDao#getAll()
      * @see OfferDao#delete(Offer)
      */
-    @Test
-    public void userDAO_deleteAllTestUsers() {
+    @After
+    public void deleteAllTestUsers() {
         List<Offer> allOffers = mOfferDao.getAll();
 
         for (Offer offer : allOffers) {
