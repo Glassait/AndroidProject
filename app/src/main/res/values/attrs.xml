@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="layout">
+        <attr name="android:layout_width" />
+        <attr name="android:layout_height" />
+        <attr name="android:layout_marginStart" />
+        <attr name="android:layout_marginEnd" />
+    </declare-styleable>
+</resources>

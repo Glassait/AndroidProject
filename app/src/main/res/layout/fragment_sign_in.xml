@@ -30,7 +30,7 @@
                 android:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/top_radius"
+                style="@style/Box.top_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -38,7 +38,7 @@
             <TextView
                     android:text="@string/upper_label_email"
                     android:id="@+id/fragment_sign_in_email_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
             <TextView
                     android:text="@string/upper_text_sign_up"
                     android:id="@+id/fragment_sign_in_connection_button"
-                    style="@style/fullButton"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_in_email_et"

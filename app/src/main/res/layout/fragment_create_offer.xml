@@ -30,7 +30,7 @@
                 android:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/top_radius"
+                style="@style/Box.top_radius"
                 android:layout_marginTop="100dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
             <TextView
                     android:text="@string/upper_label_title"
                     android:id="@+id/fragment_create_offer_title_label_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -74,7 +74,7 @@
             <TextView
                     android:text="@string/label_select_category"
                     android:id="@+id/fragment_create_offer_category_label"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_title_et"
                     app:layout_constraintStart_toStartOf="parent"
                     android:autoSizeTextType="uniform"
@@ -131,7 +131,7 @@
             <TextView
                     android:text="@string/upper_create_offer_button"
                     android:id="@+id/fragment_create_offer_create_offer_btn"
-                    style="@style/fullButton"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_category_HSV"

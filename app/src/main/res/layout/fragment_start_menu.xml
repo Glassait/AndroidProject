@@ -20,7 +20,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_height="220dp"
-                style="@style/top_radius"
+                style="@style/Box.top_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +29,7 @@
             <TextView
                     android:text="@string/upper_text_sign_up"
                     android:id="@+id/fragment_start_menu_sign_up_button"
-                    style="@style/fullButton"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +39,7 @@
             <TextView
                     android:text="@string/upper_text_sign_in"
                     android:id="@+id/fragment_start_menu_sign_in_button"
-                    style="@style/emptyButton"
+                    style="@style/Button.empty"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"

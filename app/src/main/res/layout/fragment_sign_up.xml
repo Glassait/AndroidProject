@@ -30,7 +30,7 @@
                 android:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                style="@style/top_radius"
+                style="@style/Box.top_radius"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -40,7 +40,7 @@
             <TextView
                     android:text="@string/upper_label_first_name"
                     android:id="@+id/fragment_sign_up_first_name_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +63,7 @@
             <TextView
                     android:text="@string/upper_label_last_name"
                     android:id="@+id/fragment_sign_up_last_name_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_first_name_et"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -86,7 +86,7 @@
             <TextView
                     android:text="@string/upper_label_email"
                     android:id="@+id/fragment_sign_up_email_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_last_name_et"
@@ -109,7 +109,7 @@
             <TextView
                     android:text="@string/upper_label_phone"
                     android:id="@+id/fragment_sign_up_phone_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_email_et"
@@ -132,7 +132,7 @@
             <TextView
                     android:text="@string/upper_label_address"
                     android:id="@+id/fragment_sign_up_address_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_phone_et"
@@ -155,7 +155,7 @@
             <TextView
                     android:text="@string/upper_label_postal_code"
                     android:id="@+id/fragment_sign_up_postal_code_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_address_et"
@@ -178,7 +178,7 @@
             <TextView
                     android:text="@string/upper_label_city"
                     android:id="@+id/fragment_sign_up_city_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_postal_code_et"
@@ -201,7 +201,7 @@
             <TextView
                     android:text="@string/upper_label_country"
                     android:id="@+id/fragment_sign_up_country_tv"
-                    style="@style/label"
+                    style="@style/Text.label"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_city_et"
@@ -223,7 +223,7 @@
 
             <TextView
                     android:text="@string/text_accept_eula"
-                    style="@style/normal"
+                    style="@style/Text.normal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginTop="30dp"
@@ -238,7 +238,7 @@
             <TextView
                     android:text="@string/upper_text_sign_up"
                     android:id="@+id/fragment_sign_up_register_btn"
-                    style="@style/fullButton"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_sign_up_eula_tv"

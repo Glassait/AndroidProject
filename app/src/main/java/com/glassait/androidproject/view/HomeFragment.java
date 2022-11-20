@@ -1,15 +1,21 @@
 package com.glassait.androidproject.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.view.ContextThemeWrapper;
+import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintLayout.LayoutParams;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
@@ -22,18 +28,19 @@ import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.Offer;
 import com.glassait.androidproject.model.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
+// TODO Add some offer in the area part
+// TODO add the offer that the user have reserved
 public class HomeFragment extends Fragment {
     // View part
     private       View        mRoot;
     // Database part
-    private final AppDatabase mAppDatabase      = Builder.getInstance()
-                                                         .getAppDatabase();
-    private final OfferDao    mOfferDao         = mAppDatabase.offerDao();
+    private final AppDatabase mAppDatabase = Builder.getInstance()
+                                                    .getAppDatabase();
+    private final OfferDao    mOfferDao    = mAppDatabase.offerDao();
     private       User        mUser;
-    // Common
-    private       boolean     mMyOfferIsDisplay = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,105 +67,17 @@ public class HomeFragment extends Fragment {
         if (allOffersOfUsers.size() == 0) {
             your_offer_see_all.setVisibility(View.INVISIBLE);
         } else {
-            int[] myOfferIdCl =
-                    {R.id.fragment_home_my_offer_1_layout, R.id.fragment_home_my_offer_2_layout, R.id.fragment_home_my_offer_3_layout};
-            int[] myOfferIdTitle =
-                    {R.id.fragment_home_title_my_offer_1_tv, R.id.fragment_home_title_my_offer_2_tv, R.id.fragment_home_title_my_offer_3_tv};
-            HorizontalScrollView myOfferHsv = mRoot.findViewById(R.id.fragment_home_my_offer_HSV);
-            for (int i = 0; i < 3; i++) {
-                Offer offer = allOffersOfUsers.get(i);
-
-                // Layout
-                ContextThemeWrapper myOfferClThemeWrapper = new ContextThemeWrapper();
-//                myOfferClThemeWrapper.setTheme(R.style.Box_full_radius);
-                ConstraintLayout myOfferCl = new ConstraintLayout(myOfferClThemeWrapper);
-                ConstraintLayout.LayoutParams myOfferClLayoutParams =
-                        new ConstraintLayout.LayoutParams(
-                                320,
-                                ConstraintLayout.LayoutParams.MATCH_PARENT
-                        );
-                myOfferClLayoutParams.setMarginStart(30);
-                myOfferClLayoutParams.setMarginEnd(30);
-                myOfferCl.setLayoutParams(myOfferClLayoutParams);
-                myOfferCl.setId(myOfferIdCl[i]);
-
-                // Title
-                ContextThemeWrapper myOfferTitleThemeWrapper = new ContextThemeWrapper();
-//                myOfferTitleThemeWrapper.setTheme(R.style.bold24);
-                TextView myOfferTitle = new TextView(myOfferTitleThemeWrapper);
-                myOfferTitle.setBackgroundColor(mRoot.getResources()
-                                                     .getColor(
-                                                             R.color.transparent,
-                                                             null
-                                                     ));
-                myOfferTitle.setId(myOfferIdTitle[i]);
-                myOfferTitle.setText(offer.title);
-                ConstraintLayout.LayoutParams myOfferTitleLayoutParams =
-                        new ConstraintLayout.LayoutParams(
-                                ConstraintLayout.LayoutParams.WRAP_CONTENT,
-                                ConstraintLayout.LayoutParams.WRAP_CONTENT
-                        );
-                myOfferTitleLayoutParams.setMargins(
-                        13,
-                        22,
-                        0,
-                        0
-                );
-                myOfferTitleLayoutParams.startToStart = myOfferCl.getId();
-                myOfferTitleLayoutParams.topToTop = myOfferCl.getId();
-                myOfferCl.addView(myOfferTitle);
-
-                myOfferHsv.addView(
-                        myOfferCl,
-                        0
-                );
+            List<Offer> displayedOffers = new ArrayList<>();
+            for (int i = 0; i < Math.min(
+                    allOffersOfUsers.size(),
+                    3
+            ); i++) {
+                displayedOffers.add(allOffersOfUsers.get(i));
             }
-     /*       <androidx.constraintlayout.widget.ConstraintLayout
-            style="@style/offer"
-            android:id="@+id/fragment_home_offer_1_layout">*/
-
-          /*          <TextView
-            android:text="@string/offer_title"
-            android:id="@+id/fragment_home_offer_title_in_area_1_tv"
-            style="@style/offer.title"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_home_tools_image_in_area_1_IV" />*/
-
-           /*         <ImageView
-            android:src="@drawable/ic_launcher_foreground"
-            tools:srcCompat="@tools:sample/avatars"
-            android:id="@+id/fragment_home_tools_image_in_area_1_IV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_in_area_1_tv"
-            android:contentDescription="@string/offer_image_of_the_tool"
-            tools:ignore="ImageContrastCheck"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_home_name_in_area_1_tv"
-            style="@style/offer.image" />*/
-
-       /*             <TextView
-            android:text="@string/offer_last_first_name"
-            android:id="@+id/fragment_home_name_in_area_1_tv"
-            app:layout_constraintStart_toStartOf="parent"
-            style="@style/offer.text"
-            android:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_home_tools_image_in_area_1_IV"
-            app:layout_constraintBottom_toTopOf="@+id/fragment_home_city_in_area_1_tv" />*/
-
-           /*         <TextView
-            android:text="@string/offer_city"
-            android:id="@+id/fragment_home_city_in_area_1_tv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_home_name_in_area_1_tv"
-            style="@style/offer.text"
-            android:autoSizeTextType="uniform" />
-                </androidx.constraintlayout.widget.ConstraintLayout>*/
+            createOfferLayout(
+                    displayedOffers,
+                    mRoot.findViewById(R.id.fragment_home_my_offer_LL)
+            );
 
             your_offer_see_all.setOnClickListener(View -> {
                 // TODO change the fragment to the Create offer
@@ -183,10 +102,6 @@ public class HomeFragment extends Fragment {
             System.out.println("Do a reservation");
         });
 
-        // TODO Add some offer in the area part
-        // TODO add the offer that the user has created
-        // TODO add the offer that the user have reserved
-
         return mRoot;
     }
 
@@ -208,5 +123,264 @@ public class HomeFragment extends Fragment {
             e.printStackTrace();
         }
         mUser = getUser.getUser();
+    }
+
+    /**
+     * Create all the display for the {@link Offer} and add it to the given {@link LinearLayout}.
+     * The process is a Thread.
+     * <p>
+     * Set a listener on the {@link ConstraintLayout}
+     *
+     * @param offers List of offers to display
+     * @param parent The parent for putting the display offer
+     *
+     * @see Thread#start()
+     * @see ConstraintLayout#ConstraintLayout(Context, AttributeSet, int, int)
+     * @see ConstraintLayout#setId(int)
+     * @see ConstraintLayout#setLayoutParams(ViewGroup.LayoutParams)
+     * @see View#generateViewId()
+     * @see LayoutParams#LayoutParams(int, int)
+     * @see LayoutParams#setMarginStart(int)
+     * @see LayoutParams#setMarginEnd(int)
+     * @see TextView#TextView(Context, AttributeSet, int, int)
+     * @see ImageView#ImageView(Context, AttributeSet, int, int)
+     * @see View#setOnClickListener(View.OnClickListener)
+     * @see TypedArray#recycle()
+     * @see ConstraintLayout#addView(View)
+     * @see LinearLayout#addView(View, int)
+     */
+    public void createOfferLayout(List<Offer> offers, LinearLayout parent) {
+        new Thread(() -> {
+            for (int i = 0; i < offers.size(); i++) {
+                Offer offer = offers.get(i);
+
+                // Layout
+                ConstraintLayout myOfferCl = new ConstraintLayout(
+                        mRoot.getContext(),
+                        null,
+                        0,
+                        R.style.offer
+                );
+                myOfferCl.setId(View.generateViewId());
+                TypedArray styledAttributes = mRoot.getContext()
+                                                   .obtainStyledAttributes(
+                                                           R.style.offer,
+                                                           R.styleable.layout
+                                                   );
+                LayoutParams layoutParams = new LayoutParams(
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_width,
+                                "px"
+                        ),
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_height,
+                                "px"
+                        )
+                );
+                layoutParams.setMarginStart(getIntFromTypedArray(
+                        styledAttributes,
+                        R.styleable.layout_android_layout_marginStart,
+                        "px"
+                ));
+                layoutParams.setMarginEnd(getIntFromTypedArray(
+                        styledAttributes,
+                        R.styleable.layout_android_layout_marginEnd,
+                        "px"
+                ));
+                myOfferCl.setLayoutParams(layoutParams);
+
+                // Title
+                TextView myOfferTitle = new TextView(
+                        mRoot.getContext(),
+                        null,
+                        0,
+                        R.style.offer_title
+                );
+                myOfferTitle.setId(View.generateViewId());
+                myOfferTitle.setText(offer.title);
+                myOfferTitle.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                styledAttributes = mRoot.getContext()
+                                        .obtainStyledAttributes(
+                                                R.style.offer_title,
+                                                R.styleable.layout
+                                        );
+                LayoutParams myOfferTitleLayoutParams = new LayoutParams(
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_width,
+                                "px"
+                        ),
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_height,
+                                "px"
+                        )
+                );
+                myOfferTitleLayoutParams.startToStart = myOfferCl.getId();
+                myOfferTitleLayoutParams.topToTop = myOfferCl.getId();
+                myOfferTitleLayoutParams.endToEnd = myOfferCl.getId();
+
+                // ImageView
+                ImageView myOfferImage = new ImageView(
+                        mRoot.getContext(),
+                        null,
+                        0,
+                        R.style.offer_image
+                );
+                myOfferImage.setId(View.generateViewId());
+                // If firebase work put the image of the tools
+                myOfferImage.setImageDrawable(ResourcesCompat.getDrawable(
+                        mRoot.getResources(),
+                        R.drawable.ic_launcher_foreground,
+                        null
+                ));
+                styledAttributes = mRoot.getContext()
+                                        .obtainStyledAttributes(
+                                                R.style.offer_image,
+                                                R.styleable.layout
+                                        );
+                LayoutParams myOfferImageLayoutParams = new LayoutParams(
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_width,
+                                "px"
+                        ),
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_height,
+                                "px"
+                        )
+                );
+                myOfferImageLayoutParams.startToStart = myOfferCl.getId();
+                myOfferImageLayoutParams.endToEnd = myOfferCl.getId();
+                myOfferImageLayoutParams.topToBottom = myOfferTitle.getId();
+
+                // Last and first name
+                TextView myOfferName = new TextView(
+                        mRoot.getContext(),
+                        null,
+                        0,
+                        R.style.offer_text
+                );
+                myOfferName.setId(View.generateViewId());
+                String name = mUser.lastName + " " + mUser.firstName;
+                myOfferName.setText(name);
+                myOfferName.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                styledAttributes = mRoot.getContext()
+                                        .obtainStyledAttributes(
+                                                R.style.offer_text,
+                                                R.styleable.layout
+                                        );
+                LayoutParams myOfferNameLayoutParams = new LayoutParams(
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_width,
+                                "px"
+                        ),
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_height,
+                                "px"
+                        )
+                );
+                myOfferNameLayoutParams.startToStart = myOfferCl.getId();
+                myOfferNameLayoutParams.endToEnd = myOfferCl.getId();
+                myOfferNameLayoutParams.topToBottom = myOfferImage.getId();
+
+                // City
+                TextView myOfferCity = new TextView(
+                        mRoot.getContext(),
+                        null,
+                        0,
+                        R.style.offer_text
+                );
+                myOfferCity.setId(View.generateViewId());
+                myOfferCity.setText(mUser.city);
+                myOfferCity.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+                LayoutParams myOfferCityLayoutParams = new LayoutParams(
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_width,
+                                "px"
+                        ),
+                        getIntFromTypedArray(
+                                styledAttributes,
+                                R.styleable.layout_android_layout_height,
+                                "px"
+                        )
+                );
+                myOfferCityLayoutParams.startToStart = myOfferCl.getId();
+                myOfferCityLayoutParams.endToEnd = myOfferCl.getId();
+                myOfferCityLayoutParams.topToBottom = myOfferName.getId();
+                myOfferCityLayoutParams.bottomToBottom = myOfferCl.getId();
+                myOfferCity.setLayoutParams(myOfferCityLayoutParams);
+                styledAttributes.recycle();
+
+                // End name parameters
+                myOfferNameLayoutParams.bottomToTop = myOfferCity.getId();
+                myOfferName.setLayoutParams(myOfferNameLayoutParams);
+
+                // End ImageView parameters
+                myOfferImageLayoutParams.bottomToTop = myOfferName.getId();
+                myOfferImage.setLayoutParams(myOfferImageLayoutParams);
+
+                // End Title parameters
+                myOfferTitleLayoutParams.bottomToTop = myOfferImage.getId();
+                myOfferTitle.setLayoutParams(myOfferTitleLayoutParams);
+
+                // Add all view to the constraint layout
+                myOfferCl.addView(myOfferTitle);
+                myOfferCl.addView(myOfferImage);
+                myOfferCl.addView(myOfferName);
+                myOfferCl.addView(myOfferCity);
+
+                // Click listener
+                myOfferCl.setOnClickListener(view -> {
+                    // Todo create on click listener
+                });
+
+                // Add the offer in the HorizontalScrollView, the index is 0 to always put the
+                // offer in the start
+                parent.addView(
+                        myOfferCl,
+                        0
+                );
+            }
+        }).start();
+    }
+
+    /**
+     * Get the values inside the {@link TypedArray} corresponding to the given R.styleable.
+     * <p>
+     * By default the unit of the output is in dip.
+     *
+     * @param array  The typed array create with {@link Context#obtainStyledAttributes(int[])}
+     * @param resId  The styleable (e.g R.styleable)
+     * @param output The unit of the output (e.g px or dip). By default the output is in dip
+     *
+     * @return The number in px or in dip
+     *
+     * @see TypedValue#applyDimension(int, float, DisplayMetrics)
+     */
+    public int getIntFromTypedArray(TypedArray array, int resId, String output) {
+        float dim = Float.parseFloat(array.getString(resId)
+                                          .replace(
+                                                  "dip",
+                                                  ""
+                                          ));
+        if (dim < 0) {
+            return (int) dim;
+        }
+        if (output.equals("px")) {
+            return (int) TypedValue.applyDimension(
+                    TypedValue.COMPLEX_UNIT_DIP,
+                    dim,
+                    mRoot.getResources()
+                         .getDisplayMetrics()
+            );
+        }
+        return (int) dim;
     }
 }

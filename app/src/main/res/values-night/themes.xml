@@ -1,11 +1,12 @@
 <resources>
-
+    <!-- Generic -->
     <style name="Theme.AndroidProject"
             parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/background_night</item>
         <item name="android:textColor">@color/on_background_night</item>
     </style>
 
+    <!-- Text -->
     <style name="Text"
             parent="@style/TextParameters">
         <item name="android:textColor">@color/on_background_night</item>
@@ -17,28 +18,31 @@
         <item name="android:textColor">@color/primary_night</item>
     </style>
 
+    <!-- Input -->
     <style name="editText"
-            parent="@style/editTextParameters">
+            parent="@style/EditTextParameters">
         <item name="android:background">@drawable/edit_text_background_night</item>
     </style>
 
-    <style name="top_radius"
+    <!-- Main background box -->
+    <style name="Box.top_radius"
             parent="@style/Box">
         <item name="android:background">@drawable/box_border_top_radius_night</item>
     </style>
 
-    <style name="full_radius"
+    <style name="Box.full_radius"
             parent="@style/Box">
         <item name="android:background">@drawable/box_border_full_radius_night</item>
     </style>
 
-    <style name="fullButton"
+    <!-- Button background -->
+    <style name="Button.full"
             parent="@style/Button">
         <item name="android:background">@drawable/full_button_night</item>
         <item name="android:textColor">@color/on_primary_night</item>
     </style>
 
-    <style name="emptyButton"
+    <style name="Button.empty"
             parent="@style/Button">
         <item name="android:background">@drawable/empty_button_night</item>
         <item name="android:textColor">@color/on_box_night</item>
@@ -54,10 +58,16 @@
         <item name="android:backgroundTint">@color/primary_night</item>
     </style>
 
+    <!-- Drawable -->
     <style name="round_plus">
         <item name="android:background">@drawable/round_plus_night</item>
     </style>
 
+    <style name="upload_image">
+        <item name="android:src">@drawable/upload_file_night</item>
+    </style>
+
+    <!-- Navigation bar -->
     <style name="navigation_bar.bottom">
         <item name="android:background">@color/primary_night</item>
         <item name="itemBackground">@drawable/not_selected_item_night</item>
@@ -65,12 +75,9 @@
         <item name="itemIconTint">@color/on_background_night</item>
     </style>
 
-    <style name="upload_image">
-        <item name="android:src">@drawable/upload_file_night</item>
-    </style>
-
+    <!-- Chips -->
     <style name="categoryChips"
-            parent="@style/ChipsParent">
+            parent="@style/ChipsParameters">
         <item name="android:textColor">@color/primary_night</item>
         <item name="chipIcon">@drawable/plus_night</item>
         <item name="checkedIcon">@drawable/checked_night</item>
