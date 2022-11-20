@@ -35,8 +35,8 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
 ![Espresso](https://img.shields.io/badge/Espresso_Core-3.5.0-red)
 ![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
-![Compose Material 3](https://img.shields.io/badge/Compose_Material_3-1.1.0-alpha01-red)
-![Firebase Bom](https://img.shields.io/badge/Firebase_Bom_31.0.2-red)
+![Compose Material 3](https://img.shields.io/badge/Compose_Material_3-1.1.0-alpha02-red)
+![Firebase Bom](https://img.shields.io/badge/Firebase_Bom_31.0.3-red)
 
 ## Requirement
 
