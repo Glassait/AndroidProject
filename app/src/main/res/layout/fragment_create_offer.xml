@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.CreateOfferFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <TextView
+                style="@style/returnButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintVertical_bias="0.015"
+                android:id="@+id/fragment_create_offer_back_btn" />
+
+        <TextView
+                android:text="@string/upper_text_create_offer"
+                style="@style/Title"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/fragment_create_offer_title_tv"
+                android:autoSizeTextType="uniform" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/Box.top_radius"
+                android:layout_marginTop="100dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_title_tv">
+
+            <!--<ImageView
+                    android:layout_width="225dp"
+                    android:layout_height="225dp"
+                    android:id="@+id/fragment_create_offer_tool_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="21dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    style="@style/upload_image"
+                    android:contentDescription="@string/content_description_image_of_the_tools" />-->
+
+            <TextView
+                    android:text="@string/upper_label_title"
+                    android:id="@+id/fragment_create_offer_title_label_tv"
+                    style="@style/Text.label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_create_offer_title_et" />
+
+            <EditText
+                    android:inputType="textShortMessage"
+                    android:id="@+id/fragment_create_offer_title_et"
+                    style="@style/editText"
+                    android:hint="@string/upper_label_title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_title_label_tv"
+                    android:importantForAutofill="no"
+                    android:autoSizeTextType="uniform"
+                    tools:ignore="DuplicateSpeakableTextCheck"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_create_offer_category_label" />
+
+            <TextView
+                    android:text="@string/label_select_category"
+                    android:id="@+id/fragment_create_offer_category_label"
+                    style="@style/Text.label"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_title_et"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:autoSizeTextType="uniform"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_create_offer_category_HSV" />
+
+            <HorizontalScrollView
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_category_label"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:id="@+id/fragment_create_offer_category_HSV"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:scrollbars="none"
+                    android:background="#00FFFFFF">
+
+                <com.google.android.material.chip.ChipGroup
+                        app:singleLine="true"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:id="@+id/fragment_create_offer_chip_group"
+                        app:chipSpacingHorizontal="20dp"
+                        android:background="#00FFFFFF"
+                        app:singleSelection="true"
+                        app:selectionRequired="true">
+
+                    <com.google.android.material.chip.Chip
+                            style="@style/categoryChips"
+                            android:id="@+id/fragment_create_offer_chip_electric"
+                            android:layout_height="wrap_content"
+                            android:autoSizeTextType="uniform"
+                            android:text="@string/chips_electric"
+                            android:layout_marginStart="20dp" />
+
+                    <com.google.android.material.chip.Chip
+                            style="@style/categoryChips"
+                            android:id="@+id/fragment_create_offer_chip_thermal"
+                            android:layout_height="wrap_content"
+                            android:autoSizeTextType="uniform"
+                            android:text="@string/chips_thermal" />
+
+                    <com.google.android.material.chip.Chip
+                            style="@style/categoryChips"
+                            android:id="@+id/fragment_create_offer_chip_manual"
+                            android:layout_height="wrap_content"
+                            android:autoSizeTextType="uniform"
+                            android:text="@string/chips_manual"
+                            android:layout_marginEnd="30dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <TextView
+                    android:text="@string/upper_create_offer_button"
+                    android:id="@+id/fragment_create_offer_create_offer_btn"
+                    style="@style/Button.full"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_create_offer_category_HSV"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:autoSizeTextType="uniform" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

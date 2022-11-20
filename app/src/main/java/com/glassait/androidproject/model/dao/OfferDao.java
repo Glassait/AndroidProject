@@ -13,75 +13,83 @@ import com.glassait.androidproject.model.entity.User;
 import java.util.List;
 
 import io.reactivex.rxjava3.core.Completable;
-import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
- * Interface defining all {@link Query} for the @Entity {@link User}
+ * Interface defining all {@link Query} for the @Entity {@link Offer}
  * <br><br>
  * Some query are async query and return a {@link Completable} to handle it we need to transform the {@link Completable} in {@link Disposable} with {@link Completable#subscribe()} and after to dispose it with {@link Disposable#dispose()}
  */
 @Dao
-public interface UserDao {
+public interface OfferDao {
     /**
-     * Return all {@link User} inside the table
+     * Return all {@link Offer} inside the table
      *
-     * @return All {@link User} in the table
+     * @return All {@link Offer} in the table
      */
-    @Query("SELECT * FROM user")
-    List<User> getAll();
+    @Query("SELECT * FROM offer")
+    List<Offer> getAll();
 
     /**
-     * Query the {@link User} with the email
+     * Query the {@link Offer} with the creator id
      *
-     * @param email The mail of the {@link User}
+     * @param creatorId The mail of the {@link User}
      *
-     * @return The user with the mail, else throw the
-     * {@link androidx.room.rxjava3.EmptyResultSetException} exception
+     * @return The list of offers of the user
      */
-    @Query("SELECT * FROM user WHERE email = :email")
-    Single<User> getUserFromEmail(String email);
+    @Query("SELECT * FROM offer WHERE creator_id = :creatorId")
+    List<Offer> getAllOffersFromCreatorId(int creatorId);
 
     /**
-     * Insert an {@link User} inside the table
+     * Query the count of {@link Offer} with the creator id
+     *
+     * @param creatorId The mail of the {@link User}
+     *
+     * @return The number of offer the user has.
+     */
+    @Query("SELECT COUNT(*) FROM offer WHERE creator_id = :creatorId")
+    int getCountOffersOfCreator(int creatorId);
+
+    /**
+     * Insert an {@link Offer} inside the table
      * <p>
      * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      *
-     * @param user The {@link User} to put inside the table
+     * @param offer The {@link Offer} to put inside the table
      *
      * @return The completable to subscribe
      *
      * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    Completable insert(User user);
+    Completable insert(Offer offer);
 
     /**
      * Update the {@link Offer} in the table
      *
-     * @param user The {@link User} to update
+     * @param offer The {@link Offer} to update
      *
      * @return The completable to subscribe
      */
     @Update
-    Completable update(User user);
+    Completable update(Offer offer);
 
     /**
-     * Delete the {@link User} inside the table
+     * Delete the {@link Offer} inside the table
      * <p>
      * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      *
-     * @param user The {@link User} to delete inside the table
+     * @param offer The {@link Offer} to delete inside the table
      *
      * @return The completable to subscribe
      *
      * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      */
     @Delete
-    Completable delete(User user);
+    Completable delete(Offer offer);
 
     /**
-     * Delete all the {@link User} inside the table
+     * Delete all the {@link Offer} inside the table
      * <p>
      * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      *
@@ -89,6 +97,6 @@ public interface UserDao {
      *
      * @see <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>
      */
-    @Query("DELETE FROM user")
+    @Query("DELETE FROM offer")
     Completable deleteAll();
 }

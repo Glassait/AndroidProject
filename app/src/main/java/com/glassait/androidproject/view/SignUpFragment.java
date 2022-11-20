@@ -16,6 +16,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.checker.Phone;
 import com.glassait.androidproject.common.utils.file.Cache;
+import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -55,13 +56,13 @@ public class SignUpFragment extends EmailValidator {
                 false
         );
 
-        TextView backButton = mRoot.findViewById(R.id.sign_up_back_btn);
+        TextView backButton = mRoot.findViewById(R.id.fragment_sign_up_back_btn);
 
         NavController navController = NavHostFragment.findNavController(this);
         backButton.setOnClickListener(view -> navController.navigate(R.id.start_menu_fragment));
 
         // First name editText
-        mFirstNameEt = mRoot.findViewById(R.id.sign_up_first_name_et);
+        mFirstNameEt = mRoot.findViewById(R.id.fragment_sign_up_first_name_et);
         editTextArrayList.add(mFirstNameEt);
         mFirstNameEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -70,7 +71,7 @@ public class SignUpFragment extends EmailValidator {
         ));
 
         // Last name editText
-        mLastNameEt = mRoot.findViewById(R.id.sign_up_last_name_et);
+        mLastNameEt = mRoot.findViewById(R.id.fragment_sign_up_last_name_et);
         editTextArrayList.add(mLastNameEt);
         mLastNameEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -79,7 +80,7 @@ public class SignUpFragment extends EmailValidator {
         ));
 
         // Email editText
-        mEmailEt = mRoot.findViewById(R.id.sign_up_email_et);
+        mEmailEt = mRoot.findViewById(R.id.fragment_sign_up_email_et);
         editTextArrayList.add(mEmailEt);
         mEmailEt.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) checkEmail(
@@ -89,14 +90,14 @@ public class SignUpFragment extends EmailValidator {
         });
 
         // Phone editText
-        mPhoneEt = mRoot.findViewById(R.id.sign_up_phone_et);
+        mPhoneEt = mRoot.findViewById(R.id.fragment_sign_up_phone_et);
         editTextArrayList.add(mPhoneEt);
         mPhoneEt.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus) checkPhone();
         });
 
         // Address editText
-        mAddressEt = mRoot.findViewById(R.id.sign_up_address_et);
+        mAddressEt = mRoot.findViewById(R.id.fragment_sign_up_address_et);
         editTextArrayList.add(mAddressEt);
         mAddressEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -105,7 +106,7 @@ public class SignUpFragment extends EmailValidator {
         ));
 
         // Postal code editText
-        mPostCodeEt = mRoot.findViewById(R.id.sign_up_postal_code_et);
+        mPostCodeEt = mRoot.findViewById(R.id.fragment_sign_up_postal_code_et);
         editTextArrayList.add(mPostCodeEt);
         mPostCodeEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -114,7 +115,7 @@ public class SignUpFragment extends EmailValidator {
         ));
 
         // City editText
-        mCityEt = mRoot.findViewById(R.id.sign_up_city_et);
+        mCityEt = mRoot.findViewById(R.id.fragment_sign_up_city_et);
         editTextArrayList.add(mCityEt);
         mCityEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -123,7 +124,7 @@ public class SignUpFragment extends EmailValidator {
         ));
 
         // Country editText
-        mCountryEt = mRoot.findViewById(R.id.sign_up_country_et);
+        mCountryEt = mRoot.findViewById(R.id.fragment_sign_up_country_et);
         editTextArrayList.add(mCountryEt);
         mCountryEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -131,7 +132,7 @@ public class SignUpFragment extends EmailValidator {
                 mCountryEt
         ));
 
-        TextView signUpButton = mRoot.findViewById(R.id.sign_up_register_btn);
+        TextView signUpButton = mRoot.findViewById(R.id.fragment_sign_up_register_btn);
         signUpButton.setOnClickListener(this::onClickListener);
 
         return mRoot;
@@ -349,7 +350,7 @@ public class SignUpFragment extends EmailValidator {
                                                                       user.uid
                                                               );
                             Cache cache = new Cache(
-                                    "user_id",
+                                    Secret.USER_FILE,
                                     mRoot.getContext()
                             );
                             cache.createFile();

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_light">#7C18FB</color>
-    <color name="background_light">#F0F0F0</color>
-    <color name="box_light">#FFFFFF</color>
-    <color name="on_primary_light">#FFFFFF</color>
+    <color name="background_light">#E0E0E0</color>
+    <color name="box_light">#DDDDDD</color>
+    <color name="on_primary_light">#D0D0D0</color>
     <color name="on_background_light">#000000</color>
     <color name="on_box_light">#7C18FB</color>
     <color name="on_box_light_2">#000000</color>
@@ -11,10 +11,10 @@
     <color name="background_night">#313131</color>
     <color name="box_night">#1C1C1C</color>
     <color name="on_primary_night">#000000</color>
-    <color name="on_background_night">#FFFFFF</color>
-    <color name="on_box_night">#FFFFFF</color>
+    <color name="on_background_night">#D0D0D0</color>
+    <color name="on_box_night">#D0D0D0</color>
     <color name="box_button">#D9D9D9</color>
     <color name="error">#B00020</color>
-    <color name="on_error">#FFFFFF</color>
-    <color name="transparent">#00FFFFFF</color>
+    <color name="on_error">#D0D0D0</color>
+    <color name="transparent">#00D0D0D0</color>
 </resources>
