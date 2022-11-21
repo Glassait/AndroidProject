@@ -41,12 +41,12 @@ public class SignUpUiTest {
 
         onView(withId(R.id.fragment_sign_up_email_et)).perform(
                 scrollTo(),
-                typeText("tendzinroffler@mail.com")
+                typeText("mailbox@gmail.com")
         );
 
         onView(withId(R.id.fragment_sign_up_phone_et)).perform(
                 scrollTo(),
-                typeText("+330781935820")
+                typeText("+330123456789")
         );
 
         onView(withId(R.id.fragment_sign_up_address_et)).perform(
@@ -56,7 +56,7 @@ public class SignUpUiTest {
 
         onView(withId(R.id.fragment_sign_up_postal_code_et)).perform(
                 scrollTo(),
-                typeText("94550")
+                typeText("75000")
         );
 
         onView(withId(R.id.fragment_sign_up_city_et)).perform(

@@ -190,6 +190,8 @@ public class CreateOfferFragment extends Fragment {
                 Offer offer = new Offer(
                         title.getText()
                              .toString(),
+                        mSelectedChip.getText()
+                                     .toString(),
                         "",
                         mUser.uid
                 );

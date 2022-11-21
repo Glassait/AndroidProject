@@ -7,7 +7,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.model.entity.User;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.Objects;
@@ -23,7 +22,6 @@ public class SecondActivity extends AppCompatActivity {
         NavigationBarView navigationBarView = findViewById(R.id.bottom_navigation);
         navigationBarView.setSelectedItemId(R.id.bottom_navigation_menu_home);
         navigationBarView.setOnItemSelectedListener(item -> {
-
             if (item.getItemId() == R.id.bottom_navigation_menu_home) {
                 navController.navigate(R.id.home_fragment);
                 System.out.println("Home item selected");
@@ -34,12 +32,5 @@ public class SecondActivity extends AppCompatActivity {
             }
             return true;
         });
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
-            User user = getIntent().getSerializableExtra(
-                    "USER",
-                    User.class
-            );
-        }
     }
 }

@@ -24,6 +24,11 @@
         <item name="android:background">@drawable/edit_text_background_night</item>
     </style>
 
+    <style name="editText.disabled">
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
     <!-- Main background box -->
     <style name="Box.top_radius"
             parent="@style/Box">
@@ -55,7 +60,7 @@
 
     <style name="profileButton"
             parent="@style/ProfileButtonParameters">
-        <item name="android:backgroundTint">@color/primary_night</item>
+        <item name="android:backgroundTint">@color/box_night</item>
     </style>
 
     <!-- Drawable -->

@@ -20,8 +20,14 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Random;
+
 @RunWith(AndroidJUnit4.class)
 public class CreateOfferUiTest {
+    private final Random   random = new Random();
+    private final String[] title  =
+            new String[]{"Hammer", "Screwdriver", "Mallet", "Axe", "Saw", "Scissors"};
+
     @Rule
     public ActivityScenarioRule<MainActivity> activityRule =
             new ActivityScenarioRule<>(MainActivity.class);
@@ -52,7 +58,7 @@ public class CreateOfferUiTest {
         }*/
         onView(withId(R.id.fragment_create_offer_title_et)).perform(
                 scrollTo(),
-                typeText("My offer"),
+                typeText(title[random.nextInt(title.length)]),
                 closeSoftKeyboard()
         );
 
@@ -66,10 +72,5 @@ public class CreateOfferUiTest {
                 scrollTo(),
                 click()
         );
-        try {
-            Thread.sleep(5000L);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

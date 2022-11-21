@@ -39,7 +39,7 @@ public class UserDaoTest {
     /**
      * Test the insert function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#insert(User)
      * @see UserDao#getAll()
      */
@@ -51,6 +51,7 @@ public class UserDaoTest {
                 "boitemail@gmail.com",
                 "0000000000",
                 "15 road field",
+                "75000",
                 "city",
                 "country",
                 UUID.randomUUID()
@@ -75,7 +76,7 @@ public class UserDaoTest {
      * Try to insert a null user into the database
      * Test the insert function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#insert(User)
      * @see UserDao#getAll()
      */
@@ -117,6 +118,7 @@ public class UserDaoTest {
                 "boitemail@gmail.com",
                 "0000000000",
                 "15 road field",
+                "75000",
                 "city",
                 "country",
                 UUID.randomUUID()
@@ -164,6 +166,7 @@ public class UserDaoTest {
                 "boitemail@gmail.com",
                 "0000000000",
                 "15 road field",
+                "75000",
                 "city",
                 "country",
                 UUID.randomUUID()
@@ -232,21 +235,10 @@ public class UserDaoTest {
     }
 
     /**
-     * Test the getAll function of {@link UserDao}
-     *
-     * @see UserDao#getAll()
-     */
-    @Test
-    public void getAll() {
-        assertTrue(mUserDao.getAll()
-                           .size() >= 0);
-    }
-
-    /**
      * Test the getUserFromEmail function of {@link UserDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
@@ -257,6 +249,7 @@ public class UserDaoTest {
                 "boitemail@gmail.com",
                 "0000000000",
                 "15 road field",
+                "75000",
                 "city",
                 "country",
                 UUID.randomUUID()
@@ -300,10 +293,72 @@ public class UserDaoTest {
     }
 
     /**
+     * Test the getUserFromUid function of {@link UserDao}
+     * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
+     *
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see UserDao#getUserFromUid(int)
+     * @see UserDao#insert(User)
+     */
+    @Test
+    public void getUserFromUid() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                "15 road field",
+                "75000",
+                "city",
+                "country",
+                UUID.randomUUID()
+        );
+        user.uid = 2;
+        mUserDao.insert(user)
+                .subscribe()
+                .dispose();
+
+        final User[] userGet = new User[1];
+        mUserDao.getUserFromUid(user.uid)
+                .subscribe(
+                        u -> userGet[0] = u,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertEquals(
+                user.email,
+                userGet[0].email
+        );
+        assertEquals(
+                user.lastName,
+                userGet[0].lastName
+        );
+    }
+
+    /**
+     * Extend the previous test with error handling
+     *
+     * @see UserDao#getUserFromUid(int)
+     */
+    @Test
+    public void getUserFromUidWithErrorHandling() {
+        final User[] user = new User[1];
+        mUserDao.getUserFromUid(0)
+                .subscribe(
+                        userGet -> user[0] = userGet,
+                        throwable -> user[0] = null
+                )
+                .dispose();
+
+        assertNull(user[0]);
+    }
+
+    /**
      * Delete one test user
      * Test the delete function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#delete(User)
      * @see UserDao#getAll()
      */
@@ -317,6 +372,7 @@ public class UserDaoTest {
                 "boitemail@gmail.com",
                 "0000000000",
                 "15 road field",
+                "75000",
                 "city",
                 "country",
                 UUID.randomUUID()
@@ -340,7 +396,7 @@ public class UserDaoTest {
      * Delete all test users
      * Test the delete function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#delete(User)
      * @see UserDao#getAll()
      */

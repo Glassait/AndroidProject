@@ -15,4 +15,9 @@
             android:name="com.glassait.androidproject.view.CreateOfferFragment"
             android:label="fragment_create_offer"
             tools:layout="@layout/fragment_create_offer" />
+    <fragment
+            android:id="@+id/my_offer_fragment"
+            android:name="com.glassait.androidproject.view.MyOfferFragment"
+            android:label="fragment_my_offer"
+            tools:layout="@layout/fragment_my_offer" />
 </navigation>

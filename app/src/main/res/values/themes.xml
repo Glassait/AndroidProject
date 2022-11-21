@@ -102,6 +102,11 @@
         <item name="android:background">@drawable/edit_text_background_light</item>
     </style>
 
+    <style name="editText.disabled">
+        <item name="android:textColor">@color/primary_light</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
     <!-- Main background box -->
     <style name="Box">
         <item name="android:layout_height">wrap_content</item>
@@ -128,7 +133,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginTop">30dp</item>
         <item name="android:layout_marginBottom">20dp</item>
     </style>
 
@@ -168,7 +173,7 @@
 
     <style name="profileButton"
             parent="@style/ProfileButtonParameters">
-        <item name="android:backgroundTint">@color/on_background_night</item>
+        <item name="android:backgroundTint">@color/box_light</item>
     </style>
 
     <!-- Drawable -->

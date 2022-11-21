@@ -50,4 +50,6 @@
     <string name="chips_manual">Manual</string>
     <string name="error_to_long_30">Must have less than 30 characters</string>
     <string name="error_during_upload_image">Error append when getting image</string>
+    <string name="upper_delete">Delete</string>
+    <string name="upper_label_category">Category</string>
 </resources>
