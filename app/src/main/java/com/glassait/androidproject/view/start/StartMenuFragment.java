@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,8 +21,8 @@ public class StartMenuFragment extends Fragment {
                 container,
                 false
         );
-        TextView signUpButton = root.findViewById(R.id.start_menu_sign_up_button);
-        TextView signInButton = root.findViewById(R.id.start_menu_sign_in_button);
+        TextView signUpButton = root.findViewById(R.id.fragment_start_menu_sign_up_button);
+        TextView signInButton = root.findViewById(R.id.fragment_start_menu_sign_in_button);
 
         NavController navController = NavHostFragment.findNavController(this);
         // Navigate to the sign up fragment

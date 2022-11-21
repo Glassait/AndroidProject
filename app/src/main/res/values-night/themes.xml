@@ -1,45 +1,92 @@
 <resources>
-
-    <style name="Theme.AndroidProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Generic -->
+    <style name="Theme.AndroidProject"
+            parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/background_night</item>
         <item name="android:textColor">@color/on_background_night</item>
     </style>
 
-    <style name="Text">
+    <!-- Text -->
+    <style name="Text"
+            parent="@style/TextParameters">
         <item name="android:textColor">@color/on_background_night</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="Text.bold24">
-        <item name="android:textSize">24sp</item>
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="Text.Title">
+    <style name="Title"
+            parent="@style/TitleParameters">
         <item name="android:textColor">@color/primary_night</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">70sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAlignment">center</item>
     </style>
 
-    <style name="Box">
-        <item name="android:background">@drawable/box_border_night</item>
-        <item name="android:textColor">@color/on_box_night</item>
-        <item name="android:layout_width">match_parent</item>
+    <!-- Input -->
+    <style name="editText"
+            parent="@style/EditTextParameters">
+        <item name="android:background">@drawable/edit_text_background_night</item>
     </style>
 
-    <style name="fullButton" parent="Button">
+    <style name="editText.disabled">
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <!-- Main background box -->
+    <style name="Box.top_radius"
+            parent="@style/Box">
+        <item name="android:background">@drawable/box_border_top_radius_night</item>
+    </style>
+
+    <style name="Box.full_radius"
+            parent="@style/Box">
+        <item name="android:background">@drawable/box_border_full_radius_night</item>
+    </style>
+
+    <!-- Button background -->
+    <style name="Button.full"
+            parent="@style/Button">
         <item name="android:background">@drawable/full_button_night</item>
         <item name="android:textColor">@color/on_primary_night</item>
     </style>
 
-    <style name="emptyButton" parent="Button">
+    <style name="Button.empty"
+            parent="@style/Button">
         <item name="android:background">@drawable/empty_button_night</item>
         <item name="android:textColor">@color/on_box_night</item>
     </style>
 
-    <style name="arrowButton" parent="ReturnButton">
+    <style name="returnButton"
+            parent="@style/RoundButton">
         <item name="android:background">@drawable/back_button_night</item>
+    </style>
+
+    <style name="profileButton"
+            parent="@style/ProfileButtonParameters">
+        <item name="android:backgroundTint">@color/on_box_night</item>
+    </style>
+
+    <!-- Drawable -->
+    <style name="round_plus">
+        <item name="android:background">@drawable/round_plus_night</item>
+    </style>
+
+    <style name="upload_image">
+        <item name="android:src">@drawable/upload_file_night</item>
+    </style>
+
+    <!-- Navigation bar -->
+    <style name="navigation_bar.bottom">
+        <item name="android:background">@color/primary_night</item>
+        <item name="itemBackground">@drawable/not_selected_item_night</item>
+        <item name="itemTextColor">@color/on_background_night</item>
+        <item name="itemIconTint">@color/on_background_night</item>
+    </style>
+
+    <!-- Chips -->
+    <style name="categoryChips"
+            parent="@style/ChipsParameters">
+        <item name="android:textColor">@color/primary_night</item>
+        <item name="chipIcon">@drawable/plus_night</item>
+        <item name="checkedIcon">@drawable/checked_night</item>
+        <item name="chipBackgroundColor">@color/on_primary_night</item>
+        <item name="chipStrokeColor">@color/primary_night</item>
     </style>
 </resources>

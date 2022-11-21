@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.main.HomeFragment"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_home_in_the_area_offer"
+            android:layout_marginTop="90dp">
+
+        <TextView
+                android:text="@string/label_in_the_area"
+                android:id="@+id/fragment_home_in_the_area_tv"
+                style="@style/offer.category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_in_area_HSV" />
+
+        <TextView
+                android:text="@string/link_see_all"
+                android:id="@+id/fragment_home_see_all_in_area_tv"
+                style="@style/offer.seeAll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_in_area_HSV"
+                android:autoSizeTextType="uniform" />
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="328dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/fragment_home_in_area_HSV"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="40dp">
+
+            <LinearLayout
+                    android:id="@+id/fragment_home_in_area_LL"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/offer"
+                        android:id="@+id/fragment_home_offer_1_layout">
+
+                    <TextView
+                            android:text="@string/offer_title"
+                            android:id="@+id/fragment_home_offer_title_in_area_1_tv"
+                            style="@style/offer.title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_tools_image_in_area_1_IV" />
+
+                    <ImageView
+                            android:src="@drawable/ic_launcher_foreground"
+                            tools:srcCompat="@tools:sample/avatars"
+                            android:id="@+id/fragment_home_tools_image_in_area_1_IV"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_in_area_1_tv"
+                            android:contentDescription="@string/offer_image_of_the_tool"
+                            tools:ignore="ImageContrastCheck"
+                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_name_in_area_1_tv"
+                            style="@style/offer.image" />
+
+                    <TextView
+                            android:text="@string/offer_last_first_name"
+                            android:id="@+id/fragment_home_name_in_area_1_tv"
+                            app:layout_constraintStart_toStartOf="parent"
+                            style="@style/offer.text"
+                            android:autoSizeTextType="uniform"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_tools_image_in_area_1_IV"
+                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_city_in_area_1_tv" />
+
+                    <TextView
+                            android:text="@string/offer_city"
+                            android:id="@+id/fragment_home_city_in_area_1_tv"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_name_in_area_1_tv"
+                            style="@style/offer.text"
+                            android:autoSizeTextType="uniform" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/your_offer"
+            android:layout_marginTop="70dp">
+
+        <TextView
+                android:text="@string/offer_your"
+                android:id="@+id/fragment_home_my_offer_tv"
+                style="@style/offer.category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_my_offer_HSV" />
+
+        <TextView
+                android:text="@string/link_see_all"
+                android:id="@+id/fragment_home_see_all_my_offer_tv"
+                style="@style/offer.seeAll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_my_offer_HSV" />
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="328dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/fragment_home_my_offer_HSV"
+                android:scrollbars="none"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="40dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                    android:id="@+id/fragment_home_my_offer_LL"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/offer"
+                        android:id="@+id/fragment_home_add_offer">
+
+                    <TextView
+                            android:text="@string/offer_add_one"
+                            android:id="@+id/fragment_home_offer_title_add_offer_tv"
+                            style="@style/offer.title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="#00FFFFFF"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:autoSizeTextType="uniform"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="25dp" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/round_plus"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_add_offer_tv"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintVertical_bias="0.26"
+                            android:id="@+id/textView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/my_reservation"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="80dp">
+
+        <TextView
+                android:text="@string/offer_my_reservation"
+                android:id="@+id/fragment_home_my_reservation_tv"
+                style="@style/offer.category"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_my_reservation_HSV" />
+
+        <TextView
+                android:text="@string/link_see_all"
+                android:id="@+id/fragment_home_see_all_my_reservation_tv"
+                style="@style/offer.seeAll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/fragment_home_my_reservation_HSV"
+                android:autoSizeTextType="uniform" />
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="328dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/fragment_home_my_reservation_HSV"
+                android:scrollbars="none"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="40dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                    android:id="@+id/fragment_home_my_reservation_LL"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/offer"
+                        android:id="@+id/fragment_home_do_reservation">
+
+                    <TextView
+                            android:text="@string/offer_do_a_reservation"
+                            android:id="@+id/fragment_home_offer_title_add_reservation_tv"
+                            style="@style/offer.title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:layout_marginTop="25dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            android:autoSizeTextType="uniform"
+                            android:layout_height="40dp" />
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/round_plus"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_add_reservation_tv"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintVertical_bias="0.26" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

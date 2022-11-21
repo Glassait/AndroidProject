@@ -7,22 +7,22 @@
 
     <fragment
             android:id="@+id/start_menu_fragment"
-            android:name="com.glassait.androidproject.view.StartMenuFragment"
+            android:name="com.glassait.androidproject.view.start.StartMenuFragment"
             android:label="fragment_start_menu"
             tools:layout="@layout/fragment_start_menu" />
     <fragment
             android:id="@+id/sign_up_fragment"
-            android:name="com.glassait.androidproject.view.SignUpFragment"
+            android:name="com.glassait.androidproject.view.start.SignUpFragment"
             android:label="fragment_sign_up"
             tools:layout="@layout/fragment_sign_up" />
     <fragment
             android:id="@+id/sign_in_fragment"
-            android:name="com.glassait.androidproject.view.SignInFragment"
+            android:name="com.glassait.androidproject.view.start.SignInFragment"
             android:label="fragment_sign_in"
             tools:layout="@layout/fragment_sign_in" />
     <fragment
             android:id="@+id/new_location_fragment"
-            android:name="com.glassait.androidproject.view.NewLocationFragment"
+            android:name="com.glassait.androidproject.view.start.NewLocationFragment"
             android:label="fragment_new_location"
             tools:layout="@layout/fragment_new_location" />
 </navigation>

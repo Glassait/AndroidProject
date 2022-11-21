@@ -2,11 +2,13 @@ package com.glassait.androidproject.model.entity;
 
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.glassait.androidproject.common.utils.checker.Checker;
+import com.google.android.gms.common.internal.safeparcel.SafeParcelable;
 
 import java.util.UUID;
 
@@ -19,7 +21,6 @@ public class User {
      * Constructor for the {@link Entity} User
      * <br><br>
      * The {@link PrimaryKey} is a uid and is auto generate.
-     * Inside the constructor the uid is check to not be less than 0
      * <br><br>
      * All other fields are encode with {@link TextUtils#htmlEncode(String)}, more information
      * {@link Checker#encode(String)}
@@ -31,20 +32,23 @@ public class User {
      * @param email     The mail address of the user
      * @param phone     The phone number of the user
      * @param address   The postal address of the user
+     * @param postCode  The postal code of the user
      * @param city      The city of the user
      * @param country   The country of the user
      * @param uuid      The uuid of the user
      *
      * @see TextUtils#htmlEncode(String)
      */
-    public User(String firstName, String lastName, String email, String phone, String address,
-                String city, String country, UUID uuid) {
-//        uid = uid <= 0 ? 1 : uid;
+    @SafeParcelable.Constructor
+    public User(@NonNull String firstName, @NonNull String lastName, @NonNull String email,
+                @NonNull String phone, @NonNull String address, @NonNull String postCode,
+                @NonNull String city, @NonNull String country, UUID uuid) {
         this.firstName = TextUtils.htmlEncode(firstName.trim());
         this.lastName = TextUtils.htmlEncode(lastName.trim());
         this.email = TextUtils.htmlEncode(email.trim());
         this.phone = TextUtils.htmlEncode(phone.trim());
         this.address = TextUtils.htmlEncode(address.trim());
+        this.postCode = TextUtils.htmlEncode(postCode.trim());
         this.city = TextUtils.htmlEncode(city.trim());
         this.country = TextUtils.htmlEncode(country.trim());
         this.uuid = uuid;
@@ -67,6 +71,9 @@ public class User {
 
     @ColumnInfo(name = "address")
     public String address;
+
+    @ColumnInfo(name = "post_code")
+    public String postCode;
 
     @ColumnInfo(name = "city")
     public String city;

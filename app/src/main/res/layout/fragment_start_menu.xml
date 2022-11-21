@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.StartMenuFragment">
+        tools:context=".view.start.StartMenuFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -12,39 +12,39 @@
 
         <TextView
                 android:text="@string/upper_title_welcome"
-                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/Title"
                 app:layout_constraintStart_toStartOf="parent"
-                style="@style/Text.Title"
-                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="85dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:id="@+id/start_menu_title" />
+                android:autoSizeTextType="uniform" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_height="200dp"
-                style="@style/Box"
+                android:layout_height="220dp"
+                style="@style/Box.top_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/constraintLayout">
 
             <TextView
                     android:text="@string/upper_text_sign_up"
-                    android:id="@+id/start_menu_sign_up_button"
-                    style="@style/fullButton"
+                    android:id="@+id/fragment_start_menu_sign_up_button"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/start_menu_sign_in_button" />
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_start_menu_sign_in_button"
+                    android:autoSizeTextType="uniform" />
 
             <TextView
                     android:text="@string/upper_text_sign_in"
-                    android:id="@+id/start_menu_sign_in_button"
-                    style="@style/emptyButton"
+                    android:id="@+id/fragment_start_menu_sign_in_button"
+                    style="@style/Button.empty"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/start_menu_sign_up_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_start_menu_sign_up_button"
+                    android:autoSizeTextType="uniform" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

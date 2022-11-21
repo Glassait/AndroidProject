@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "9208f87b09545e3c5aa5134c64b873c5",
+    "identityHash": "231861595a1a997135aadc881b39cbde",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `city` TEXT, `country` TEXT, `uuid` BLOB)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `post_code` TEXT, `city` TEXT, `country` TEXT, `uuid` BLOB)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -45,6 +45,12 @@
             "notNull": false
           },
           {
+            "fieldPath": "postCode",
+            "columnName": "post_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "city",
             "columnName": "city",
             "affinity": "TEXT",
@@ -71,12 +77,62 @@
         },
         "indices": [],
         "foreignKeys": []
+      },
+      {
+        "tableName": "Offer",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `is_reserved` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "storage_ref",
+            "columnName": "storage_ref",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "isReserved",
+            "columnName": "is_reserved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "creatorId",
+            "columnName": "creator_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '9208f87b09545e3c5aa5134c64b873c5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '231861595a1a997135aadc881b39cbde')"
     ]
   }
 }
