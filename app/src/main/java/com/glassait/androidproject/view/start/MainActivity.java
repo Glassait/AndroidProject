@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,8 +7,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.GetUserFromFile;
+import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -17,6 +19,9 @@ public class MainActivity extends AppCompatActivity {
         // Build the database
         Builder.getInstance()
                .buildDatabase(this);
+        // Initialize the singleton
+        StoreManager.getInstance();
+
         // Automatic-connection part
         GetUserFromFile getUser = new GetUserFromFile(getApplicationContext());
         Thread          thread  = new Thread(getUser);
@@ -34,10 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext(),
                     SecondActivity.class
             );
-            intent.putExtra(
-                    "USER",
-                    user
-            );
+            StoreManager.setUser(user);
             startActivity(intent);
         }
 

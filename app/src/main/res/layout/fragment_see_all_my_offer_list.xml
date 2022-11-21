@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/see_all_my_offer_list"
+        android:name="com.glassait.androidproject.view.SeeAllMyOfferFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"
+        tools:context=".view.main.myOffer.SeeAllMyOfferFragment"
+        tools:listitem="@layout/fragment_see_all_my_offer"
+        android:layout_marginBottom="60dp" />

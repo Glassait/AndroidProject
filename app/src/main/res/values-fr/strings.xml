@@ -47,4 +47,6 @@
     <string name="chips_manual">Manuelle</string>
     <string name="error_to_long_30">Doit avoir moins de 30 charatères</string>
     <string name="error_during_upload_image">Erreur pendant l\'import d\'image</string>
+    <string name="upper_delete">Supprimer</string>
+    <string name="upper_label_category">Catégorie</string>
 </resources>

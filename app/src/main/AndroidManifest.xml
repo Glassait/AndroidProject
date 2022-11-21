@@ -16,14 +16,14 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AndroidProject">
         <activity
-                android:name=".view.SecondActivity"
+                android:name=".view.main.SecondActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
                     android:value="" />
         </activity>
         <activity
-                android:name=".view.MainActivity"
+                android:name=".view.start.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

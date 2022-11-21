@@ -43,6 +43,17 @@ public interface UserDao {
     Single<User> getUserFromEmail(String email);
 
     /**
+     * Query the {@link User} with the uid
+     *
+     * @param uid The uid of the {@link User}
+     *
+     * @return The user with the uid, else throw the
+     * {@link androidx.room.rxjava3.EmptyResultSetException} exception
+     */
+    @Query("SELECT * FROM user WHERE uid = :uid")
+    Single<User> getUserFromUid(int uid);
+
+    /**
      * Insert an {@link User} inside the table
      * <p>
      * This is a asynchronous one-shot queries: <a href="https://developer.android.com/training/data-storage/room/async-queries#one-shot">Room</a>

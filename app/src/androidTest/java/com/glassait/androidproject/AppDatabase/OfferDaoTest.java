@@ -38,7 +38,7 @@ public class OfferDaoTest {
     /**
      * Test the insert function of {@link OfferDao}
      *
-     * @see Offer#Offer(String, String, int)
+     * @see Offer#Offer(String, String, String, int)
      * @see OfferDao#insert(Offer)
      * @see OfferDao#getAll()
      */
@@ -46,6 +46,7 @@ public class OfferDaoTest {
     public void insert() {
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );
@@ -98,7 +99,7 @@ public class OfferDaoTest {
      * Test the update function of {@link OfferDao}
      * Set the offer uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, int)
+     * @see Offer#Offer(String, String, String, int)
      * @see OfferDao#update(Offer)
      * @see OfferDao#getAllOffersFromCreatorId(int)
      * @see OfferDao#insert(Offer)
@@ -107,6 +108,7 @@ public class OfferDaoTest {
     public void updateOneElement() {
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );
@@ -141,7 +143,7 @@ public class OfferDaoTest {
      * Test the update function of {@link OfferDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, int)
+     * @see Offer#Offer(String, String, String, int)
      * @see OfferDao#insert(Offer)
      * @see OfferDao#update(Offer)
      * @see OfferDao#getAllOffersFromCreatorId(int)
@@ -150,6 +152,7 @@ public class OfferDaoTest {
     public void updateMultipleElements() {
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );
@@ -225,7 +228,7 @@ public class OfferDaoTest {
      * Test the getAllOffersFromCreatorId function of {@link OfferDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, int)
+     * @see Offer#Offer(String, String, String, int)
      * @see OfferDao#getAllOffersFromCreatorId(int)
      * @see OfferDao#insert(Offer)
      */
@@ -233,6 +236,7 @@ public class OfferDaoTest {
     public void getAllOffersFromCreatorId() {
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );
@@ -259,6 +263,7 @@ public class OfferDaoTest {
     public void getCountOffersOfCreator() {
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );
@@ -283,6 +288,7 @@ public class OfferDaoTest {
                                            .size();
         Offer offer = new Offer(
                 "title",
+                "electric",
                 "testing",
                 1
         );

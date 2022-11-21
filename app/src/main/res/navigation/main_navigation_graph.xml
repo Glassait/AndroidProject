@@ -7,12 +7,22 @@
 
     <fragment
             android:id="@+id/home_fragment"
-            android:name="com.glassait.androidproject.view.HomeFragment"
+            android:name="com.glassait.androidproject.view.main.HomeFragment"
             android:label="fragment_home"
             tools:layout="@layout/fragment_home" />
     <fragment
             android:id="@+id/create_offer_fragment"
-            android:name="com.glassait.androidproject.view.CreateOfferFragment"
+            android:name="com.glassait.androidproject.view.main.myOffer.CreateOfferFragment"
             android:label="fragment_create_offer"
             tools:layout="@layout/fragment_create_offer" />
+    <fragment
+            android:id="@+id/my_offer_fragment"
+            android:name="com.glassait.androidproject.view.main.myOffer.MyOfferFragment"
+            android:label="fragment_my_offer"
+            tools:layout="@layout/fragment_my_offer" />
+    <fragment
+            android:id="@+id/see_all_my_offer_fragment"
+            android:name="com.glassait.androidproject.view.main.myOffer.SeeAllMyOfferFragment"
+            android:label="fragment_see_all_my_offer_list"
+            tools:layout="@layout/fragment_see_all_my_offer_list" />
 </navigation>

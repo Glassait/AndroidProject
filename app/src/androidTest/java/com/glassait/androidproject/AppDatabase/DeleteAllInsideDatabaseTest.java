@@ -18,7 +18,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
-public class DeleteAllInsideTableTest {
+public class DeleteAllInsideDatabaseTest {
     private static final Context     APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
                                                                           .getTargetContext();
     private static final Builder     BUILDER     = Builder.getInstance();

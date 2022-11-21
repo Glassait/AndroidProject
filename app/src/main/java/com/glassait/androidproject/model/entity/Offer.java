@@ -24,14 +24,16 @@ public class Offer {
      * And trim with {@link String#trim} (Remove spaces before and after the string).
      *
      * @param title       The title of the offer
+     * @param category    The category of the offer
      * @param storage_ref The storage reference for the firebase storage
      * @param creatorId   The id of the creator
      *
      * @see TextUtils#htmlEncode(String)
      */
-    public Offer(String title, String storage_ref, int creatorId) {
+    public Offer(String title, String category, String storage_ref, int creatorId) {
         this.title = TextUtils.htmlEncode(title.trim());
         this.storage_ref = storage_ref;
+        this.category = category;
         this.creatorId = creatorId;
         this.isReserved = false;
     }
@@ -44,6 +46,9 @@ public class Offer {
 
     @ColumnInfo(name = "storage_ref")
     public String storage_ref;
+
+    @ColumnInfo(name = "category")
+    public String category;
 
     @ColumnInfo(name = "is_reserved")
     public boolean isReserved;

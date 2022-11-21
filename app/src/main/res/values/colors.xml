@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary_light">#7C18FB</color>
-    <color name="background_light">#E0E0E0</color>
-    <color name="box_light">#DDDDDD</color>
-    <color name="on_primary_light">#D0D0D0</color>
+    <color name="background_light">#EFEFEF</color>
+    <color name="box_light">#FFFFFF</color>
+    <color name="on_primary_light">#EFEFEF</color>
     <color name="on_background_light">#000000</color>
     <color name="on_box_light">#7C18FB</color>
     <color name="on_box_light_2">#000000</color>

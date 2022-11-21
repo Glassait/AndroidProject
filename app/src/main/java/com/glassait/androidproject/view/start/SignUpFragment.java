@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,11 +17,13 @@ import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.checker.Phone;
 import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.secret.Secret;
+import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 import org.json.JSONObject;
 
@@ -293,7 +295,7 @@ public class SignUpFragment extends EmailValidator {
      * The function is also creating a file with the email and the uuid of the user for automatic
      * connection. The data is stored in JSONObject shape.
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, String, String, String, String, UUID)
      * @see UserDao#insert(User)
      * @see com.glassait.androidproject.common.utils.file.UUID#UUID(Context, String)
      * @see com.glassait.androidproject.common.utils.file.UUID#generateUUID()
@@ -325,6 +327,8 @@ public class SignUpFragment extends EmailValidator {
                         .toString(),
                 mAddressEt.getText()
                           .toString(),
+                mPostCodeEt.getText()
+                           .toString(),
                 mCityEt.getText()
                        .toString(),
                 mCountryEt.getText()
@@ -357,14 +361,12 @@ public class SignUpFragment extends EmailValidator {
                             cache.storeDataInFile(data.toString()
                                                       .getBytes());
 
+                            StoreManager.setUser(user);
+
                             // Launch the second activity
                             Intent intent = new Intent(
                                     mRoot.getContext(),
                                     SecondActivity.class
-                            );
-                            intent.putExtra(
-                                    "USER",
-                                    user
                             );
                             startActivity(intent);
                         },

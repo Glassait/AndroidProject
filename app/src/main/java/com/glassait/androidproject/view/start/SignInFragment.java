@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,11 +17,13 @@ import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.file.UUID;
 import com.glassait.androidproject.common.utils.secret.Secret;
+import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -147,14 +149,12 @@ public class SignInFragment extends EmailValidator {
                         e.printStackTrace();
                     }
 
+                    StoreManager.setUser(user[0]);
+
                     //Launch the second activity
                     Intent intent = new Intent(
                             mRoot.getContext(),
                             SecondActivity.class
-                    );
-                    intent.putExtra(
-                            "USER",
-                            user[0]
                     );
                     startActivity(intent);
                 } else {
