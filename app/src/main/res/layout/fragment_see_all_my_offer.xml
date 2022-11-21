@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="30dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/offer">
+
+        <TextView
+                android:id="@+id/title_offer"
+                style="@style/offer.title"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/image_offer" />
+
+        <ImageView
+                android:src="@drawable/ic_launcher_foreground"
+                android:id="@+id/image_offer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_offer"
+                android:contentDescription="@string/offer_image_of_the_tool"
+                tools:ignore="ImageContrastCheck"
+                app:layout_constraintBottom_toTopOf="@+id/name_offer"
+                style="@style/offer.image" />
+
+        <TextView
+                android:id="@+id/name_offer"
+                app:layout_constraintStart_toStartOf="parent"
+                style="@style/offer.text"
+                android:autoSizeTextType="uniform"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/image_offer"
+                app:layout_constraintBottom_toTopOf="@+id/city_offer" />
+
+        <TextView
+                android:id="@+id/city_offer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/name_offer"
+                style="@style/offer.text"
+                android:autoSizeTextType="uniform" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

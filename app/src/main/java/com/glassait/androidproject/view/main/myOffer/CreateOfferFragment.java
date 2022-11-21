@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.main.myOffer;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,7 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.file.GetUserFromFile;
+import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
@@ -101,7 +101,7 @@ public class CreateOfferFragment extends Fragment {
                 false
         );
 
-        getUser();
+        mUser = StoreManager.getUser();
 
         // Fail to implements the upload to the firebase
         // Create a Cloud Storage reference from the app
@@ -292,29 +292,5 @@ public class CreateOfferFragment extends Fragment {
                     0
             );
         }
-    }
-
-    /**
-     * Get the user from data inside file.
-     * <p>
-     * Use thread to let the main thread handle the listener. The thread used is a daemon.
-     *
-     * @see GetUserFromFile#GetUserFromFile(Context)
-     * @see GetUserFromFile#getUser()
-     * @see Thread#Thread()
-     * @see Thread#setDaemon(boolean)
-     * @see Thread#start()
-     */
-    private void getUser() {
-        GetUserFromFile getUser = new GetUserFromFile(mRoot.getContext());
-        Thread          thread  = new Thread(getUser);
-        thread.setDaemon(true);
-
-        new Thread(() -> {
-            thread.start();
-            while (mUser == null) {
-                mUser = getUser.getUser();
-            }
-        }).start();
     }
 }

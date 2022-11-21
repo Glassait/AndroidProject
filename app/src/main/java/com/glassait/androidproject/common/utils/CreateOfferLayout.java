@@ -279,6 +279,7 @@ public class CreateOfferLayout {
                             myOfferCl,
                             0
                     );
+                    System.out.println("Add my offer n°" + offer.uid);
                 } else {
                     mOfferDao.delete(offer);
                 }

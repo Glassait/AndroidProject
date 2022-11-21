@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.main.myOffer;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,7 +43,11 @@ public class MyOfferFragment extends Fragment {
         NavController navController = NavHostFragment.findNavController(this);
 
         TextView backButton = root.findViewById(R.id.fragment_my_offer_back_btn);
-        backButton.setOnClickListener(view -> navController.navigate(R.id.home_fragment));
+        backButton.setOnClickListener(view -> {
+            System.out.println("Back button click on my offer fragment");
+            navController.navigate(R.id.home_fragment);
+            StoreManager.setOffer(null);
+        });
 
         TextView offerTitleEt = root.findViewById(R.id.fragment_my_offer_title_tv);
         offerTitleEt.setText(offer.title);

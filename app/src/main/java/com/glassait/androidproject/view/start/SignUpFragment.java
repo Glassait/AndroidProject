@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +23,7 @@ import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 import org.json.JSONObject;
 

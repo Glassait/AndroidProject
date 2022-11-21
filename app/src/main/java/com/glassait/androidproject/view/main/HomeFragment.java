@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.main;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -74,8 +74,7 @@ public class HomeFragment extends Fragment {
             );
 
             your_offer_see_all.setOnClickListener(View -> {
-                // TODO change the fragment to the Create offer
-                System.out.println("See all the offer");
+                navController.navigate(R.id.see_all_my_offer_fragment);
             });
         }
 

@@ -7,6 +7,7 @@ import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.start.MainActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,7 +18,7 @@ import java.util.UUID;
  * This class is a runnable used for get and check the user file (file who store the email, id
  * and uuid of the user).
  * <p>
- * For an example of used check {@link com.glassait.androidproject.view.MainActivity}
+ * For an example of used check {@link MainActivity}
  */
 public class GetUserFromFile implements Runnable {
     private       User    user;

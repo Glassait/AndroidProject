@@ -93,7 +93,7 @@
             parent="@style/InputParameters">
         <item name="android:layout_height">60dp</item>
         <item name="layout_goneMarginBottom">30dp</item>
-        <item name="android:textSize">35sp</item>
+        <item name="android:textSize">33sp</item>
         <item name="android:textColorHint">#757575</item>
     </style>
 

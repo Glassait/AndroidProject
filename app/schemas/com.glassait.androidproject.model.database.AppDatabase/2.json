@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "1331aa7106d517b0a49c0ba01f459d9e",
+    "identityHash": "231861595a1a997135aadc881b39cbde",
     "entities": [
       {
         "tableName": "User",
@@ -80,7 +80,7 @@
       },
       {
         "tableName": "Offer",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `is_reserved` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `is_reserved` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -97,6 +97,12 @@
           {
             "fieldPath": "storage_ref",
             "columnName": "storage_ref",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "category",
+            "columnName": "category",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -126,7 +132,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1331aa7106d517b0a49c0ba01f459d9e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '231861595a1a997135aadc881b39cbde')"
     ]
   }
 }

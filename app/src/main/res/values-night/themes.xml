@@ -60,7 +60,7 @@
 
     <style name="profileButton"
             parent="@style/ProfileButtonParameters">
-        <item name="android:backgroundTint">@color/box_night</item>
+        <item name="android:backgroundTint">@color/on_box_night</item>
     </style>
 
     <!-- Drawable -->

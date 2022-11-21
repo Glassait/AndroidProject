@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import com.glassait.androidproject.common.utils.file.GetUserFromFile;
 import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override

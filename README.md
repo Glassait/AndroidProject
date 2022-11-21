@@ -44,6 +44,8 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [x] Sign up
 - [x] Sign in - (with auto-connect)
 - [x] Create offer - (Failed to upload image to the firebase)
+- [x] Delete offer
+- [x] Implement Lis and RecyclerView
 - [ ] Search
 - [ ] Localization
 - [ ] Chat - Will not be implemented
