@@ -176,6 +176,21 @@
         <item name="android:backgroundTint">@color/box_light</item>
     </style>
 
+    <style name="AddButtonParameters"
+            parent="@style/ProfileButtonParameters">
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:layout_marginBottom">67dp</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="maxImageSize">50dp</item>
+        <item name="android:contentDescription">Add Button</item>
+    </style>
+
+    <style name="addRoundButton"
+            parent="@style/AddButtonParameters">
+        <item name="android:src">@drawable/round_plus_night</item>
+        <item name="android:backgroundTint">@color/primary_light</item>
+    </style>
+
     <!-- Drawable -->
     <style name="round_plus">
         <item name="android:background">@drawable/round_plus_light</item>

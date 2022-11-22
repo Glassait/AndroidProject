@@ -18,6 +18,7 @@ import com.glassait.androidproject.common.utils.secret.StoreManager;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
+import com.glassait.androidproject.view.main.SecondActivity;
 
 /**
  * A fragment representing a list of Items.
@@ -63,18 +64,19 @@ public class SeeAllMyOfferFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(
+        View root = inflater.inflate(
                 R.layout.fragment_see_all_my_offer_list,
                 container,
                 false
         );
 
         NavController navController = NavHostFragment.findNavController(this);
+        SecondActivity.enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context      context      = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+        if (root instanceof RecyclerView) {
+            Context      context      = root.getContext();
+            RecyclerView recyclerView = (RecyclerView) root;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -91,6 +93,12 @@ public class SeeAllMyOfferFragment extends Fragment {
             });
             recyclerView.setAdapter(adapter);
         }
-        return view;
+        return root;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        SecondActivity.disableAddButton();
     }
 }
