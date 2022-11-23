@@ -6,32 +6,32 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:enableOnBackInvokedCallback="true"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/name.app"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidProject">
+            android:allowBackup="true"
+            android:dataExtractionRules="@xml/data_extraction_rules"
+            android:enableOnBackInvokedCallback="true"
+            android:fullBackupContent="@xml/backup_rules"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/name.app"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.AndroidProject">
         <activity
-            android:name=".CompareActivity"
-            android:exported="false">
+                android:name=".view.CompareActivity"
+                android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                    android:name="android.app.lib_name"
+                    android:value="" />
         </activity>
         <activity
-            android:name=".view.ScanningActivity"
-            android:exported="false">
+                android:name=".view.ScanningActivity"
+                android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                    android:name="android.app.lib_name"
+                    android:value="" />
         </activity>
         <activity
-            android:name=".view.MainActivity"
-            android:exported="true">
+                android:name=".view.MainActivity"
+                android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

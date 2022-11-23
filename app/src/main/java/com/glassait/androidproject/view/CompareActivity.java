@@ -1,8 +1,8 @@
 package com.glassait.androidproject.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.LocalData;
@@ -16,6 +16,10 @@ public class CompareActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
 
-        Map<Integer, String[]> database = LocalData.getInstance().getDatabase();
+        Map<Integer, String[]> database = LocalData.getInstance()
+                                                   .getDatabase();
+        System.out.println("RESULT");
+        System.out.println(LocalData.getInstance()
+                                    .getScanningCode());
     }
 }

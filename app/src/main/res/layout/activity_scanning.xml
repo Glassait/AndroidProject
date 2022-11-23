@@ -70,6 +70,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-    </LinearLayout>
 
+        <!--Button to scan the image took by camera-->
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/compare_btn"
+                style="@style/materialButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:text="Compare"
+                app:backgroundTint="@color/primary_light"
+                android:visibility="gone" />
+    </LinearLayout>
 </ScrollView>

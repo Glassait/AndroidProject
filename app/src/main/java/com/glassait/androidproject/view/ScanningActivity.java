@@ -1,14 +1,5 @@
 package com.glassait.androidproject.view;
 
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.ContentValues;
@@ -25,6 +16,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.LocalData;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -37,11 +37,7 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
-import java.util.Dictionary;
-import java.util.HashMap;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
 public class ScanningActivity extends AppCompatActivity {
     // to handle the permissions
@@ -57,12 +53,12 @@ public class ScanningActivity extends AppCompatActivity {
 
     // UI Views
     // private MaterialButton cameraBtn;
-    private ImageView imageIv;
+    private ImageView      imageIv;
     private MaterialButton scanBtn;
-    private TextView resultTv;
+    private TextView       resultTv;
 
     private BarcodeScannerOptions barcodeScannerOptions;
-    private BarcodeScanner barcodeScanner;
+    private BarcodeScanner        barcodeScanner;
 
     //
     private static final String TAG = "MAIN_TAG";
@@ -78,151 +74,222 @@ public class ScanningActivity extends AppCompatActivity {
         scanBtn = findViewById(R.id.scanBtn);
         resultTv = findViewById(R.id.resultTv);
 
-        cameraPermissions = new String[]{Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        cameraPermissions =
+                new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         //storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        barcodeScannerOptions = new BarcodeScannerOptions.Builder().
-                setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS).
-                build();
+        barcodeScannerOptions =
+                new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS)
+                                                   .build();
         barcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions);
         /**
-        // handle cameraBtn click
-        cameraBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkCameraPermissions();
+         // handle cameraBtn click
+         cameraBtn.setOnClickListener(new View.OnClickListener() {
+        @Override public void onClick(View v) {
+        checkCameraPermissions();
 
-            }
+        }
         });**/
 
-        // handle scanBtn click
-        scanBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkCameraPermissions();
-                if (imageUri == null){
-                    Toast.makeText(ScanningActivity.this, "Take image first...", Toast.LENGTH_SHORT).show();
-                }else{
-                    detectResultFromImage();
-                }
+        MaterialButton compareBtn = findViewById(R.id.compare_btn);
 
+        // handle scanBtn click
+        scanBtn.setOnClickListener(v -> {
+            checkCameraPermissions();
+            int cameraPermission = ContextCompat.checkSelfPermission(
+                    ScanningActivity.this,
+                    Manifest.permission.CAMERA
+            );
+
+            if (cameraPermission == PackageManager.PERMISSION_GRANTED && imageUri == null) {
+                pickImageCamera();
+            } else if (cameraPermission == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(
+                             ScanningActivity.this,
+                             "Permission denied",
+                             Toast.LENGTH_SHORT
+                     )
+                     .show();
+            } else if (imageUri == null) {
+                Toast.makeText(
+                             ScanningActivity.this,
+                             "Take image first...",
+                             Toast.LENGTH_SHORT
+                     )
+                     .show();
+            } else {
+                detectResultFromImage();
+                compareBtn.setVisibility(View.VISIBLE);
             }
         });
 
-
+        compareBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    CompareActivity.class
+            );
+            startActivity(intent);
+        });
     }
 
     private void detectResultFromImage() {
         try {
-            InputImage inputImage = InputImage.fromFilePath(this, imageUri);
-            Task<List<Barcode>> barcodeResult = barcodeScanner.process(inputImage).addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
-                @Override
-                public void onSuccess(List<Barcode> barcodes) {
-                    extractBarCodeQRCodeInfo(barcodes);
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(ScanningActivity.this, "Failed scanning due to "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-        }catch (Exception e){
-            Toast.makeText(this, "Failed due to "+ e.getMessage(), Toast.LENGTH_SHORT).show();
+            InputImage inputImage = InputImage.fromFilePath(
+                    this,
+                    imageUri
+            );
+            Task<List<Barcode>> barcodeResult = barcodeScanner.process(inputImage)
+                                                              .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
+                                                                  @Override
+                                                                  public void onSuccess(
+                                                                          List<Barcode> barcodes) {
+                                                                      extractBarCodeQRCodeInfo(barcodes);
+                                                                  }
+                                                              })
+                                                              .addOnFailureListener(new OnFailureListener() {
+                                                                  @Override
+                                                                  public void onFailure(
+                                                                          @NonNull Exception e) {
+                                                                      Toast.makeText(
+                                                                                   ScanningActivity.this,
+                                                                                   "Failed scanning due to "
+                                                                                           + e.getMessage(),
+                                                                                   Toast.LENGTH_SHORT
+                                                                           )
+                                                                           .show();
+                                                                  }
+                                                              });
+        } catch (Exception e) {
+            Toast.makeText(
+                         this,
+                         "Failed due to " + e.getMessage(),
+                         Toast.LENGTH_SHORT
+                 )
+                 .show();
         }
     }
 
     private void extractBarCodeQRCodeInfo(List<Barcode> barcodes) {
-        for (Barcode barcode: barcodes) {
-            Rect bounds = barcode.getBoundingBox();
+        for (Barcode barcode : barcodes) {
+            Rect    bounds  = barcode.getBoundingBox();
             Point[] corners = barcode.getCornerPoints();
 
             String rawValue = barcode.getRawValue();
-            Log.d(TAG, "extractBarCodeQRCodeInfo: rawValue: "+ rawValue);
+            Log.d(
+                    TAG,
+                    "extractBarCodeQRCodeInfo: rawValue: " + rawValue
+            );
 
-            resultTv.setText("Scanned: "+ rawValue);
-            try {
-                int rawValueInt = Integer.parseInt(rawValue);
-                LocalData.getInstance().setScanningCode(rawValueInt);
-            }catch (NumberFormatException ex){
-                ex.printStackTrace();
-            }
+            resultTv.setText("Scanned: " + rawValue);
+            LocalData.getInstance()
+                     .setScanningCode(rawValue);
         }
     }
 
-    private void pickImageCamera(){
+    private void pickImageCamera() {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(MediaStore.Images.Media.TITLE, "Sample Title");
-        contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Sample Image Description");
+        contentValues.put(
+                MediaStore.Images.Media.TITLE,
+                "Sample Title"
+        );
+        contentValues.put(
+                MediaStore.Images.Media.DESCRIPTION,
+                "Sample Image Description"
+        );
 
-        imageUri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
+        imageUri = getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                contentValues
+        );
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        intent.putExtra(
+                MediaStore.EXTRA_OUTPUT,
+                imageUri
+        );
         cameraActivityResultLauncher.launch(intent);
-
-
     }
 
-    private final ActivityResultLauncher<Intent> cameraActivityResultLauncher = registerForActivityResult(
-            new ActivityResultContracts.StartActivityForResult(),
-            new ActivityResultCallback<ActivityResult>() {
-                @Override
-                public void onActivityResult(ActivityResult result) {
-                    // receive image from camera
-                    if (result.getResultCode() == Activity.RESULT_OK){
-                        Intent data = result.getData();
-                        Log.d(TAG, "onActivityResult: imageUri: "+ imageUri);
-                        imageIv.setImageURI(imageUri);
-                    }else{
-                        // cancelled
-                        Toast.makeText(ScanningActivity.this, "Cancelled...", Toast.LENGTH_SHORT).show();
+    private final ActivityResultLauncher<Intent> cameraActivityResultLauncher =
+            registerForActivityResult(
+                    new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<>() {
+                        @Override
+                        public void onActivityResult(ActivityResult result) {
+                            // receive image from camera
+                            if (result.getResultCode() == Activity.RESULT_OK) {
+                                Intent data = result.getData();
+                                Log.d(
+                                        TAG,
+                                        "onActivityResult: imageUri: " + imageUri
+                                );
+                                imageIv.setImageURI(imageUri);
+                            } else {
+                                // cancelled
+                                Toast.makeText(
+                                             ScanningActivity.this,
+                                             "Cancelled...",
+                                             Toast.LENGTH_SHORT
+                                     )
+                                     .show();
+                            }
+
+                        }
                     }
+            );
 
-                }
-            }
-    );
-
-    private void checkCameraPermissions(){
+    private void checkCameraPermissions() {
         int cameraPermission = ContextCompat.checkSelfPermission(
                 ScanningActivity.this,
-                Manifest.permission.CAMERA);
+                Manifest.permission.CAMERA
+        );
         int storagePermission = ContextCompat.checkSelfPermission(
                 ScanningActivity.this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
+        );
 
-        if (cameraPermission != PackageManager.PERMISSION_GRANTED &&
-            storagePermission != PackageManager.PERMISSION_GRANTED){
+        if (cameraPermission != PackageManager.PERMISSION_GRANTED
+                && storagePermission != PackageManager.PERMISSION_GRANTED) {
             makeRequest();
         }
     }
-    private void makeRequest(){
-        ActivityCompat.requestPermissions(  ScanningActivity.this,
+
+    private void makeRequest() {
+        ActivityCompat.requestPermissions(
+                ScanningActivity.this,
                 cameraPermissions,
-                CAMERA_REQUEST_CODE);
+                CAMERA_REQUEST_CODE
+        );
     }
 
     @Override
-    public void onRequestPermissionsResult( int requestCode,
-                                            @NonNull String[] permissions,
-                                            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(
+                requestCode,
+                permissions,
+                grantResults
+        );
 
         if (requestCode == CAMERA_REQUEST_CODE) {
-            if (grantResults.length > 0 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
-                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED
+                    && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
 
                 // Permission is granted. Continue the action
-                Toast.makeText(ScanningActivity.this,
-                        "Permission Granted",
-                        Toast.LENGTH_SHORT).show();
-                pickImageCamera();
+                Toast.makeText(
+                             ScanningActivity.this,
+                             "Permission Granted",
+                             Toast.LENGTH_SHORT
+                     )
+                     .show();
             } else {
                 // Permission is denied. Continue the action is not possible.
-                Toast.makeText(ScanningActivity.this,
-                        "Permissions required.",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                             ScanningActivity.this,
+                             "Permissions required.",
+                             Toast.LENGTH_SHORT
+                     )
+                     .show();
             }
         }
 
