@@ -33,12 +33,22 @@ public interface OfferDao {
     /**
      * Query the {@link Offer} with the creator id
      *
-     * @param creatorId The mail of the {@link User}
+     * @param creatorId The uid of the {@link User} aka the creator of the offer
      *
      * @return The list of offers of the user
      */
     @Query("SELECT * FROM offer WHERE creator_id = :creatorId")
     List<Offer> getAllOffersFromCreatorId(int creatorId);
+
+    /**
+     * Query the {@link Offer} with the user id who reserved some offers
+     *
+     * @param userId The uid of the {@link User} aka the user who reserved the offer
+     *
+     * @return The list of reserved offers by the user
+     */
+    @Query("SELECT * FROM offer WHERE reserved_by = :userId")
+    List<Offer> getAllOffersReservedBy(int userId);
 
     /**
      * Query the count of {@link Offer} with the creator id

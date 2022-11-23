@@ -35,7 +35,10 @@ public class Offer {
         this.storage_ref = storage_ref;
         this.category = category;
         this.creatorId = creatorId;
-        this.isReserved = false;
+        isReserved = false;
+        reservedBy = -1;
+        takenDate = null;
+        returnDate = null;
     }
 
     @PrimaryKey(autoGenerate = true)
@@ -53,6 +56,15 @@ public class Offer {
     @ColumnInfo(name = "is_reserved")
     public boolean isReserved;
 
+    @ColumnInfo(name = "reserved_by")
+    public int reservedBy;
+
     @ColumnInfo(name = "creator_id")
     public int creatorId;
+
+    @ColumnInfo(name = "taken_date")
+    public String takenDate;
+
+    @ColumnInfo(name = "return_date")
+    public String returnDate;
 }

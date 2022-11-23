@@ -17,7 +17,7 @@ import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.checker.Phone;
 import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.secret.Secret;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -361,7 +361,7 @@ public class SignUpFragment extends EmailValidator {
                             cache.storeDataInFile(data.toString()
                                                       .getBytes());
 
-                            StoreManager.setUser(user);
+                            StoreLocalData.getInstance().setUser(user);
 
                             // Launch the second activity
                             Intent intent = new Intent(

@@ -34,7 +34,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toTopOf="@+id/fragment_start_menu_sign_in_button"
-                    android:autoSizeTextType="uniform" />
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginBottom="15dp" />
 
             <TextView
                     android:text="@string/upper_text_sign_in"
@@ -44,7 +45,8 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/fragment_start_menu_sign_up_button"
-                    android:autoSizeTextType="uniform" />
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginTop="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

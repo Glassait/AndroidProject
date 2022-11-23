@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "231861595a1a997135aadc881b39cbde",
+    "identityHash": "f43b2ba143a602f5e746eddc94290e2e",
     "entities": [
       {
         "tableName": "User",
@@ -80,7 +80,7 @@
       },
       {
         "tableName": "Offer",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `is_reserved` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `is_reserved` INTEGER NOT NULL, `reserved_by` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL, `taken_date` TEXT, `return_date` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -113,10 +113,28 @@
             "notNull": true
           },
           {
+            "fieldPath": "reservedBy",
+            "columnName": "reserved_by",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "creatorId",
             "columnName": "creator_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "takenDate",
+            "columnName": "taken_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "returnDate",
+            "columnName": "return_date",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -132,7 +150,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '231861595a1a997135aadc881b39cbde')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f43b2ba143a602f5e746eddc94290e2e')"
     ]
   }
 }

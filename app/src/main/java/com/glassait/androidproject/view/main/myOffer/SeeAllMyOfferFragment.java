@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
@@ -86,9 +86,11 @@ public class SeeAllMyOfferFragment extends Fragment {
                 ));
             }
             SeeAllMyOfferRecyclerViewAdapter adapter =
-                    new SeeAllMyOfferRecyclerViewAdapter(mOfferDao.getAllOffersFromCreatorId(StoreManager.getUser().uid));
+                    new SeeAllMyOfferRecyclerViewAdapter(mOfferDao.getAllOffersFromCreatorId(StoreLocalData.getInstance()
+                                                                                                           .getUser().uid));
             adapter.setOnClickListener(offer -> {
-                StoreManager.setOffer(offer);
+                StoreLocalData.getInstance()
+                              .setOffer(offer);
                 navController.navigate(R.id.my_offer_fragment);
             });
             recyclerView.setAdapter(adapter);

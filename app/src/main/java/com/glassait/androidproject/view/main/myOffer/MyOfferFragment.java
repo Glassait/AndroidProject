@@ -13,8 +13,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
+import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.Offer;
@@ -25,6 +26,7 @@ public class MyOfferFragment extends Fragment {
     private final AppDatabase mAppDatabase = Builder.getInstance()
                                                     .getAppDatabase();
     private final OfferDao    mOfferDao    = mAppDatabase.offerDao();
+    private final UserDao     mUserDao     = mAppDatabase.userDao();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +39,30 @@ public class MyOfferFragment extends Fragment {
                 false
         );
 
-        Offer offer = StoreManager.getOffer();
-        User  user  = StoreManager.getUser();
+        Offer offer = StoreLocalData.getInstance()
+                                    .getOffer();
+
+        final User[] user = new User[1];
+        if (offer.isReserved && offer.reservedBy != -1) {
+            mUserDao.getUserFromUid(offer.reservedBy)
+                    .subscribe(
+                            u -> user[0] = u,
+                            throwable -> {
+                                user[0] = StoreLocalData.getInstance()
+                                                        .getUser();
+                                offer.isReserved = false;
+                                offer.reservedBy = -1;
+                                mOfferDao.update(offer);
+                            }
+                    )
+                    .dispose();
+
+            TextView isReservedTv = root.findViewById(R.id.fragment_my_offer_is_reserved_tv);
+            isReservedTv.setText(R.string.upper_label_reserved_by);
+        } else {
+            user[0] = StoreLocalData.getInstance()
+                                    .getUser();
+        }
 
         NavController navController = NavHostFragment.findNavController(this);
 
@@ -46,35 +70,36 @@ public class MyOfferFragment extends Fragment {
         backButton.setOnClickListener(view -> {
             System.out.println("Back button click on my offer fragment");
             navController.navigate(R.id.home_fragment);
-            StoreManager.setOffer(null);
+            StoreLocalData.getInstance()
+                          .setOffer(null);
         });
 
         TextView offerTitleEt = root.findViewById(R.id.fragment_my_offer_title_tv);
         offerTitleEt.setText(offer.title);
 
         EditText firstNameEt = root.findViewById(R.id.fragment_my_offer_first_name_et);
-        firstNameEt.setText(user.firstName);
+        firstNameEt.setText(user[0].firstName);
 
         EditText lastNameEt = root.findViewById(R.id.fragment_my_offer_last_name_et);
-        lastNameEt.setText(user.lastName);
+        lastNameEt.setText(user[0].lastName);
 
         EditText emailEt = root.findViewById(R.id.fragment_my_offer_email_et);
-        emailEt.setText(user.email);
+        emailEt.setText(user[0].email);
 
         EditText phoneEt = root.findViewById(R.id.fragment_my_offer_phone_et);
-        phoneEt.setText(user.phone);
+        phoneEt.setText(user[0].phone);
 
         EditText addressEt = root.findViewById(R.id.fragment_my_offer_address_et);
-        addressEt.setText(user.address);
+        addressEt.setText(user[0].address);
 
         EditText postCodeEt = root.findViewById(R.id.fragment_my_offer_postal_code_et);
-        postCodeEt.setText(user.postCode);
+        postCodeEt.setText(user[0].postCode);
 
         EditText cityEt = root.findViewById(R.id.fragment_my_offer_city_et);
-        cityEt.setText(user.city);
+        cityEt.setText(user[0].city);
 
         EditText countryEt = root.findViewById(R.id.fragment_my_offer_country_et);
-        countryEt.setText(user.country);
+        countryEt.setText(user[0].country);
 
         EditText categoryEt = root.findViewById(R.id.fragment_my_offer_category_et);
         categoryEt.setText(offer.category);

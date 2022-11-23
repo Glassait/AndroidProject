@@ -16,7 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
@@ -101,7 +101,7 @@ public class CreateOfferFragment extends Fragment {
                 false
         );
 
-        mUser = StoreManager.getUser();
+        mUser = StoreLocalData.getInstance().getUser();
 
         // Fail to implements the upload to the firebase
         // Create a Cloud Storage reference from the app

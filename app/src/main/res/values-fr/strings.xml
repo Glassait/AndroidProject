@@ -49,4 +49,6 @@
     <string name="error_during_upload_image">Erreur pendant l\'import d\'image</string>
     <string name="upper_delete">Supprimer</string>
     <string name="upper_label_category">Catégorie</string>
+    <string name="upper_label_reserved_by">Réservé par</string>
+    <string name="upper_label_not_yet_reserved">Pas encore réservé</string>
 </resources>
