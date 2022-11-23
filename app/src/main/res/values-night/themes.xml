@@ -14,6 +14,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="materialButton" parent="fullButton">
+        <item name="android:backgroundTint">@color/primary_light</item>
+    </style>
+
     <style name="Text.Title">
         <item name="android:textColor">@color/primary_night</item>
         <item name="android:textStyle">bold</item>

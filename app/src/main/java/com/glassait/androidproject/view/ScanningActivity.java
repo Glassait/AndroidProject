@@ -36,22 +36,26 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class ScanningActivity extends AppCompatActivity {
     // to handle the permissions
     private static final int CAMERA_REQUEST_CODE = 101;
-    private static final int STORAGE_REQUEST_CODE = 100;
+    // private static final int STORAGE_REQUEST_CODE = 100;
 
     // array of required permissions
     private String[] cameraPermissions;
-    private String[] storagePermissions;
+    // private String[] storagePermissions;
 
     // Uri from the barcode
     private Uri imageUri = null;
 
     // UI Views
-    private MaterialButton cameraBtn;
+    // private MaterialButton cameraBtn;
     private ImageView imageIv;
     private MaterialButton scanBtn;
     private TextView resultTv;
@@ -68,7 +72,7 @@ public class ScanningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanning);
 
         // init UI Views
-        cameraBtn = findViewById(R.id.cameraBtn);
+        // cameraBtn = findViewById(R.id.cameraBtn);
         imageIv = findViewById(R.id.imageIv);
         scanBtn = findViewById(R.id.scanBtn);
         resultTv = findViewById(R.id.resultTv);
@@ -81,7 +85,7 @@ public class ScanningActivity extends AppCompatActivity {
                 setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS).
                 build();
         barcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions);
-
+        /**
         // handle cameraBtn click
         cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,12 +93,13 @@ public class ScanningActivity extends AppCompatActivity {
                 checkCameraPermissions();
 
             }
-        });
+        });**/
 
         // handle scanBtn click
         scanBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                checkCameraPermissions();
                 if (imageUri == null){
                     Toast.makeText(ScanningActivity.this, "Take image first...", Toast.LENGTH_SHORT).show();
                 }else{
@@ -135,21 +140,11 @@ public class ScanningActivity extends AppCompatActivity {
             Log.d(TAG, "extractBarCodeQRCodeInfo: rawValue: "+ rawValue);
 
             resultTv.setText("Scanned: "+ rawValue);
-            /*
-            int valueType = barcode.getValueType();
-            // See API reference for complete list of supported types
-            switch (valueType) {
-                case Barcode.TYPE_WIFI:
-                    String ssid = barcode.getWifi().getSsid();
-                    String password = barcode.getWifi().getPassword();
-                    int type = barcode.getWifi().getEncryptionType();
-                    break;
-                case Barcode.TYPE_URL:
-                    String title = barcode.getUrl().getTitle();
-                    String url = barcode.getUrl().getUrl();
-                    break;
 
-            }*/
+            HashMap<Integer,String[]> purchaseDB = (HashMap<Integer, String[]>) createPurchaseDB();
+
+
+
         }
     }
 
@@ -231,48 +226,12 @@ public class ScanningActivity extends AppCompatActivity {
 
     }
 
+    private Map<Integer, String[]> createPurchaseDB(){
+        Map<Integer, String[]> purchaseDB = new HashMap<Integer, String[]>();
+        purchaseDB.put(65784, new String[]{"milk", "2.30", "cheese", "3.60"});
+        purchaseDB.put(57648, new String[]{"banana", "2.60", "water", "1.20"});
 
-    /*
-    private void setupPermissions(){
-        int permissionCheck = ContextCompat.checkSelfPermission(
-                    ScanningActivity.this,
-                    Manifest.permission.CAMERA);
-
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED){
-            makeRequest();
-        }
+        return purchaseDB;
     }
 
-    private void makeRequest(){
-        ActivityCompat.requestPermissions(  ScanningActivity.this,
-                                            new String[] {Manifest.permission.CAMERA},
-                                            CAMERA_REQUEST_CODE);
-    }
-
-    @Override
-    public void onRequestPermissionsResult( int requestCode,
-                                            @NonNull String[] permissions,
-                                            @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == CAMERA_REQUEST_CODE) {
-
-            // If request is cancelled, the result arrays are empty.
-            if (grantResults.length > 0 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                // Permission is granted. Continue the action or workflow
-                Toast.makeText(ScanningActivity.this,
-                        "Camera Permission Granted",
-                        Toast.LENGTH_SHORT).show();
-            } else {
-                // Permission is denied. Continue the action or workflow is not possible.
-                Toast.makeText(ScanningActivity.this,
-                        "Camera Permission Denied. " +
-                                "You can not use the scan function.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-     */
 }

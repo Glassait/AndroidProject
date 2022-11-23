@@ -49,6 +49,10 @@
         <item name="android:textColor">@color/on_primary_light</item>
     </style>
 
+    <style name="materialButton" parent="fullButton">
+        <item name="android:backgroundTint">@color/primary_light</item>
+    </style>
+
     <style name="emptyButton" parent="Button">
         <item name="android:background">@drawable/empty_button_light</item>
         <item name="android:textColor">@color/on_box_light</item>
