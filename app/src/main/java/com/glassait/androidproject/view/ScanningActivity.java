@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.LocalData;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -140,11 +141,12 @@ public class ScanningActivity extends AppCompatActivity {
             Log.d(TAG, "extractBarCodeQRCodeInfo: rawValue: "+ rawValue);
 
             resultTv.setText("Scanned: "+ rawValue);
-
-            HashMap<Integer,String[]> purchaseDB = (HashMap<Integer, String[]>) createPurchaseDB();
-
-
-
+            try {
+                int rawValueInt = Integer.parseInt(rawValue);
+                LocalData.getInstance().setScanningCode(rawValueInt);
+            }catch (NumberFormatException ex){
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -224,14 +226,6 @@ public class ScanningActivity extends AppCompatActivity {
             }
         }
 
-    }
-
-    private Map<Integer, String[]> createPurchaseDB(){
-        Map<Integer, String[]> purchaseDB = new HashMap<Integer, String[]>();
-        purchaseDB.put(65784, new String[]{"milk", "2.30", "cheese", "3.60"});
-        purchaseDB.put(57648, new String[]{"banana", "2.60", "water", "1.20"});
-
-        return purchaseDB;
     }
 
 }

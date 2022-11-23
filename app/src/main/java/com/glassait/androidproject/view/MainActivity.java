@@ -6,7 +6,11 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.LocalData;
 import com.glassait.androidproject.model.database.Builder;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -14,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Builder.getInstance()
                .buildDatabase(this);
+        LocalData.getInstance();
+
         setContentView(R.layout.activity_main);
 
         Intent intent = new Intent(
