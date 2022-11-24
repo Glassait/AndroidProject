@@ -43,8 +43,8 @@ dependencies {
 
     //Test
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 
     // DATABASE DEPENDENCY (ROOM)
     implementation("androidx.room:room-runtime:2.4.3")
@@ -58,4 +58,7 @@ dependencies {
 
     //Code scanner
     implementation 'com.google.mlkit:barcode-scanning:17.0.2'
+
+    // Chart/Graphics creator
+    implementation 'com.github.AnyChart:AnyChart-Android:0.0.3'
 }
