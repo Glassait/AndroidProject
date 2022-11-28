@@ -16,13 +16,13 @@
             android:label="fragment_create_offer"
             tools:layout="@layout/fragment_create_offer" />
     <fragment
-            android:id="@+id/my_offer_fragment"
-            android:name="com.glassait.androidproject.view.main.myOffer.MyOfferFragment"
-            android:label="fragment_my_offer"
-            tools:layout="@layout/fragment_my_offer" />
+            android:id="@+id/offer_fragment"
+            android:name="com.glassait.androidproject.view.main.OfferFragment"
+            android:label="fragment_offer"
+            tools:layout="@layout/fragment_offer" />
     <fragment
-            android:id="@+id/see_all_my_offer_fragment"
-            android:name="com.glassait.androidproject.view.main.myOffer.SeeAllMyOfferFragment"
-            android:label="fragment_see_all_my_offer_list"
-            tools:layout="@layout/fragment_see_all_my_offer_list" />
+            android:id="@+id/see_all_offer_fragment"
+            android:name="com.glassait.androidproject.view.main.SeeAllOfferFragment"
+            android:label="fragment_see_all_offer_list"
+            tools:layout="@layout/fragment_see_all_offer_list" />
 </navigation>

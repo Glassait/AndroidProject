@@ -58,7 +58,7 @@
                     tools:ignore="DuplicateSpeakableTextCheck" />
 
             <TextView
-                    android:text="@string/upper_text_sign_up"
+                    android:text="@string/upper_text_sign_in"
                     android:id="@+id/fragment_sign_in_connection_button"
                     style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"

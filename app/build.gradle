@@ -11,8 +11,8 @@ android {
         applicationId "com.glassait.androidproject"
         minSdk 29
         targetSdk 33
-        versionCode 03
-        versionName 'AndroidProject V0.3'
+        versionCode 04
+        versionName 'AndroidProject V0.5'
         multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

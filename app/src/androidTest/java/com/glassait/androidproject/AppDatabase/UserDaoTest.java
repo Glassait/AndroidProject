@@ -11,6 +11,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.glassait.androidproject.common.utils.checker.Address;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
@@ -39,7 +40,7 @@ public class UserDaoTest {
     /**
      * Test the insert function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#insert(User)
      * @see UserDao#getAll()
      */
@@ -50,10 +51,13 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 1;
@@ -76,7 +80,7 @@ public class UserDaoTest {
      * Try to insert a null user into the database
      * Test the insert function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#insert(User)
      * @see UserDao#getAll()
      */
@@ -95,7 +99,7 @@ public class UserDaoTest {
 
         assertFalse(userIsInsert[0]);
         assertTrue(mUserDao.getAll()
-                           .size() >= 0);
+                           .size() > 0);
         assertEquals(
                 numberOfUsersBefore,
                 mUserDao.getAll()
@@ -117,10 +121,13 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 1;
@@ -165,10 +172,13 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 1;
@@ -178,10 +188,8 @@ public class UserDaoTest {
 
         String expectedFirstName = "New name";
         String expectedLastName  = "New last name";
-        String expectedCity      = "New city";
         user.firstName = expectedFirstName;
         user.lastName = expectedLastName;
-        user.city = expectedCity;
         final boolean[] userIsUpdate = {false};
 
         mUserDao.update(user)
@@ -207,10 +215,6 @@ public class UserDaoTest {
         assertEquals(
                 expectedLastName,
                 modifiedUser[0].lastName
-        );
-        assertEquals(
-                expectedCity,
-                modifiedUser[0].city
         );
     }
 
@@ -238,7 +242,7 @@ public class UserDaoTest {
      * Test the getUserFromEmail function of {@link UserDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
@@ -248,10 +252,13 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 1;
@@ -296,7 +303,7 @@ public class UserDaoTest {
      * Test the getUserFromUid function of {@link UserDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#getUserFromUid(int)
      * @see UserDao#insert(User)
      */
@@ -307,15 +314,21 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 2;
         mUserDao.insert(user)
-                .subscribe()
+                .subscribe(
+                        () -> System.out.println("User insert"),
+                        Throwable::printStackTrace
+                )
                 .dispose();
 
         final User[] userGet = new User[1];
@@ -358,7 +371,7 @@ public class UserDaoTest {
      * Delete one test user
      * Test the delete function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#delete(User)
      * @see UserDao#getAll()
      */
@@ -371,10 +384,13 @@ public class UserDaoTest {
                 "Last name",
                 "boitemail@gmail.com",
                 "0000000000",
-                "15 road field",
-                "75000",
-                "city",
-                "country",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 1;
@@ -396,7 +412,7 @@ public class UserDaoTest {
      * Delete all test users
      * Test the delete function of {@link UserDao}
      *
-     * @see User#User(String, String, String, String, String, String, String, String, UUID)
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#delete(User)
      * @see UserDao#getAll()
      */

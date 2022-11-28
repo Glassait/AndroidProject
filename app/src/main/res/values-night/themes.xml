@@ -63,6 +63,11 @@
         <item name="android:backgroundTint">@color/on_box_night</item>
     </style>
 
+    <style name="addRoundButton" parent="@style/AddButtonParameters">
+        <item name="android:src">@drawable/round_plus_light</item>
+        <item name="android:backgroundTint">@color/primary_night</item>
+    </style>
+
     <!-- Drawable -->
     <style name="round_plus">
         <item name="android:background">@drawable/round_plus_night</item>
