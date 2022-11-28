@@ -21,6 +21,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.dao.UserDao;
@@ -42,6 +43,8 @@ public class HomeFragment extends Fragment {
                                                       .getAppDatabase();
     private final OfferDao      mOfferDao    = mAppDatabase.offerDao();
     private final UserDao       mUserDao     = mAppDatabase.userDao();
+    // Common part
+    private       User          mCurrentUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,28 +55,83 @@ public class HomeFragment extends Fragment {
                 container,
                 false
         );
-        User currentUser = StoreLocalData.getInstance()
-                                         .getUser();
+        mCurrentUser = StoreLocalData.getInstance()
+                                     .getUser();
 
         mNavController = NavHostFragment.findNavController(this);
 
-        TextView in_the_area_see_all = mRoot.findViewById(R.id.fragment_home_see_all_in_area_tv);
-        in_the_area_see_all.setOnClickListener(View -> {
-            // TODO change the fragment to the SEARCH
-            System.out.println("See all in the area");
-        });
+        // Modify the screen and add the offer for each part
+        inTheArea();
+        myOffer();
+        myReservation();
 
-        TextView    your_offer_see_all = mRoot.findViewById(R.id.fragment_home_see_all_my_offer_tv);
-        List<Offer> allOffersOfUsers   = mOfferDao.getAllOffersFromCreatorId(currentUser.uid);
-        if (allOffersOfUsers.size() == 0) {
-            your_offer_see_all.setVisibility(View.INVISIBLE);
+        return mRoot;
+    }
+
+    /**
+     * Modify the In area part
+     * <p>
+     * First get all offers not reserved and not from the current user
+     * <p>
+     * After compare the distance, if the distance is less than a certain number then add to the
+     * list to display
+     * <p>
+     * If none offer is found change the visibility of the global layout
+     */
+    public void inTheArea() {
+        List<Offer> offers = mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(mCurrentUser.uid);
+        List<Offer> toDisplay = new ArrayList<>();
+        for (int i = 0; i < Math.min(
+                offers.size(),
+                3
+        ); i++) {
+            if (mCurrentUser.address.getLocation()
+                                    .distanceTo(offers.get(i).location) <= Secret.DISTANCE) {
+                toDisplay.add(offers.get(i));
+            }
+        }
+
+        ConstraintLayout constraintLayout =
+                mRoot.findViewById(R.id.fragment_home_in_the_area_layout);
+        if (toDisplay.size() == 0) {
+            constraintLayout.setVisibility(View.GONE);
+        } else {
+            constraintLayout.setVisibility(View.VISIBLE);
+
+            createOfferLayout(
+                    toDisplay,
+                    mRoot.findViewById(R.id.fragment_home_in_area_LL)
+            );
+
+            TextView in_the_area_see_all =
+                    mRoot.findViewById(R.id.fragment_home_see_all_in_area_tv);
+            in_the_area_see_all.setOnClickListener(v -> {
+                StoreLocalData.getInstance()
+                              .setSeeAll("inArea");
+                mNavController.navigate(R.id.see_all_offer_fragment);
+            });
+        }
+    }
+
+    /**
+     * Modify the my offer part
+     * <p>
+     * First get all the offers from the current user, take the 3 first and add then to the display.
+     * <p>
+     * If nothing is found change the visibility of the see_all button
+     */
+    public void myOffer() {
+        TextView    see_all = mRoot.findViewById(R.id.fragment_home_see_all_my_offer_tv);
+        List<Offer> offers  = mOfferDao.getAllOffersFromCreatorId(mCurrentUser.uid);
+        if (offers.size() == 0) {
+            see_all.setVisibility(View.INVISIBLE);
         } else {
             List<Offer> displayedOffers = new ArrayList<>();
             for (int i = 0; i < Math.min(
-                    allOffersOfUsers.size(),
+                    offers.size(),
                     3
             ); i++) {
-                displayedOffers.add(allOffersOfUsers.get(i));
+                displayedOffers.add(offers.get(i));
             }
 
             createOfferLayout(
@@ -81,19 +139,28 @@ public class HomeFragment extends Fragment {
                     mRoot.findViewById(R.id.fragment_home_my_offer_LL)
             );
 
-            your_offer_see_all.setOnClickListener(View -> mNavController.navigate(R.id.see_all_my_offer_fragment));
+            see_all.setOnClickListener(v -> {
+                StoreLocalData.getInstance()
+                              .setSeeAll("yourOffer");
+                mNavController.navigate(R.id.see_all_offer_fragment);
+            });
         }
 
         // On click listener to navigate to the creation of offer
         ConstraintLayout addOffer = mRoot.findViewById(R.id.fragment_home_add_offer);
         addOffer.setOnClickListener(View -> mNavController.navigate(R.id.create_offer_fragment));
+    }
 
-        List<Offer> allReservedOffer = mOfferDao.getAllOffersReservedBy(currentUser.uid);
-
+    /**
+     * Modify the my reservation part
+     * <p>
+     * If no offer found change the visibility of the layout
+     */
+    public void myReservation() {
+        List<Offer> offers = mOfferDao.getAllOffersReservedBy(mCurrentUser.uid);
         ConstraintLayout myReservationLayout =
                 mRoot.findViewById(R.id.fragment_home_my_reservation_layout);
-
-        if (allReservedOffer.size() > 0) {
+        if (offers.size() > 0) {
             myReservationLayout.setVisibility(View.VISIBLE);
 
             TextView myReservationSeeAll =
@@ -109,8 +176,6 @@ public class HomeFragment extends Fragment {
                 System.out.println("Do a reservation");
             });
         }
-
-        return mRoot;
     }
 
     /**
@@ -138,7 +203,7 @@ public class HomeFragment extends Fragment {
      * @see LinearLayout#addView(View, int)
      */
     public void createOfferLayout(List<Offer> offers, LinearLayout parent) {
-        new Thread(() -> {
+        requireActivity().runOnUiThread(() -> {
             for (int i = 0; i < offers.size(); i++) {
                 Offer offer = offers.get(i);
 
@@ -296,7 +361,7 @@ public class HomeFragment extends Fragment {
                             R.style.offer_text
                     );
                     myOfferCity.setId(View.generateViewId());
-                    myOfferCity.setText(user[0].city);
+                    myOfferCity.setText(user[0].address.getCity());
                     myOfferCity.setAutoSizeTextTypeWithDefaults(TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM);
                     LayoutParams myOfferCityLayoutParams = new LayoutParams(
                             getIntFromTypedArray(
@@ -339,7 +404,7 @@ public class HomeFragment extends Fragment {
                     myOfferCl.setOnClickListener(v -> {
                         StoreLocalData.getInstance()
                                       .setOffer(offer);
-                        mNavController.navigate(R.id.my_offer_fragment);
+                        mNavController.navigate(R.id.offer_fragment);
                     });
 
                     // Add the offer in the HorizontalScrollView, the index is 0 to always put the
@@ -352,7 +417,7 @@ public class HomeFragment extends Fragment {
                     mOfferDao.delete(offer);
                 }
             }
-        }).start();
+        });
     }
 
     /**

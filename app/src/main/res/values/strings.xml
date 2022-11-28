@@ -56,4 +56,5 @@
             translatable="false">Add button</string>
     <string name="upper_label_reserved_by">Reserved by</string>
     <string name="upper_label_not_yet_reserved">Not yet reserved</string>
+    <string name="upper_text_book">Book</string>
 </resources>

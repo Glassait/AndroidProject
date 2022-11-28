@@ -101,7 +101,8 @@ public class CreateOfferFragment extends Fragment {
                 false
         );
 
-        mUser = StoreLocalData.getInstance().getUser();
+        mUser = StoreLocalData.getInstance()
+                              .getUser();
 
         // Fail to implements the upload to the firebase
         // Create a Cloud Storage reference from the app
@@ -188,11 +189,10 @@ public class CreateOfferFragment extends Fragment {
                                                   ));
             } else {
                 Offer offer = new Offer(
-                        title.getText()
-                             .toString(),
-                        mSelectedChip.getText()
-                                     .toString(),
+                        title,
+                        mSelectedChip,
                         "",
+                        mUser.address.getLocation(),
                         mUser.uid
                 );
 

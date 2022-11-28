@@ -33,7 +33,6 @@ public class SecondActivity extends AppCompatActivity {
         navigationBarView.setOnItemSelectedListener(item -> {
             if (item.getItemId() == R.id.bottom_navigation_menu_home) {
                 navController.navigate(R.id.home_fragment);
-                System.out.println("Home item selected");
             } else if (item.getItemId() == R.id.bottom_navigation_menu_search) {
                 System.out.println("Search item selected");
             } else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {

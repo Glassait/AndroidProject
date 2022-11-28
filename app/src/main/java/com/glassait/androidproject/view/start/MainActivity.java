@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext(),
                     SecondActivity.class
             );
+
+            user.address.getLocation(getApplicationContext());
             StoreLocalData.getInstance()
                           .setUser(user);
             startActivity(intent);

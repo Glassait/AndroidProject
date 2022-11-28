@@ -5,6 +5,7 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.glassait.androidproject.common.utils.checker.Address;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -33,17 +34,27 @@ public class FillDatabaseTest {
 
     @Test
     public void fillWithUser() {
+        com.glassait.androidproject.common.utils.file.UUID uuid =
+                new com.glassait.androidproject.common.utils.file.UUID(
+                        APP_CONTEXT,
+                        "mailbox" + "@gmail.com"
+                );
+        uuid.generateUUID();
         User user = new User(
                 "Tendzin",
                 "Roffler",
                 "mailbox@gmail.com",
                 "+33012345789",
-                "31 Rue Cambronne",
-                "75015",
-                "Paris",
-                "France",
-                UUID.randomUUID()
+                new Address(
+                        APP_CONTEXT,
+                        "31 Rue Cambronne",
+                        "75015",
+                        "Paris",
+                        "France"
+                ),
+                uuid.getUuid()
         );
+        uuid.storeUUID();
         user.uid = 5;
         mUserDao.insert(user)
                 .subscribe()
@@ -53,10 +64,13 @@ public class FillDatabaseTest {
                 "Granier",
                 "thgr@gmail.com",
                 "+33012345789",
-                "39 Rue Gassendi",
-                "75014",
-                "Paris",
-                "France",
+                new Address(
+                        APP_CONTEXT,
+                        "39 Rue Gassendi",
+                        "75014",
+                        "Paris",
+                        "France"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 6;
@@ -68,10 +82,13 @@ public class FillDatabaseTest {
                 "Smith",
                 "smith@gmail.com",
                 "+33012345789",
-                "29 Bd des Invalides",
-                "75007",
-                "Paris",
-                "France",
+                new Address(
+                        APP_CONTEXT,
+                        "29 Bd des Invalides",
+                        "75007",
+                        "Paris",
+                        "France"
+                ),
                 UUID.randomUUID()
         );
         user.uid = 7;
@@ -91,6 +108,7 @@ public class FillDatabaseTest {
                              "Axe",
                              "manual",
                              "no_storage_ref",
+                             user[0].address.getLocation(APP_CONTEXT),
                              user[0].uid
                      ))
                      .subscribe()
@@ -99,6 +117,7 @@ public class FillDatabaseTest {
                              "Hammer",
                              "thermic",
                              "no_storage_ref",
+                             user[0].address.getLocation(APP_CONTEXT),
                              user[0].uid
                      ))
                      .subscribe()
@@ -107,6 +126,7 @@ public class FillDatabaseTest {
                              "Screwdriver",
                              "electric",
                              "no_storage_ref",
+                             user[0].address.getLocation(APP_CONTEXT),
                              user[0].uid
                      ))
                      .subscribe()

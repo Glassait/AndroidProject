@@ -23,7 +23,7 @@ import io.reactivex.rxjava3.disposables.Disposable;
 @Dao
 public interface OfferDao {
     /**
-     * Return all {@link Offer} inside the table
+     * Query all the {@link Offer} inside the table
      *
      * @return All {@link Offer} in the table
      */
@@ -31,7 +31,7 @@ public interface OfferDao {
     List<Offer> getAll();
 
     /**
-     * Query the {@link Offer} with the creator id
+     * Query all the {@link Offer} with the creator id
      *
      * @param creatorId The uid of the {@link User} aka the creator of the offer
      *
@@ -41,7 +41,17 @@ public interface OfferDao {
     List<Offer> getAllOffersFromCreatorId(int creatorId);
 
     /**
-     * Query the {@link Offer} with the user id who reserved some offers
+     * Query all the {@link Offer} non reserved and not from the creator id
+     *
+     * @param creatorId The uid of the {@link User} aka the creator of the offer
+     *
+     * @return The list of offers of the user
+     */
+    @Query("SELECT * FROM offer WHERE creator_id != :creatorId AND is_reserved = 0")
+    List<Offer> getAllOffersNotReservedAndNotFromCreatorId(int creatorId);
+
+    /**
+     * Query all the {@link Offer} who are reserved by the user id
      *
      * @param userId The uid of the {@link User} aka the user who reserved the offer
      *
@@ -51,7 +61,7 @@ public interface OfferDao {
     List<Offer> getAllOffersReservedBy(int userId);
 
     /**
-     * Query the count of {@link Offer} with the creator id
+     * Query the count of all the {@link Offer} with the creator id
      *
      * @param creatorId The mail of the {@link User}
      *

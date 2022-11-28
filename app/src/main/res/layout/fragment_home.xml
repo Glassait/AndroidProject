@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/fragment_home_in_the_area_offer"
+            android:id="@+id/fragment_home_in_the_area_layout"
             android:layout_marginTop="90dp">
 
         <TextView
@@ -48,53 +48,6 @@
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/offer"
-                        android:id="@+id/fragment_home_offer_1_layout">
-
-                    <TextView
-                            android:text="@string/offer_title"
-                            android:id="@+id/fragment_home_offer_title_in_area_1_tv"
-                            style="@style/offer.title"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:autoSizeTextType="uniform"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_tools_image_in_area_1_IV" />
-
-                    <ImageView
-                            android:src="@drawable/ic_launcher_foreground"
-                            tools:srcCompat="@tools:sample/avatars"
-                            android:id="@+id/fragment_home_tools_image_in_area_1_IV"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_in_area_1_tv"
-                            android:contentDescription="@string/offer_image_of_the_tool"
-                            tools:ignore="ImageContrastCheck"
-                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_name_in_area_1_tv"
-                            style="@style/offer.image" />
-
-                    <TextView
-                            android:text="@string/offer_last_first_name"
-                            android:id="@+id/fragment_home_name_in_area_1_tv"
-                            app:layout_constraintStart_toStartOf="parent"
-                            style="@style/offer.text"
-                            android:autoSizeTextType="uniform"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_tools_image_in_area_1_IV"
-                            app:layout_constraintBottom_toTopOf="@+id/fragment_home_city_in_area_1_tv" />
-
-                    <TextView
-                            android:text="@string/offer_city"
-                            android:id="@+id/fragment_home_city_in_area_1_tv"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_name_in_area_1_tv"
-                            style="@style/offer.text"
-                            android:autoSizeTextType="uniform" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

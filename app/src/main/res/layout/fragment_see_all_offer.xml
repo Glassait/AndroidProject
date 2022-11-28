@@ -10,7 +10,6 @@
         android:layout_marginTop="30dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout style="@style/offer">
-
         <TextView
                 android:id="@+id/title_offer"
                 style="@style/offer.title"
