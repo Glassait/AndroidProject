@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "fb733d5e6e5dfb5e81ffdfd1a5f3c306",
+    "identityHash": "e877798a95d65297f88b9e4a234acbfb",
     "entities": [
       {
         "tableName": "User",
@@ -62,7 +62,7 @@
       },
       {
         "tableName": "Offer",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `location` TEXT, `is_reserved` INTEGER NOT NULL, `reserved_by` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL, `taken_date` TEXT, `return_date` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `location` TEXT, `is_reserved` INTEGER NOT NULL, `reserved_by` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL, `booking_date` TEXT, `return_date` TEXT, `validate` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -113,8 +113,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "takenDate",
-            "columnName": "taken_date",
+            "fieldPath": "bookingDate",
+            "columnName": "booking_date",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -123,6 +123,12 @@
             "columnName": "return_date",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "validate",
+            "columnName": "validate",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -138,7 +144,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fb733d5e6e5dfb5e81ffdfd1a5f3c306')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e877798a95d65297f88b9e4a234acbfb')"
     ]
   }
 }

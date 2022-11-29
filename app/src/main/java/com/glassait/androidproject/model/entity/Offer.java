@@ -43,8 +43,9 @@ public class Offer {
         this.creatorId = creatorId;
         isReserved = false;
         reservedBy = -1;
-        takenDate = null;
+        bookingDate = null;
         returnDate = null;
+        validate = false;
     }
 
     public Offer(EditText title, Chip category, String storage_ref, Location location,
@@ -93,10 +94,14 @@ public class Offer {
     public int creatorId;
 
     // The date of the start of the reservation
-    @ColumnInfo(name = "taken_date")
-    public String takenDate;
+    @ColumnInfo(name = "booking_date")
+    public String bookingDate;
 
     // The date of the end of the reservation
     @ColumnInfo(name = "return_date")
     public String returnDate;
+
+    // If the creator has validated the reservation
+    @ColumnInfo(name = "validate")
+    public boolean validate;
 }

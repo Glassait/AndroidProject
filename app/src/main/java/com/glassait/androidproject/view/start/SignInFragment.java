@@ -149,6 +149,7 @@ public class SignInFragment extends EmailValidator {
                         e.printStackTrace();
                     }
 
+                    user[0].address.getLocation(mRoot.getContext());
                     StoreLocalData.getInstance()
                                   .setUser(user[0]);
 

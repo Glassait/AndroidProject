@@ -52,4 +52,7 @@
     <string name="upper_label_reserved_by">Réservé par</string>
     <string name="upper_label_not_yet_reserved">Pas encore réservé</string>
     <string name="upper_text_book">Réserver</string>
+    <string name="upper_title_reservation">Réservation</string>
+    <string name="upper_label_borrowing_date">Date d\'emprunt</string>
+    <string name="upper_label_return_date">Date de retour</string>
 </resources>

@@ -56,7 +56,10 @@ public class OfferFragment extends Fragment {
         rightBtn.setVisibility(View.GONE);
         leftBtn.setVisibility(View.GONE);
 
+        // TODO ADD DATE IN THE LAYOUT
+        // TODO ADD IF FOR WANT TO RESERVED
         if (offer.isReserved && offer.reservedBy != -1) {
+            // See your offer reserved by someone
             mUserDao.getUserFromUid(offer.reservedBy)
                     .subscribe(
                             u -> displayUser[0] = u,
@@ -66,6 +69,7 @@ public class OfferFragment extends Fragment {
 
             isReservedTv.setText(R.string.upper_label_reserved_by);
         } else if (storedUser.uid == offer.creatorId) {
+            // See your offer not yet reserved
             displayUser[0] = storedUser;
 
             rightBtn.setVisibility(View.VISIBLE);
@@ -80,6 +84,7 @@ public class OfferFragment extends Fragment {
                                                       )
                                                       .dispose());
         } else {
+            // See the offer of someone else (not reserved)
             mUserDao.getUserFromUid(offer.creatorId)
                     .subscribe(
                             u -> displayUser[0] = u,
@@ -90,9 +95,7 @@ public class OfferFragment extends Fragment {
 
             leftBtn.setVisibility(View.VISIBLE);
             leftBtn.setText(R.string.upper_text_book);
-            leftBtn.setOnClickListener(v -> {
-                // TODO Go to the reservation screen
-            });
+            leftBtn.setOnClickListener(v -> navController.navigate(R.id.reservation_fragment));
 
             rightBtn.setVisibility(View.VISIBLE);
             rightBtn.setText(R.string.upper_label_email);

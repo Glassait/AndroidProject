@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view.main.myOffer;
+package com.glassait.androidproject.view.main;
 
 import android.content.Context;
 import android.os.Bundle;
