@@ -59,7 +59,7 @@
             android:layout_marginTop="70dp">
 
         <TextView
-                android:text="@string/offer_your"
+                android:text="@string/label_your_offer"
                 android:id="@+id/fragment_home_my_offer_tv"
                 style="@style/offer.category"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,7 +133,7 @@
             android:visibility="gone">
 
         <TextView
-                android:text="@string/offer_my_reservation"
+                android:text="@string/label_my_reservation"
                 android:id="@+id/fragment_home_my_reservation_tv"
                 style="@style/offer.category"
                 app:layout_constraintStart_toStartOf="parent"

@@ -161,7 +161,7 @@ public class HomeFragment extends Fragment {
      * If no offer found change the visibility of the layout
      */
     public void myReservation() {
-        List<Offer> offers = mOfferDao.getAllOffersReservedBy(mCurrentUser.uid);
+        List<Offer>      offers = mOfferDao.getAllOffersReservedBy(mCurrentUser.uid);
         ConstraintLayout layout = mRoot.findViewById(R.id.fragment_home_my_reservation_layout);
         if (offers.size() > 0) {
             layout.setVisibility(View.VISIBLE);
@@ -183,8 +183,8 @@ public class HomeFragment extends Fragment {
             seeAll.setOnClickListener(View -> {
                 SecondActivity.getInstance()
                               .resetScroll();
-                // TODO change to the fragment see my reservation
-                System.out.println("See all the reservation");
+                StoreLocalData.getInstance().setSeeAll("myReservation");
+                mNavController.navigate(R.id.see_all_offer_fragment);
             });
         }
     }

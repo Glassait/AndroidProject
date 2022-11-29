@@ -74,13 +74,12 @@ public class SeeAllOfferFragment extends Fragment {
         );
 
         NavController navController = NavHostFragment.findNavController(this);
-        SecondActivity.getInstance()
-                      .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
 
         // Set the adapter
         if (root instanceof RecyclerView) {
             Context      context      = root.getContext();
             RecyclerView recyclerView = (RecyclerView) root;
+
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
@@ -96,10 +95,19 @@ public class SeeAllOfferFragment extends Fragment {
             User currentUser = StoreLocalData.getInstance()
                                              .getUser();
 
-            if (from.equals("yourOffer")) {
-                offerList = mOfferDao.getAllOffersFromCreatorId(currentUser.uid);
-            } else if (from.equals("inArea")) {
-                offerList = mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid);
+            switch (from) {
+                case "yourOffer":
+                    offerList = mOfferDao.getAllOffersFromCreatorId(currentUser.uid);
+                    SecondActivity.getInstance()
+                                  .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
+                    break;
+                case "inArea":
+                    offerList =
+                            mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid);
+                    break;
+                case "myReservation":
+                    offerList = mOfferDao.getAllOffersReservedBy(currentUser.uid);
+                    break;
             }
 
             SeeAllOfferRecyclerViewAdapter adapter = new SeeAllOfferRecyclerViewAdapter(offerList);
