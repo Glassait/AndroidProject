@@ -167,32 +167,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/offer"
-                        android:id="@+id/fragment_home_do_reservation">
-
-                    <TextView
-                            android:text="@string/offer_do_a_reservation"
-                            android:id="@+id/fragment_home_offer_title_add_reservation_tv"
-                            style="@style/offer.title"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:layout_marginTop="25dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            android:autoSizeTextType="uniform"
-                            android:layout_height="40dp" />
-
-                    <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            style="@style/round_plus"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/fragment_home_offer_title_add_reservation_tv"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintVertical_bias="0.26" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>

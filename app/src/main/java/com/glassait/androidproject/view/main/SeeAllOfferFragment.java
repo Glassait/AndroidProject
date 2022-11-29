@@ -74,7 +74,8 @@ public class SeeAllOfferFragment extends Fragment {
         );
 
         NavController navController = NavHostFragment.findNavController(this);
-        SecondActivity.enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
+        SecondActivity.getInstance()
+                      .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
 
         // Set the adapter
         if (root instanceof RecyclerView) {
@@ -115,6 +116,7 @@ public class SeeAllOfferFragment extends Fragment {
     @Override
     public void onStop() {
         super.onStop();
-        SecondActivity.disableAddButton();
+        SecondActivity.getInstance()
+                      .disableAddButton();
     }
 }
