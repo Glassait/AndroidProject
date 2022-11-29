@@ -4,23 +4,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LocalData {
-    private static LocalData              instance;
-    private final  Map<Integer, String[]> database;
-    private        String                 scanningCode;
+    private static LocalData instance;
+    private final Map<Integer, String[]> database;
+    private String scanningCode;
 
     private LocalData() {
         database = new HashMap<Integer, String[]>();
         database.put(
                 65784,
-                new String[]{"milk", "2.30", "cheese", "3.60"}
+                new String[]{   "milk", "2.30", "milk products",
+                                "cheese", "3.60", "milk products",
+                                "water", "1.20", "drinks",
+                                "banana", "2.60", "fruits & vegetables"}
         );
         database.put(
                 57648,
-                new String[]{"banana", "2.60", "water", "1.20"}
+                new String[]{   "banana", "2.60", "fruits & vegetables",
+                                "water", "1.20", "drinks"}
         );
     }
-
-    ;
 
     public static LocalData getInstance() {
         if (instance == null) {
@@ -39,6 +41,11 @@ public class LocalData {
 
     public String getScanningCode() {
         return scanningCode;
+    }
+
+    public String[] getPurchaseBylastSC(){
+        int scanning = Integer.parseInt(this.scanningCode);
+        return database.get(scanning);
     }
 
 }
