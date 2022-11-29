@@ -2,6 +2,7 @@ package com.glassait.androidproject.view.main;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ScrollView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -14,16 +15,28 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.util.Objects;
 
 public class SecondActivity extends AppCompatActivity {
+    private static SecondActivity       instance;
     // View part
-    private static FloatingActionButton addBtn;
+    private        FloatingActionButton addBtn;
+    private        ScrollView           mScrollView;
+
+    public static synchronized SecondActivity getInstance() {
+        if (instance == null) {
+            instance = new SecondActivity();
+        }
+        return instance;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        instance = this;
         setContentView(R.layout.activity_second);
 
         NavController navController =
                 ((NavHostFragment) Objects.requireNonNull(getSupportFragmentManager().findFragmentById(R.id.second_activity_fragment_container_view))).getNavController();
+
+        mScrollView = findViewById(R.id.second_activity_SV);
 
         addBtn = findViewById(R.id.second_activity_add_button);
 
@@ -38,6 +51,7 @@ public class SecondActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {
                 System.out.println("Chat item selected");
             }
+            resetScroll();
             return true;
         });
     }
@@ -50,7 +64,7 @@ public class SecondActivity extends AppCompatActivity {
      * @see FloatingActionButton#setVisibility(int)
      * @see FloatingActionButton#setOnClickListener(View.OnClickListener)
      */
-    public static void enableAddButton(View.OnClickListener clickListener) {
+    public void enableAddButton(View.OnClickListener clickListener) {
         addBtn.setVisibility(View.VISIBLE);
         addBtn.setOnClickListener(clickListener);
     }
@@ -61,8 +75,18 @@ public class SecondActivity extends AppCompatActivity {
      * @see FloatingActionButton#setVisibility(int)
      * @see FloatingActionButton#setOnClickListener(View.OnClickListener)
      */
-    public static void disableAddButton() {
+    public void disableAddButton() {
         addBtn.setVisibility(View.GONE);
         addBtn.setOnClickListener(null);
+    }
+
+    /**
+     * Set the scroll view to the top
+     */
+    public void resetScroll() {
+        mScrollView.smoothScrollTo(
+                0,
+                0
+        );
     }
 }
