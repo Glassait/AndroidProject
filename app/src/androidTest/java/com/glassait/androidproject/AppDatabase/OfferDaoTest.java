@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
+import android.location.Location;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.MediumTest;
@@ -24,6 +25,7 @@ import java.util.List;
 @RunWith(AndroidJUnit4.class)
 @MediumTest
 public class OfferDaoTest {
+    private static final Location    LOCATION    = new Location("");
     private static final Context     APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
                                                                           .getTargetContext();
     private static final Builder     BUILDER     = Builder.getInstance();
@@ -31,6 +33,8 @@ public class OfferDaoTest {
     private final        OfferDao    mOfferDao   = APP_DATABASE.offerDao();
 
     static {
+        LOCATION.setLongitude(0);
+        LOCATION.setLatitude(0);
         BUILDER.buildDatabase(APP_CONTEXT);
         APP_DATABASE = BUILDER.getAppDatabase();
     }
@@ -38,7 +42,7 @@ public class OfferDaoTest {
     /**
      * Test the insert function of {@link OfferDao}
      *
-     * @see Offer#Offer(String, String, String, int)
+     * @see Offer#Offer(String, String, String, Location, int)
      * @see OfferDao#insert(Offer)
      * @see OfferDao#getAll()
      */
@@ -48,6 +52,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;
@@ -86,8 +91,6 @@ public class OfferDaoTest {
                  .dispose();
 
         assertFalse(offerIsInsert[0]);
-        assertTrue(mOfferDao.getAll()
-                            .size() >= 0);
         assertEquals(
                 numberOfOffersBefore,
                 mOfferDao.getAll()
@@ -99,7 +102,7 @@ public class OfferDaoTest {
      * Test the update function of {@link OfferDao}
      * Set the offer uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, String, int)
+     * @see Offer#Offer(String, String, String, Location, int)
      * @see OfferDao#update(Offer)
      * @see OfferDao#getAllOffersFromCreatorId(int)
      * @see OfferDao#insert(Offer)
@@ -110,6 +113,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;
@@ -143,7 +147,7 @@ public class OfferDaoTest {
      * Test the update function of {@link OfferDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, String, int)
+     * @see Offer#Offer(String, String, String, Location, int)
      * @see OfferDao#insert(Offer)
      * @see OfferDao#update(Offer)
      * @see OfferDao#getAllOffersFromCreatorId(int)
@@ -154,6 +158,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;
@@ -214,21 +219,10 @@ public class OfferDaoTest {
     }
 
     /**
-     * Test the getAll function of {@link OfferDao}
-     *
-     * @see OfferDao#getAll(
-     */
-    @Test
-    public void getAll() {
-        assertTrue(mOfferDao.getAll()
-                            .size() >= 0);
-    }
-
-    /**
      * Test the getAllOffersFromCreatorId function of {@link OfferDao}
      * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
      *
-     * @see Offer#Offer(String, String, String, int)
+     * @see Offer#Offer(String, String, String, Location, int)
      * @see OfferDao#getAllOffersFromCreatorId(int)
      * @see OfferDao#insert(Offer)
      */
@@ -238,6 +232,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;
@@ -265,6 +260,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;
@@ -290,6 +286,7 @@ public class OfferDaoTest {
                 "title",
                 "electric",
                 "testing",
+                LOCATION,
                 1
         );
         offer.uid = 1;

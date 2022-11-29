@@ -12,17 +12,22 @@
             tools:layout="@layout/fragment_home" />
     <fragment
             android:id="@+id/create_offer_fragment"
-            android:name="com.glassait.androidproject.view.main.myOffer.CreateOfferFragment"
+            android:name="com.glassait.androidproject.view.main.CreateOfferFragment"
             android:label="fragment_create_offer"
             tools:layout="@layout/fragment_create_offer" />
     <fragment
-            android:id="@+id/my_offer_fragment"
-            android:name="com.glassait.androidproject.view.main.myOffer.MyOfferFragment"
-            android:label="fragment_my_offer"
-            tools:layout="@layout/fragment_my_offer" />
+            android:id="@+id/offer_fragment"
+            android:name="com.glassait.androidproject.view.main.OfferFragment"
+            android:label="fragment_offer"
+            tools:layout="@layout/fragment_offer" />
     <fragment
-            android:id="@+id/see_all_my_offer_fragment"
-            android:name="com.glassait.androidproject.view.main.myOffer.SeeAllMyOfferFragment"
-            android:label="fragment_see_all_my_offer_list"
-            tools:layout="@layout/fragment_see_all_my_offer_list" />
+            android:id="@+id/see_all_offer_fragment"
+            android:name="com.glassait.androidproject.view.main.SeeAllOfferFragment"
+            android:label="fragment_see_all_offer_list"
+            tools:layout="@layout/fragment_see_all_offer_list" />
+    <fragment
+            android:id="@+id/reservation_fragment"
+            android:name="com.glassait.androidproject.view.main.ReservationFragment"
+            android:label="fragment_reservation"
+            tools:layout="@layout/fragment_reservation" />
 </navigation>

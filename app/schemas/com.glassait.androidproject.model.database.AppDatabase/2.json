@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "231861595a1a997135aadc881b39cbde",
+    "identityHash": "fb733d5e6e5dfb5e81ffdfd1a5f3c306",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `post_code` TEXT, `city` TEXT, `country` TEXT, `uuid` BLOB)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `first_name` TEXT, `last_name` TEXT, `email` TEXT, `phone` TEXT, `address` TEXT, `uuid` BLOB)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -45,24 +45,6 @@
             "notNull": false
           },
           {
-            "fieldPath": "postCode",
-            "columnName": "post_code",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "city",
-            "columnName": "city",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "country",
-            "columnName": "country",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
             "fieldPath": "uuid",
             "columnName": "uuid",
             "affinity": "BLOB",
@@ -80,7 +62,7 @@
       },
       {
         "tableName": "Offer",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `is_reserved` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `title` TEXT, `storage_ref` TEXT, `category` TEXT, `location` TEXT, `is_reserved` INTEGER NOT NULL, `reserved_by` INTEGER NOT NULL, `creator_id` INTEGER NOT NULL, `taken_date` TEXT, `return_date` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -107,8 +89,20 @@
             "notNull": false
           },
           {
+            "fieldPath": "location",
+            "columnName": "location",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
             "fieldPath": "isReserved",
             "columnName": "is_reserved",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "reservedBy",
+            "columnName": "reserved_by",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -117,6 +111,18 @@
             "columnName": "creator_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "takenDate",
+            "columnName": "taken_date",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "returnDate",
+            "columnName": "return_date",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -132,7 +138,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '231861595a1a997135aadc881b39cbde')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'fb733d5e6e5dfb5e81ffdfd1a5f3c306')"
     ]
   }
 }

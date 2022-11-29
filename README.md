@@ -1,6 +1,6 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.3-green)
+![Version](https://img.shields.io/badge/version-0.5-green)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
@@ -35,7 +35,7 @@ The use of geolocation to access the nearest offers and a search bar to look for
 ![JUNIT](https://img.shields.io/badge/JUnit-4.13.2-red)
 ![Espresso](https://img.shields.io/badge/Espresso_Core-3.5.0-red)
 ![Nav](https://img.shields.io/badge/Navigation-2.5.3-red)
-![Compose Material 3](https://img.shields.io/badge/Compose_Material3-1.1.0.alpha02-red)
+![Compose Material 3](https://img.shields.io/badge/Compose_Material_3-1.1.0.alpha02-red)
 ![Firebase Bom](https://img.shields.io/badge/Firebase_Bom-31.0.3-red)
 
 ## Requirement
@@ -45,13 +45,13 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [x] Sign in - (with auto-connect)
 - [x] Create offer - (Failed to upload image to the firebase)
 - [x] Delete offer
-- [x] Implement Lis and RecyclerView
+- [x] Implement List and RecyclerView
 - [ ] Search
-- [ ] Localization
-- [ ] Chat - Will not be implemented
-- [ ] UI/UX
-- [ ] Backoffice
-- [ ] Report / Ban
+- [x] Localization
+- [x] Chat - Replace by direct email
+- [x] UI/UX
+- [ ] Backoffice - Will not be implemented
+- [ ] Report / Ban - Will not be implemented
 - [ ] Notification - Will not be implemented
 - [ ] Profile
 - [ ] Parameter

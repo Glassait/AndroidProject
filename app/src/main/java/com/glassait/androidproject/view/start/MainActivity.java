@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.GetUserFromFile;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
 import com.glassait.androidproject.view.main.SecondActivity;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         Builder.getInstance()
                .buildDatabase(this);
         // Initialize the singleton
-        StoreManager.getInstance();
+        StoreLocalData.getInstance();
 
         // Automatic-connection part
         GetUserFromFile getUser = new GetUserFromFile(getApplicationContext());
@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
                     getApplicationContext(),
                     SecondActivity.class
             );
-            StoreManager.setUser(user);
+
+            user.address.getLocation(getApplicationContext());
+            StoreLocalData.getInstance()
+                          .setUser(user);
             startActivity(intent);
         }
 

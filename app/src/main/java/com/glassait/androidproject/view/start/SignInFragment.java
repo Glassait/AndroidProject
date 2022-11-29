@@ -17,7 +17,7 @@ import com.glassait.androidproject.R;
 import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.file.UUID;
 import com.glassait.androidproject.common.utils.secret.Secret;
-import com.glassait.androidproject.common.utils.secret.StoreManager;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -149,7 +149,9 @@ public class SignInFragment extends EmailValidator {
                         e.printStackTrace();
                     }
 
-                    StoreManager.setUser(user[0]);
+                    user[0].address.getLocation(mRoot.getContext());
+                    StoreLocalData.getInstance()
+                                  .setUser(user[0]);
 
                     //Launch the second activity
                     Intent intent = new Intent(

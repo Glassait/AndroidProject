@@ -52,4 +52,12 @@
     <string name="error_during_upload_image">Error append when getting image</string>
     <string name="upper_delete">Delete</string>
     <string name="upper_label_category">Category</string>
+    <string name="content_description_add_button"
+            translatable="false">Add button</string>
+    <string name="upper_label_reserved_by">Reserved by</string>
+    <string name="upper_label_not_yet_reserved">Not yet reserved</string>
+    <string name="upper_text_book">Book</string>
+    <string name="upper_title_reservation">Booking</string>
+    <string name="upper_label_borrowing_date">Borrowing date</string>
+    <string name="upper_label_return_date">Return date</string>
 </resources>
