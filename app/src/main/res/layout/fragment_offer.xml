@@ -295,7 +295,9 @@
                         style="@style/Button.empty"
                         android:autoSizeTextType="uniform"
                         android:layout_marginBottom="100dp"
-                        android:layout_weight="0.5" />
+                        android:layout_weight="0.5"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="5dp" />
 
                 <TextView
                         android:text="@string/upper_delete"
@@ -303,7 +305,9 @@
                         style="@style/Button.full"
                         android:autoSizeTextType="uniform"
                         android:layout_marginBottom="100dp"
-                        android:layout_weight="0.5" />
+                        android:layout_weight="0.5"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="5dp" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

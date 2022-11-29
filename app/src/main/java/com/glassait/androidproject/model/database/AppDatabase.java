@@ -20,7 +20,7 @@ import com.glassait.androidproject.model.entity.User;
  * If there is some complex object to put inside the database use the {@link Converters} to
  * convert is in {@link String}
  */
-@Database(version = 3, entities = {User.class, Offer.class})
+@Database(version = 1, entities = {User.class, Offer.class})
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     // DAO for user table
