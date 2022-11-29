@@ -42,17 +42,14 @@ import java.util.List;
 public class ScanningActivity extends AppCompatActivity {
     // to handle the permissions
     private static final int CAMERA_REQUEST_CODE = 101;
-    // private static final int STORAGE_REQUEST_CODE = 100;
 
     // array of required permissions
     private String[] cameraPermissions;
-    // private String[] storagePermissions;
 
     // Uri from the barcode
     private Uri imageUri = null;
 
     // UI Views
-    // private MaterialButton cameraBtn;
     private ImageView      imageIv;
     private MaterialButton scanBtn;
     private TextView       resultTv;
@@ -69,29 +66,24 @@ public class ScanningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanning);
 
         // init UI Views
-        // cameraBtn = findViewById(R.id.cameraBtn);
         imageIv = findViewById(R.id.imageIv);
         scanBtn = findViewById(R.id.scanBtn);
         resultTv = findViewById(R.id.resultTv);
 
+        // initialize requested permissions
         cameraPermissions =
                 new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
-        //storagePermissions = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+        // initialize barcode scanner
         barcodeScannerOptions =
                 new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS)
                                                    .build();
         barcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions);
-        /**
-         // handle cameraBtn click
-         cameraBtn.setOnClickListener(new View.OnClickListener() {
-        @Override public void onClick(View v) {
-        checkCameraPermissions();
 
-        }
-        });**/
-
+        // initialize buttons for next activity
         MaterialButton compareBtn = findViewById(R.id.compare_btn);
+        MaterialButton listBtn = findViewById(R.id.displayListBtn);
+
 
         // handle scanBtn click
         scanBtn.setOnClickListener(v -> {
@@ -120,6 +112,7 @@ public class ScanningActivity extends AppCompatActivity {
             } else {
                 detectResultFromImage();
                 compareBtn.setVisibility(View.VISIBLE);
+                listBtn.setVisibility(View.VISIBLE);
             }
         });
 
@@ -130,6 +123,14 @@ public class ScanningActivity extends AppCompatActivity {
             );
             startActivity(intent);
         });
+        /** adjust here to transfer to list activity
+        listBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    CompareActivity.class
+            );
+            startActivity(intent);
+        });*/
     }
 
     private void detectResultFromImage() {
