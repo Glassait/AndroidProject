@@ -10,11 +10,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.button.BackButton;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.dao.UserDao;
@@ -23,17 +25,23 @@ import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.Offer;
 import com.glassait.androidproject.model.entity.User;
 
+import io.reactivex.rxjava3.functions.Action;
+
 public class OfferFragment extends Fragment {
     // Database part
     private final AppDatabase mAppDatabase = Builder.getInstance()
                                                     .getAppDatabase();
     private final OfferDao    mOfferDao    = mAppDatabase.offerDao();
     private final UserDao     mUserDao     = mAppDatabase.userDao();
+    // Common
+    private       Offer       mOffer;
+    private       User        mDisplayedUser;
+    private       TextView    mRightBtn;
+    private final Intent      mEmailIntent = new Intent(Intent.ACTION_SENDTO);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         //View part
         View root = inflater.inflate(
                 R.layout.fragment_offer,
@@ -43,112 +51,203 @@ public class OfferFragment extends Fragment {
 
         NavController navController = NavHostFragment.findNavController(this);
 
-        final User[] displayUser = new User[1];
-        User storedUser = StoreLocalData.getInstance()
-                                        .getUser();
-        Offer offer = StoreLocalData.getInstance()
-                                    .getOffer();
+        User currentUser = StoreLocalData.getInstance()
+                                         .getUser();
+        mOffer = StoreLocalData.getInstance()
+                               .getOffer();
 
         TextView isReservedTv = root.findViewById(R.id.fragment_offer_is_reserved_tv);
-        TextView rightBtn     = root.findViewById(R.id.fragment_offer_right_btn);
-        TextView leftBtn      = root.findViewById(R.id.fragment_offer_left_btn);
+        mRightBtn = root.findViewById(R.id.fragment_offer_right_btn);
+        TextView leftBtn = root.findViewById(R.id.fragment_offer_left_btn);
 
-        rightBtn.setVisibility(View.GONE);
+        TextView borrowingDateTv = root.findViewById(R.id.fragment_offer_borrowing_date_tv);
+        EditText borrowingDateEt = root.findViewById(R.id.fragment_offer_borrowing_date_et);
+        TextView returnDateTv    = root.findViewById(R.id.fragment_offer_return_date_tv);
+        EditText returnDateEt    = root.findViewById(R.id.fragment_offer_return_date_et);
+
+        mRightBtn.setVisibility(View.GONE);
         leftBtn.setVisibility(View.GONE);
 
-        // TODO ADD DATE IN THE LAYOUT
-        // TODO ADD IF FOR WANT TO RESERVED
-        if (offer.isReserved && offer.reservedBy != -1) {
-            // See your offer reserved by someone
-            mUserDao.getUserFromUid(offer.reservedBy)
-                    .subscribe(
-                            u -> displayUser[0] = u,
-                            Throwable::printStackTrace
-                    )
-                    .dispose();
-
-            isReservedTv.setText(R.string.upper_label_reserved_by);
-        } else if (storedUser.uid == offer.creatorId) {
-            // See your offer not yet reserved
-            displayUser[0] = storedUser;
-
-            rightBtn.setVisibility(View.VISIBLE);
-            rightBtn.setOnClickListener(v -> mOfferDao.delete(offer)
-                                                      .subscribe(
-                                                              () -> navController.navigate(R.id.home_fragment),
-                                                              throwable -> Toast.makeText(
-                                                                      root.getContext(),
-                                                                      "Failed to delete offer, tyr later",
-                                                                      Toast.LENGTH_SHORT
-                                                              )
-                                                      )
-                                                      .dispose());
-        } else {
-            // See the offer of someone else (not reserved)
-            mUserDao.getUserFromUid(offer.creatorId)
-                    .subscribe(
-                            u -> displayUser[0] = u,
-                            Throwable::printStackTrace
-                    )
-                    .dispose();
-            isReservedTv.setVisibility(View.GONE);
-
-            leftBtn.setVisibility(View.VISIBLE);
-            leftBtn.setText(R.string.upper_text_book);
-            leftBtn.setOnClickListener(v -> navController.navigate(R.id.reservation_fragment));
-
-            rightBtn.setVisibility(View.VISIBLE);
-            rightBtn.setText(R.string.upper_label_email);
-            rightBtn.setOnClickListener(v -> {
-                Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("mailto:" + displayUser[0].email));
-                intent.putExtra(
-                        Intent.EXTRA_SUBJECT,
-                        "Information for the Offer : " + offer.title
-                );
-                startActivity(intent);
-            });
+        if (mOffer.bookingDate == null) {
+            borrowingDateTv.setVisibility(View.GONE);
+            borrowingDateEt.setVisibility(View.GONE);
+        }
+        if (mOffer.returnDate == null) {
+            returnDateTv.setVisibility(View.GONE);
+            returnDateEt.setVisibility(View.GONE);
         }
 
+        if (mOffer.isReserved && mOffer.reservedBy != -1) {
+            // The offer is reserved
+            if (!mOffer.validate) {
+                // The offer is not validate is owner
+                if (mOffer.reservedBy == currentUser.uid) {
+                    // The offer is reserved by the current user
+                    isReservedTv.setText(R.string.upper_label_owner_validate);
+                    setButtonAction(
+                            leftBtn,
+                            R.string.upper_label_cancel,
+                            v -> {
+                                mOffer.resetReservation();
+                                updateOffer(() -> {
+                                    Toast.makeText(
+                                                 root.getContext(),
+                                                 root.getResources()
+                                                     .getString(R.string.toast_reservation_canceled),
+                                                 Toast.LENGTH_SHORT
+                                         )
+                                         .show();
+                                    navController.navigate(R.id.home_fragment);
+                                });
+                            }
+                    );
+                    // See the owner information
+                    setTheDisplayedUser(mOffer.creatorId);
+                } else {
+                    // The offer is checked by his owner
+                    isReservedTv.setText(R.string.upper_label_you_need_to_confirm);
+                    setButtonAction(
+                            leftBtn,
+                            R.string.upper_label_confirm,
+                            v -> {
+                                mOffer.validate = true;
+                                updateOffer(() -> {
+                                    Toast.makeText(
+                                                 root.getContext(),
+                                                 root.getResources()
+                                                     .getString(R.string.toast_booking_validate),
+                                                 Toast.LENGTH_SHORT
+                                         )
+                                         .show();
+                                    navController.navigate(R.id.home_fragment);
+                                });
+                            }
+                    );
+                    // See the information of the booker
+                    setTheDisplayedUser(mOffer.reservedBy);
+                }
+                rightBtnForEmail();
+            } else {
+                // The offer is validate by his owner
+                if (mOffer.reservedBy == currentUser.uid) {
+                    // The offer is reserved by the current user
+                    isReservedTv.setText(R.string.upper_label_your_reservation_confirmed);
+                    // See the information of the owner
+                    setTheDisplayedUser(mOffer.creatorId);
+                } else {
+                    // The offer is checked is owner
+                    isReservedTv.setText(R.string.upper_label_reserved_by);
+                    // See the information of the booker
+                    setTheDisplayedUser(mOffer.reservedBy);
+                }
+                rightBtnForEmail();
+            }
+        } else if (currentUser.uid == mOffer.creatorId) {
+            // The offer is not reserved and the owner check is offer
+            mDisplayedUser = currentUser;
+            setButtonAction(
+                    leftBtn,
+                    R.string.upper_delete,
+                    v -> mOfferDao.delete(mOffer)
+                                  .subscribe(
+                                          () -> navController.navigate(R.id.home_fragment),
+                                          throwable -> Toast.makeText(
+                                                  root.getContext(),
+                                                  root.getResources()
+                                                      .getString(R.string.toas_erreur_delete_offer),
+                                                  Toast.LENGTH_SHORT
+                                          )
+                                  )
+                                  .dispose()
+            );
+        } else {
+            // See the mOffer of someone else (not reserved)
+            setTheDisplayedUser(mOffer.creatorId);
+            isReservedTv.setVisibility(View.GONE);
+            setButtonAction(
+                    leftBtn,
+                    R.string.upper_text_book,
+                    v -> navController.navigate(R.id.reservation_fragment)
+            );
+            rightBtnForEmail();
+        }
 
-        TextView backButton = root.findViewById(R.id.fragment_offer_back_btn);
-        backButton.setOnClickListener(view -> {
-            System.out.println("Back button click on my offer fragment");
-            navController.navigate(R.id.home_fragment);
-            StoreLocalData.getInstance()
-                          .setOffer(null);
-        });
+        // Modify the view part
+        new BackButton(
+                root,
+                v -> navController.navigate(R.id.home_fragment)
+        );
 
         TextView offerTitleEt = root.findViewById(R.id.fragment_offer_title_tv);
-        offerTitleEt.setText(offer.title);
+        offerTitleEt.setText(mOffer.title);
 
         EditText firstNameEt = root.findViewById(R.id.fragment_offer_first_name_et);
-        firstNameEt.setText(displayUser[0].firstName);
+        firstNameEt.setText(mDisplayedUser.firstName);
 
         EditText lastNameEt = root.findViewById(R.id.fragment_offer_last_name_et);
-        lastNameEt.setText(displayUser[0].lastName);
+        lastNameEt.setText(mDisplayedUser.lastName);
 
         EditText emailEt = root.findViewById(R.id.fragment_offer_email_et);
-        emailEt.setText(displayUser[0].email);
+        emailEt.setText(mDisplayedUser.email);
 
         EditText phoneEt = root.findViewById(R.id.fragment_offer_phone_et);
-        phoneEt.setText(displayUser[0].phone);
+        phoneEt.setText(mDisplayedUser.phone);
 
         EditText addressEt = root.findViewById(R.id.fragment_offer_address_et);
-        addressEt.setText(displayUser[0].address.getStreet());
+        addressEt.setText(mDisplayedUser.address.getStreet());
 
         EditText postCodeEt = root.findViewById(R.id.fragment_offer_postal_code_et);
-        postCodeEt.setText(displayUser[0].address.getPostalCode());
+        postCodeEt.setText(mDisplayedUser.address.getPostalCode());
 
         EditText cityEt = root.findViewById(R.id.fragment_offer_city_et);
-        cityEt.setText(displayUser[0].address.getCity());
+        cityEt.setText(mDisplayedUser.address.getCity());
 
         EditText countryEt = root.findViewById(R.id.fragment_offer_country_et);
-        countryEt.setText(displayUser[0].address.getCountry());
+        countryEt.setText(mDisplayedUser.address.getCountry());
 
         EditText categoryEt = root.findViewById(R.id.fragment_offer_category_et);
-        categoryEt.setText(offer.category);
+        categoryEt.setText(mOffer.category);
+
+        borrowingDateEt.setText(mOffer.bookingDate != null ? mOffer.bookingDate : "");
+        returnDateEt.setText(mOffer.returnDate != null ? mOffer.returnDate : "");
 
         return root;
+    }
+
+    public void updateOffer(Action action) {
+        mOfferDao.update(mOffer)
+                 .subscribe(
+                         action,
+                         Throwable::printStackTrace
+                 )
+                 .dispose();
+    }
+
+    public void setTheDisplayedUser(int userId) {
+        final User[] displayUser = new User[1];
+        mUserDao.getUserFromUid(userId)
+                .subscribe(
+                        u -> displayUser[0] = u,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+        mDisplayedUser = displayUser[0];
+    }
+
+    public void setButtonAction(TextView btn, @StringRes int resId, View.OnClickListener listener) {
+        btn.setVisibility(View.VISIBLE);
+        btn.setText(resId);
+        btn.setOnClickListener(listener);
+    }
+
+    public void rightBtnForEmail() {
+        setButtonAction(
+                mRightBtn,
+                R.string.upper_label_email,
+                v -> {
+                    mEmailIntent.setData(Uri.parse("mailto:" + mDisplayedUser.email));
+                    startActivity(mEmailIntent);
+                }
+        );
     }
 }

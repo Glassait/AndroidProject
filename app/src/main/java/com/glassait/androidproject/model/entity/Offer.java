@@ -48,6 +48,17 @@ public class Offer {
         validate = false;
     }
 
+    /**
+     * Constructor for EditText and Chip
+     *
+     * @param title       The editText of the title
+     * @param category    The chip of the category
+     * @param storage_ref The storage reference
+     * @param location    The location of the offer
+     * @param creatorId   The creator id
+     *
+     * @see #Offer(String, String, String, Location, int)
+     */
     public Offer(EditText title, Chip category, String storage_ref, Location location,
                  int creatorId) {
         this(
@@ -59,6 +70,16 @@ public class Offer {
                 location,
                 creatorId
         );
+    }
+
+    /**
+     * Reset the state of the offer to be not reserved
+     */
+    public void resetReservation() {
+        this.reservedBy = -1;
+        this.isReserved = false;
+        this.bookingDate = null;
+        this.returnDate = null;
     }
 
     // The uid of the offer, auto-generated
