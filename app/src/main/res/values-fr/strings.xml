@@ -53,4 +53,13 @@
     <string name="upper_title_reservation">Réservation</string>
     <string name="upper_label_borrowing_date">Date d\'emprunt</string>
     <string name="upper_label_return_date">Date de retour</string>
+    <string name="upper_label_owner_validate">Le propriétaire doit valider</string>
+    <string name="upper_label_cancel">Annuler</string>
+    <string name="toast_reservation_send">Réservation envoyée</string>
+    <string name="toast_reservation_canceled">Réservation annulée</string>
+    <string name="upper_label_confirm">Valider</string>
+    <string name="toast_booking_validate">Réservation validée</string>
+    <string name="upper_label_you_need_to_confirm">Vous devez approuver</string>
+    <string name="upper_label_your_reservation_confirmed">Votre réservation confirmée</string>
+    <string name="toas_erreur_delete_offer">Erreur lors de la suppression de l\'offre, essayer plus tard</string>
 </resources>

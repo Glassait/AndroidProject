@@ -15,6 +15,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.button.BackButton;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -63,8 +64,10 @@ public class ReservationFragment extends Fragment {
         datePickerDialog.getDatePicker()
                         .setMinDate(calendar.getTimeInMillis());
 
-        TextView backButton = root.findViewById(R.id.fragment_reservation_back_btn);
-        backButton.setOnClickListener(v -> navController.navigate(R.id.offer_fragment));
+        new BackButton(
+                root,
+                v -> navController.navigate(R.id.offer_fragment)
+        );
 
         EditText borrowingDate = root.findViewById(R.id.fragment_reservation_borrowing_date_et);
         borrowingDate.setInputType(InputType.TYPE_NULL);
@@ -111,7 +114,8 @@ public class ReservationFragment extends Fragment {
                              () -> {
                                  Toast.makeText(
                                               root.getContext(),
-                                              "Reservation Send",
+                                              root.getResources()
+                                                  .getString(R.string.toast_reservation_send),
                                               Toast.LENGTH_SHORT
                                       )
                                       .show();

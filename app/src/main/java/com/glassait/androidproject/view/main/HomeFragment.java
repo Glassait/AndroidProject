@@ -183,7 +183,8 @@ public class HomeFragment extends Fragment {
             seeAll.setOnClickListener(View -> {
                 SecondActivity.getInstance()
                               .resetScroll();
-                StoreLocalData.getInstance().setSeeAll("myReservation");
+                StoreLocalData.getInstance()
+                              .setSeeAll("myReservation");
                 mNavController.navigate(R.id.see_all_offer_fragment);
             });
         }

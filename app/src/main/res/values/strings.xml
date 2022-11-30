@@ -58,4 +58,13 @@
     <string name="upper_title_reservation">Booking</string>
     <string name="upper_label_borrowing_date">Borrowing date</string>
     <string name="upper_label_return_date">Return date</string>
+    <string name="upper_label_owner_validate">The owner has to validate</string>
+    <string name="upper_label_cancel">Cancel</string>
+    <string name="toast_reservation_send">Reservation Send</string>
+    <string name="toast_reservation_canceled">Reservation canceled</string>
+    <string name="upper_label_confirm">Confirm</string>
+    <string name="toast_booking_validate">Booking validate</string>
+    <string name="upper_label_you_need_to_confirm">You need to confirm</string>
+    <string name="upper_label_your_reservation_confirmed">Your reservation is confirmed</string>
+    <string name="toas_erreur_delete_offer">Failed to delete the offer, try later</string>
 </resources>
