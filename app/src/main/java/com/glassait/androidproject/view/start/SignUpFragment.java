@@ -14,6 +14,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.button.BackButton;
 import com.glassait.androidproject.common.utils.checker.Address;
 import com.glassait.androidproject.common.utils.checker.Phone;
 import com.glassait.androidproject.common.utils.file.Cache;
@@ -59,10 +60,12 @@ public class SignUpFragment extends EmailValidator {
                 false
         );
 
-        TextView backButton = mRoot.findViewById(R.id.fragment_sign_up_back_btn);
-
         NavController navController = NavHostFragment.findNavController(this);
-        backButton.setOnClickListener(view -> navController.navigate(R.id.start_menu_fragment));
+
+        new BackButton(
+                mRoot,
+                v -> navController.navigate(R.id.start_menu_fragment)
+        );
 
         // First name editText
         mFirstNameEt = mRoot.findViewById(R.id.fragment_sign_up_first_name_et);

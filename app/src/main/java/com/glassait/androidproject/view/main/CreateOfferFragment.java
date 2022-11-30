@@ -16,6 +16,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.button.BackButton;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -111,9 +112,10 @@ public class CreateOfferFragment extends Fragment {
 
         NavController navController = NavHostFragment.findNavController(this);
 
-        // On click listener to return to the previous fragment
-        TextView backButton = mRoot.findViewById(R.id.fragment_create_offer_back_btn);
-        backButton.setOnClickListener(view -> navController.navigate(R.id.home_fragment));
+        new BackButton(
+                mRoot,
+                v -> navController.navigate(R.id.home_fragment)
+        );
 
          /* //Fail to implements the upload to the firebase
         // On click listener to get a image from the gallery (also check the permission)

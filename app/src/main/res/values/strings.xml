@@ -24,18 +24,16 @@
     <string name="text_new_phone">It looks like you are trying to connect with a new phone.</string>
     <string name="text_email_send">An email was sent to the email address provided. You can return to the connection screen.</string>
     <string name="error_failed_to_connect">Failed to connect, wrong email given</string>
-    <string name="upper_avatar_default">P</string>
     <string name="link_see_all"><u>See all</u></string>
     <string name="label_in_the_area">In the area</string>
     <string name="offer_title">Offer Title</string>
     <string name="offer_image_of_the_tool">Image of the tool</string>
-    <string name="offer_last_first_name">Last name First name</string>
     <string name="offer_city">City</string>
     <string name="offer_add_one">Add an offer</string>
-    <string name="offer_your">Your offer\'s</string>
+    <string name="label_your_offer">Your offer\'s</string>
     <string name="content_description_profile_button"
             translatable="false">Profile button</string>
-    <string name="offer_my_reservation">My reservation</string>
+    <string name="label_my_reservation">My reservation</string>
     <string name="offer_do_a_reservation">Do a reservation</string>
     <string name="menu_search">Search</string>
     <string name="menu_home">Home</string>
@@ -60,4 +58,13 @@
     <string name="upper_title_reservation">Booking</string>
     <string name="upper_label_borrowing_date">Borrowing date</string>
     <string name="upper_label_return_date">Return date</string>
+    <string name="upper_label_owner_validate">The owner has to validate</string>
+    <string name="upper_label_cancel">Cancel</string>
+    <string name="toast_reservation_send">Reservation Send</string>
+    <string name="toast_reservation_canceled">Reservation canceled</string>
+    <string name="upper_label_confirm">Confirm</string>
+    <string name="toast_booking_validate">Booking validate</string>
+    <string name="upper_label_you_need_to_confirm">You need to confirm</string>
+    <string name="upper_label_your_reservation_confirmed">Your reservation is confirmed</string>
+    <string name="toas_erreur_delete_offer">Failed to delete the offer, try later</string>
 </resources>

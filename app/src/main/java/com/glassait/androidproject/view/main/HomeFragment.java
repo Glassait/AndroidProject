@@ -106,6 +106,8 @@ public class HomeFragment extends Fragment {
             TextView in_the_area_see_all =
                     mRoot.findViewById(R.id.fragment_home_see_all_in_area_tv);
             in_the_area_see_all.setOnClickListener(v -> {
+                SecondActivity.getInstance()
+                              .resetScroll();
                 StoreLocalData.getInstance()
                               .setSeeAll("inArea");
                 mNavController.navigate(R.id.see_all_offer_fragment);
@@ -140,6 +142,8 @@ public class HomeFragment extends Fragment {
             );
 
             see_all.setOnClickListener(v -> {
+                SecondActivity.getInstance()
+                              .resetScroll();
                 StoreLocalData.getInstance()
                               .setSeeAll("yourOffer");
                 mNavController.navigate(R.id.see_all_offer_fragment);
@@ -157,23 +161,31 @@ public class HomeFragment extends Fragment {
      * If no offer found change the visibility of the layout
      */
     public void myReservation() {
-        List<Offer> offers = mOfferDao.getAllOffersReservedBy(mCurrentUser.uid);
-        ConstraintLayout myReservationLayout =
-                mRoot.findViewById(R.id.fragment_home_my_reservation_layout);
+        List<Offer>      offers = mOfferDao.getAllOffersReservedBy(mCurrentUser.uid);
+        ConstraintLayout layout = mRoot.findViewById(R.id.fragment_home_my_reservation_layout);
         if (offers.size() > 0) {
-            myReservationLayout.setVisibility(View.VISIBLE);
+            layout.setVisibility(View.VISIBLE);
 
-            TextView myReservationSeeAll =
-                    mRoot.findViewById(R.id.fragment_home_see_all_my_reservation_tv);
-            myReservationSeeAll.setOnClickListener(View -> {
-                // TODO change to the fragment see my reservation
-                System.out.println("See all the reservation");
-            });
+            List<Offer> displayOffers = new ArrayList<>();
+            for (int i = 0; i < Math.min(
+                    offers.size(),
+                    3
+            ); i++) {
+                displayOffers.add(offers.get(i));
+            }
 
-            ConstraintLayout do_reservation = mRoot.findViewById(R.id.fragment_home_do_reservation);
-            do_reservation.setOnClickListener(View -> {
-                // TODO change to the fragment to search
-                System.out.println("Do a reservation");
+            createOfferLayout(
+                    displayOffers,
+                    mRoot.findViewById(R.id.fragment_home_my_reservation_LL)
+            );
+
+            TextView seeAll = mRoot.findViewById(R.id.fragment_home_see_all_my_reservation_tv);
+            seeAll.setOnClickListener(View -> {
+                SecondActivity.getInstance()
+                              .resetScroll();
+                StoreLocalData.getInstance()
+                              .setSeeAll("myReservation");
+                mNavController.navigate(R.id.see_all_offer_fragment);
             });
         }
     }
@@ -402,6 +414,8 @@ public class HomeFragment extends Fragment {
 
                     // Click listener
                     myOfferCl.setOnClickListener(v -> {
+                        SecondActivity.getInstance()
+                                      .resetScroll();
                         StoreLocalData.getInstance()
                                       .setOffer(offer);
                         mNavController.navigate(R.id.offer_fragment);
