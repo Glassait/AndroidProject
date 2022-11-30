@@ -214,6 +214,12 @@ public class OfferFragment extends Fragment {
         return root;
     }
 
+    /**
+     * Function to simplify the number of use of the update query (i.e. juste call updateOffer
+     * instead of .update.subscribe.dispose)
+     *
+     * @param action The action to perform is the query is complete
+     */
     public void updateOffer(Action action) {
         mOfferDao.update(mOffer)
                  .subscribe(
@@ -223,6 +229,11 @@ public class OfferFragment extends Fragment {
                  .dispose();
     }
 
+    /**
+     * Get the information of the given user and store it for display it later
+     *
+     * @param userId The is of the user to query
+     */
     public void setTheDisplayedUser(int userId) {
         final User[] displayUser = new User[1];
         mUserDao.getUserFromUid(userId)
@@ -234,12 +245,24 @@ public class OfferFragment extends Fragment {
         mDisplayedUser = displayUser[0];
     }
 
+    /**
+     * Set the visibility to {@link View#VISIBLE} and set the text and the listener
+     *
+     * @param btn      The button to set action
+     * @param resId    The text for the button
+     * @param listener the listener for the click listener
+     */
     public void setButtonAction(TextView btn, @StringRes int resId, View.OnClickListener listener) {
         btn.setVisibility(View.VISIBLE);
         btn.setText(resId);
         btn.setOnClickListener(listener);
     }
 
+    /**
+     * Set the right button in the offer layout to send email to the displayed user
+     *
+     * @see #setButtonAction(TextView, int, View.OnClickListener)
+     */
     public void rightBtnForEmail() {
         setButtonAction(
                 mRightBtn,
