@@ -52,13 +52,12 @@ public class UUID extends Cache {
      *
      * @see Cache#createFile()
      * @see #generateUUID()
-     * @see Cache#storeDataInFile(byte[])
+     * @see Cache#storeDataInFile(String)
      */
     public boolean storeUUID() {
         createFile();
         if (mUUID == null) generateUUID();
-        return storeDataInFile(mUUID.toString()
-                                    .getBytes());
+        return storeDataInFile(mUUID.toString());
     }
 
     /**
