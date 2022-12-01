@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:tools="http://schemas.android.com/tools"
+        xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-            android:allowBackup="true"
-            android:dataExtractionRules="@xml/data_extraction_rules"
             android:enableOnBackInvokedCallback="true"
+            android:allowBackup="true"
             android:requestLegacyExternalStorage="true"
-            android:fullBackupContent="@xml/backup_rules"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/name.app"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/Theme.AndroidProject">
+            android:theme="@style/Theme.AndroidProject"
+            tools:targetApi="tiramisu">
         <activity
+                android:windowSoftInputMode="adjustPan"
                 android:name=".view.main.SecondActivity"
                 android:exported="false">
             <meta-data
@@ -23,6 +24,7 @@
                     android:value="" />
         </activity>
         <activity
+                android:windowSoftInputMode="adjustPan"
                 android:name=".view.start.MainActivity"
                 android:exported="true">
             <intent-filter>

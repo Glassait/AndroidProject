@@ -18,12 +18,12 @@ import java.util.List;
  * Class to define the address of the user
  */
 public class Address {
-    private       Context  mContext;
-    private final String   mStreet;
-    private final String   mPostalCode;
-    private final String   mCity;
-    private final String   mCountry;
-    private       Location mLocation;
+    private Context  mContext;
+    private String   mStreet;
+    private String   mPostalCode;
+    private String   mCity;
+    private String   mCountry;
+    private Location mLocation;
 
     /**
      * Constructor with all string values.
@@ -154,10 +154,26 @@ public class Address {
     }
 
     /**
+     * @param street The street of the user
+     */
+    public void setStreet(String street) {
+        this.mStreet = street;
+        getLocationFromAddress();
+    }
+
+    /**
      * @return The postal code of the user
      */
     public String getPostalCode() {
         return mPostalCode;
+    }
+
+    /**
+     * @param postalCode The postalCode of the user
+     */
+    public void setPostalCode(String postalCode) {
+        this.mPostalCode = postalCode;
+        getLocationFromAddress();
     }
 
     /**
@@ -168,9 +184,25 @@ public class Address {
     }
 
     /**
+     * @param city The city of the user
+     */
+    public void setCity(String city) {
+        this.mCity = city;
+        getLocationFromAddress();
+    }
+
+    /**
      * @return The country of the user
      */
     public String getCountry() {
         return mCountry;
+    }
+
+    /**
+     * @param country The country of the user
+     */
+    public void setCountry(String country) {
+        this.mCountry = country;
+        getLocationFromAddress();
     }
 }

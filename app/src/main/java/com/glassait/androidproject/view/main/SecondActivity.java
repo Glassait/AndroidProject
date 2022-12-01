@@ -1,5 +1,6 @@
 package com.glassait.androidproject.view.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.glassait.androidproject.common.utils.file.Cache;
 import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.start.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -60,7 +62,9 @@ public class SecondActivity extends AppCompatActivity {
         }
         navigationView.setNavigationItemSelectedListener(item -> {
             if (item.getItemId() == R.id.nav_drawer_account) {
-                // Todo
+                resetScroll();
+                drawerLayout.closeDrawer(GravityCompat.END);
+                navController.navigate(R.id.account_fragment);
             } else if (item.getItemId() == R.id.nav_drawer_theme_mode) {
                 Cache cacheTheme = new Cache(
                         Secret.THEME_NAME,
@@ -74,6 +78,19 @@ public class SecondActivity extends AppCompatActivity {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                     cacheTheme.storeDataInFile(AppCompatDelegate.MODE_NIGHT_YES);
                 }
+            } else if (item.getItemId() == R.id.nav_drawer_log_out) {
+                Cache cache = new Cache(
+                        Secret.USER_FILE,
+                        getApplicationContext()
+                );
+                cache.deleteFile();
+                Intent intent = new Intent(
+                        getApplicationContext(),
+                        MainActivity.class
+                );
+                StoreLocalData.getInstance()
+                              .clearAllData();
+                startActivity(intent);
             }
             // Changing a language is to complex - WILL NOT BE IMPLEMENTED
             return true;
@@ -108,7 +125,7 @@ public class SecondActivity extends AppCompatActivity {
                 System.out.println("Chat item selected");
             }
             resetScroll();
-            return true;
+            return false;
         });
     }
 
