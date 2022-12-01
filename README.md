@@ -1,6 +1,6 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.8-green)
+![Version](https://img.shields.io/badge/version-1-green)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
@@ -19,6 +19,13 @@ Sometimes you may need certain types of tools, but buying them for a single use 
 The aim of the application is to provide an interface to connect two individuals: one who rents a
 machine and the other who wants to rent this machine.  
 The use of geolocation to access the nearest offers and a search bar to look for the type of tool.
+
+## Wireframe
+
+The wireframe was done
+in [Figma](https://www.figma.com/file/tc0sBkn9fc86Kakl155A3b/AndroidProject-Wireframe?node-id=0%3A1&t=GiUK7BTmCGblK7GM-0)
+, you can see some difference between the wireframe and the application it's because during
+development I found some better ways to implement the UI.
 
 ## Technologies
 
@@ -40,13 +47,14 @@ The use of geolocation to access the nearest offers and a search bar to look for
 
 ## Requirement
 
-- [x] Database (local)
+- [x] Database - Room Database
 - [x] Sign up
-- [x] Sign in - (with auto-connect)
-- [x] Create offer - (Failed to upload image to the firebase)
+- [x] Sign in - With auto-connect
+- [x] Create offer - Failed to upload image to the firebase
+- [ ] Firebase - Failed to implement firebase
 - [x] Delete offer
 - [x] Implement List and RecyclerView
-- [ ] Search
+- [X] Search - Search by title
 - [x] Localization
 - [x] Chat - Replace by direct email
 - [x] UI/UX
@@ -54,5 +62,13 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [ ] Report / Ban - Will not be implemented
 - [ ] Notification - Will not be implemented
 - [x] Sidebar Settings
-- [ ] Account
+- [x] Log out
+- [X] Account
 - [ ] Language - Will not be implemented
+
+## Works before sending the app to the store
+
+- [ ] Replace Room Database by Firebase
+- [ ] Rework the UI
+- [ ] Implement all features not implemented
+- [ ] Add Image to the offer

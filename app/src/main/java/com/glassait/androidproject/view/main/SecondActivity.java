@@ -122,10 +122,10 @@ public class SecondActivity extends AppCompatActivity {
                 StoreLocalData.getInstance()
                               .setSeeAll("search");
                 navController.navigate(R.id.see_all_offer_fragment);
-            } else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {
+            } /*else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {
                 // WILL NOT BE IMPLEMENTED
                 System.out.println("Chat item selected");
-            }
+            }*/
             resetScroll();
             return false;
         });
