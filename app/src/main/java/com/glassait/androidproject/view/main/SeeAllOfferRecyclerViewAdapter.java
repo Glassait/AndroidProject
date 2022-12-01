@@ -74,6 +74,14 @@ public class SeeAllOfferRecyclerViewAdapter
         mListener = listener;
     }
 
+    public void clearList() {
+        mList.clear();
+    }
+
+    public void setList(List<Offer> list) {
+        mList = list;
+    }
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public final TextView mTitleView;
         public final TextView mNameView;

@@ -119,11 +119,13 @@ public class SecondActivity extends AppCompatActivity {
             if (item.getItemId() == R.id.bottom_navigation_menu_home) {
                 navController.navigate(R.id.home_fragment);
             } else if (item.getItemId() == R.id.bottom_navigation_menu_search) {
-                System.out.println("Search item selected");
-            } else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {
+                StoreLocalData.getInstance()
+                              .setSeeAll("search");
+                navController.navigate(R.id.see_all_offer_fragment);
+            } /*else if (item.getItemId() == R.id.bottom_navigation_menu_chat) {
                 // WILL NOT BE IMPLEMENTED
                 System.out.println("Chat item selected");
-            }
+            }*/
             resetScroll();
             return false;
         });

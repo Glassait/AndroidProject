@@ -10,9 +10,9 @@
             android:enabled="true"
             android:icon="@drawable/home_empty_light"
             android:title="@string/menu_home" />
-    <item
+    <!--<item
             android:id="@+id/bottom_navigation_menu_chat"
             android:enabled="true"
             android:icon="@drawable/chat_empty_light"
-            android:title="@string/menu_chat" />
+            android:title="@string/menu_chat" />-->
 </menu>

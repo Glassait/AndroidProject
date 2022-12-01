@@ -83,4 +83,5 @@
     <string name="upper_label_modify">Modify</string>
     <string name="toast_account_updated">Account Updated</string>
     <string name="nav_drawer_log_out">Log out</string>
+    <string name="upper_label_search">Search</string>
 </resources>
