@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/main_item"
+            android:title="@string/nav_drawer_parameter">
+        <menu>
+            <item
+                    android:id="@+id/nav_drawer_account"
+                    android:title="@string/nav_drawer_account"
+                    android:checkable="true" />
+            <item
+                    android:id="@+id/nav_drawer_theme_mode"
+                    android:title="@string/nav_drawer_dark_mode"
+                    android:checkable="true" />
+        </menu>
+    </item>
+    <item
+            android:id="@+id/labels_item"
+            android:title="@string/nav_drawer_language">
+        <menu>
+            <item
+                    android:id="@+id/nav_drawer_french"
+                    android:title="@string/language_french"
+                    android:checkable="true" />
+            <item
+                    android:id="@+id/nav_drawer_english"
+                    android:title="@string/language_english"
+                    android:checkable="true" />
+        </menu>
+    </item>
+</menu>

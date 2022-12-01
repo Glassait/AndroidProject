@@ -61,5 +61,10 @@
     <string name="toast_booking_validate">Réservation validée</string>
     <string name="upper_label_you_need_to_confirm">Vous devez approuver</string>
     <string name="upper_label_your_reservation_confirmed">Votre réservation confirmée</string>
-    <string name="toas_erreur_delete_offer">Erreur lors de la suppression de l\'offre, essayer plus tard</string>
+    <string name="toast_error_delete_offer">Erreur lors de la suppression de l\'offre, essayer plus tard</string>
+    <string name="nav_drawer_parameter">Paramètre</string>
+    <string name="nav_drawer_account">Compte</string>
+    <string name="nav_drawer_dark_mode">Thème sombre</string>
+    <string name="nav_drawer_language">Langue</string>
+    <string name="nav_drawer_light_mode">Thème claire</string>
 </resources>

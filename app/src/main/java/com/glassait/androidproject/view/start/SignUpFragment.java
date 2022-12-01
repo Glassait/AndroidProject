@@ -310,7 +310,7 @@ public class SignUpFragment extends EmailValidator {
      * @see JSONObject#put(String, int)
      * @see Cache#Cache(String, Context)
      * @see Cache#createFile()
-     * @see Cache#storeDataInFile(byte[])
+     * @see Cache#storeDataInFile(String)
      */
     private void createAndInsertUserInDb() {
         com.glassait.androidproject.common.utils.file.UUID uuid =
@@ -358,8 +358,7 @@ public class SignUpFragment extends EmailValidator {
                                     mRoot.getContext()
                             );
                             cache.createFile();
-                            cache.storeDataInFile(data.toString()
-                                                      .getBytes());
+                            cache.storeDataInFile(data.toString());
 
                             StoreLocalData.getInstance()
                                           .setUser(user);

@@ -154,7 +154,7 @@ public class OfferFragment extends Fragment {
                                           throwable -> Toast.makeText(
                                                   root.getContext(),
                                                   root.getResources()
-                                                      .getString(R.string.toas_erreur_delete_offer),
+                                                      .getString(R.string.toast_error_delete_offer),
                                                   Toast.LENGTH_SHORT
                                           )
                                   )

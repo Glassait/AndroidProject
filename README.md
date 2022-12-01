@@ -1,6 +1,6 @@
 # AndroidProject
 
-![Version](https://img.shields.io/badge/version-0.5-green)
+![Version](https://img.shields.io/badge/version-0.8-green)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Glassait/AndroidProject)
 ![GitHub issues](https://img.shields.io/github/issues/Glassait/AndroidProject)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/Glassait/AndroidProject)
@@ -53,5 +53,6 @@ The use of geolocation to access the nearest offers and a search bar to look for
 - [ ] Backoffice - Will not be implemented
 - [ ] Report / Ban - Will not be implemented
 - [ ] Notification - Will not be implemented
-- [ ] Profile
-- [ ] Parameter
+- [x] Sidebar Settings
+- [ ] Account
+- [ ] Language - Will not be implemented
