@@ -63,10 +63,10 @@
         <item name="android:backgroundTint">@color/on_box_night</item>
     </style>
 
-    <style name="addRoundButton" parent="@style/AddButtonParameters">
-        <item name="android:src">@drawable/round_plus_light</item>
-        <item name="android:backgroundTint">@color/primary_night</item>
-    </style>
+<!--    <style name="addRoundButton" parent="@style/AddButtonParameters">-->
+<!--        <item name="android:src">@drawable/round_plus_light</item>-->
+<!--        <item name="android:backgroundTint">@color/primary_night</item>-->
+<!--    </style>-->
 
     <!-- Drawable -->
     <style name="round_plus">
@@ -93,5 +93,10 @@
         <item name="checkedIcon">@drawable/checked_night</item>
         <item name="chipBackgroundColor">@color/on_primary_night</item>
         <item name="chipStrokeColor">@color/primary_night</item>
+    </style>
+
+    <!-- SideBar -->
+    <style name="sidebar_header">
+        <item name="android:background">@color/on_background_light</item>
     </style>
 </resources>

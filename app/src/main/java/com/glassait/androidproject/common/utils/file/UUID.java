@@ -35,6 +35,13 @@ public class UUID extends Cache {
     }
 
     /**
+     * @param uuid The UUID of the user
+     */
+    public void setUUID(java.util.UUID uuid) {
+        this.mUUID = uuid;
+    }
+
+    /**
      * Generate a unique UUID and store it in the UUID field
      *
      * @see java.util.UUID#randomUUID()
@@ -52,13 +59,12 @@ public class UUID extends Cache {
      *
      * @see Cache#createFile()
      * @see #generateUUID()
-     * @see Cache#storeDataInFile(byte[])
+     * @see Cache#storeDataInFile(String)
      */
     public boolean storeUUID() {
         createFile();
         if (mUUID == null) generateUUID();
-        return storeDataInFile(mUUID.toString()
-                                    .getBytes());
+        return storeDataInFile(mUUID.toString());
     }
 
     /**

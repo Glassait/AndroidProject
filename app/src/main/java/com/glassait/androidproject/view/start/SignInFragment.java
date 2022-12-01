@@ -101,7 +101,7 @@ public class SignInFragment extends EmailValidator {
      * @see JSONObject#put(String, int)
      * @see Cache#Cache(String, Context)
      * @see Cache#createFile()
-     * @see Cache#storeDataInFile(byte[])
+     * @see Cache#storeDataInFile(String)
      */
     private void onClickListener(View ignoredView) {
         if (checkIfEtIsFilled(mEmailEt) && checkEmail(
@@ -146,8 +146,7 @@ public class SignInFragment extends EmailValidator {
                                 mRoot.getContext()
                         );
                         cache.createFile();
-                        cache.storeDataInFile(data.toString()
-                                                  .getBytes());
+                        cache.storeDataInFile(data.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

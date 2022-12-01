@@ -2,6 +2,8 @@ package com.glassait.androidproject.common.utils.file;
 
 import android.content.Context;
 
+import com.glassait.androidproject.common.utils.secret.Secret;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -74,6 +76,34 @@ public class Cache {
     }
 
     /**
+     * Other form of the main methode {@link #storeDataInFile(byte[])}
+     *
+     * @param data The date to store in the file
+     *
+     * @return True if the data is successfully store, false otherwise
+     *
+     * @see #storeDataInFile(byte[])
+     */
+    public boolean storeDataInFile(String data) {
+        return storeDataInFile(data.getBytes());
+    }
+
+    /**
+     * Other form of the main methode {@link #storeDataInFile(byte[])}
+     *
+     * @param data The date to store in the file
+     *
+     * @return True if the data is successfully store, false otherwise
+     *
+     * @see #storeDataInFile(byte[])
+     */
+    @SuppressWarnings("all")
+    public boolean storeDataInFile(int data) {
+        return storeDataInFile(Integer.toString(data)
+                                      .getBytes());
+    }
+
+    /**
      * Read the file for getting the stored data and return it.
      * <p>
      * If the file is not found return null.
@@ -119,6 +149,14 @@ public class Cache {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int readDateFromFile() {
+        String data = readDataFromFile();
+        if (data == null) {
+            return Secret.INVALID_INT;
+        }
+        return Integer.parseInt(data);
     }
 
     /**

@@ -66,5 +66,21 @@
     <string name="toast_booking_validate">Booking validate</string>
     <string name="upper_label_you_need_to_confirm">You need to confirm</string>
     <string name="upper_label_your_reservation_confirmed">Your reservation is confirmed</string>
-    <string name="toas_erreur_delete_offer">Failed to delete the offer, try later</string>
+    <string name="toast_error_delete_offer">Failed to delete the offer, try later</string>
+    <string name="state_open"
+            translatable="false">open</string>
+    <string name="state_close"
+            translatable="false">close</string>
+    <string name="nav_drawer_parameter">Parameter</string>
+    <string name="nav_drawer_account">Account</string>
+    <string name="nav_drawer_dark_mode">Dark mode</string>
+    <string name="nav_drawer_language">Language</string>
+    <string name="nav_drawer_light_mode">Light mode</string>
+    <string name="language_french"
+            translatable="false">Français</string>
+    <string name="language_english"
+            translatable="false">English</string>
+    <string name="upper_label_modify">Modify</string>
+    <string name="toast_account_updated">Account Updated</string>
+    <string name="nav_drawer_log_out">Log out</string>
 </resources>
