@@ -2,9 +2,12 @@ package com.glassait.androidproject.view.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -21,7 +24,9 @@ import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.Offer;
 import com.glassait.androidproject.model.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * A fragment representing a list of Items.
@@ -74,50 +79,95 @@ public class SeeAllOfferFragment extends Fragment {
         );
 
         NavController navController = NavHostFragment.findNavController(this);
+        RecyclerView  recyclerView  = root.findViewById(R.id.see_all_my_offer_list);
 
         // Set the adapter
-        if (root instanceof RecyclerView) {
-            Context      context      = root.getContext();
-            RecyclerView recyclerView = (RecyclerView) root;
+        Context context = root.getContext();
 
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(
-                        context,
-                        mColumnCount
-                ));
-            }
-
-            List<Offer> offerList = null;
-            String from = StoreLocalData.getInstance()
-                                        .getSeeAll();
-            User currentUser = StoreLocalData.getInstance()
-                                             .getUser();
-
-            switch (from) {
-                case "yourOffer":
-                    offerList = mOfferDao.getAllOffersFromCreatorId(currentUser.uid);
-                    SecondActivity.getInstance()
-                                  .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
-                    break;
-                case "inArea":
-                    offerList =
-                            mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid);
-                    break;
-                case "myReservation":
-                    offerList = mOfferDao.getAllOffersReservedBy(currentUser.uid);
-                    break;
-            }
-
-            SeeAllOfferRecyclerViewAdapter adapter = new SeeAllOfferRecyclerViewAdapter(offerList);
-            adapter.setOnClickListener(offer -> {
-                StoreLocalData.getInstance()
-                              .setOffer(offer);
-                navController.navigate(R.id.offer_fragment);
-            });
-            recyclerView.setAdapter(adapter);
+        if (mColumnCount <= 1) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        } else {
+            recyclerView.setLayoutManager(new GridLayoutManager(
+                    context,
+                    mColumnCount
+            ));
         }
+
+        AtomicReference<List<Offer>> offerList = new AtomicReference<>();
+        offerList.set(new ArrayList<>());
+        SeeAllOfferRecyclerViewAdapter adapter =
+                new SeeAllOfferRecyclerViewAdapter(offerList.get());
+
+        String from = StoreLocalData.getInstance()
+                                    .getSeeAll();
+        User currentUser = StoreLocalData.getInstance()
+                                         .getUser();
+
+        EditText searchEt = root.findViewById(R.id.see_all_offer_search_et);
+        TextView space    = root.findViewById(R.id.space);
+
+        switch (from) {
+            case "yourOffer":
+                offerList.set(mOfferDao.getAllOffersFromCreatorId(currentUser.uid));
+                SecondActivity.getInstance()
+                              .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
+                break;
+            case "inArea":
+                offerList.set(mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid));
+                break;
+            case "myReservation":
+                offerList.set(mOfferDao.getAllOffersReservedBy(currentUser.uid));
+                break;
+            case "search":
+                offerList.set(mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid));
+                searchEt.setVisibility(View.VISIBLE);
+                space.setVisibility(View.VISIBLE);
+
+                searchEt.setOnKeyListener((v, keyCode, event) -> {
+                    if (event.getAction() == KeyEvent.ACTION_UP && keyCode == 66) {
+                        adapter.clearList();
+
+                        String search = searchEt.getText()
+                                                .toString()
+                                                .trim()
+                                                .toLowerCase();
+                        searchEt.setText(search);
+
+                        List<Offer> newList = new ArrayList<>();
+                        List<Offer> offers =
+                                mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid);
+
+                        if (search.length() == 0) {
+                            newList = offers;
+                        } else {
+                            for (Offer offer : offers) {
+                                if (offer.title.toLowerCase()
+                                               .contains(search)) {
+                                    newList.add(offer);
+                                } else if (offer.title.toLowerCase()
+                                                      .equals(search)) {
+                                    newList.add(offer);
+                                }
+                            }
+                        }
+
+                        adapter.setList(newList);
+                        adapter.notifyDataSetChanged();
+                    }
+                    return false;
+                });
+                break;
+        }
+
+        adapter.setList(offerList.get());
+        adapter.notifyDataSetChanged();
+        adapter.setOnClickListener(offer -> {
+            StoreLocalData.getInstance()
+                          .setOffer(offer);
+            navController.navigate(R.id.offer_fragment);
+        });
+        recyclerView.setAdapter(adapter);
+
         return root;
     }
 
