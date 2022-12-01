@@ -68,4 +68,13 @@ public class StoreLocalData {
     public void setSeeAll(String seeAll) {
         StoreLocalData.mSeeAll = seeAll;
     }
+
+    /**
+     * Clear all the data inside the singleton
+     */
+    public void clearAllData() {
+        mUser = null;
+        mOffer = null;
+        mSeeAll = null;
+    }
 }
