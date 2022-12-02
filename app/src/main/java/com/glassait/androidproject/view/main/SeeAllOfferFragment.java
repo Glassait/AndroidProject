@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -17,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.glassait.androidproject.R;
+import com.glassait.androidproject.common.utils.secret.Secret;
 import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.dao.OfferDao;
 import com.glassait.androidproject.model.database.AppDatabase;
@@ -104,7 +104,6 @@ public class SeeAllOfferFragment extends Fragment {
                                          .getUser();
 
         EditText searchEt = root.findViewById(R.id.see_all_offer_search_et);
-        TextView space    = root.findViewById(R.id.space);
 
         switch (from) {
             case "yourOffer":
@@ -113,7 +112,17 @@ public class SeeAllOfferFragment extends Fragment {
                               .enableAddButton(v -> navController.navigate(R.id.create_offer_fragment));
                 break;
             case "inArea":
-                offerList.set(mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid));
+                List<Offer> firstList =
+                        mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid);
+                List<Offer> displayedList = new ArrayList<>();
+
+                for (Offer offer : firstList) {
+                    if (currentUser.address.getLocation()
+                                           .distanceTo(offer.location) <= Secret.DISTANCE) {
+                        displayedList.add(offer);
+                    }
+                }
+                offerList.set(displayedList);
                 break;
             case "myReservation":
                 offerList.set(mOfferDao.getAllOffersReservedBy(currentUser.uid));
@@ -121,7 +130,6 @@ public class SeeAllOfferFragment extends Fragment {
             case "search":
                 offerList.set(mOfferDao.getAllOffersNotReservedAndNotFromCreatorId(currentUser.uid));
                 searchEt.setVisibility(View.VISIBLE);
-                space.setVisibility(View.VISIBLE);
 
                 searchEt.setOnKeyListener((v, keyCode, event) -> {
                     if (event.getAction() == KeyEvent.ACTION_UP && keyCode == 66) {

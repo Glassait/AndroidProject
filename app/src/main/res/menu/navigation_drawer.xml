@@ -14,7 +14,8 @@
                     android:checkable="true" />
         </menu>
     </item>
-    <item
+    <!-- Failed to implement the change of language -->
+    <!--<item
             android:id="@+id/labels_item"
             android:title="@string/nav_drawer_language">
         <menu>
@@ -27,7 +28,7 @@
                     android:title="@string/language_english"
                     android:checkable="true" />
         </menu>
-    </item>
+    </item>-->
     <item
             android:id="@+id/labels_item_2"
             android:title="">

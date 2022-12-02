@@ -73,8 +73,6 @@ public class UUID extends Cache {
      * If the file is not found return null.
      * <p>
      * If something append during the process of the uuid string then return null
-     * <p><br>
-     * Code come from : <a href="https://developer.android.com/training/data-storage/app-specific#internal-access-stream">Android Developers</a>
      *
      * @return The uuid if the file is found and the string correctly build, otherwise return null.
      *

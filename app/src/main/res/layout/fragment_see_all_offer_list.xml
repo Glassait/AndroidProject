@@ -31,7 +31,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/see_all_offer_search_et"
-            app:layout_constraintBottom_toTopOf="@+id/space" />
+            app:layout_constraintBottom_toTopOf="@+id/space"
+            android:layout_marginBottom="50dp" />
 
     <TextView
             android:id="@+id/space"
@@ -40,6 +41,5 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/see_all_my_offer_list"
-            android:layout_marginTop="50dp"
-            android:visibility="gone" />
+            android:layout_marginTop="50dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

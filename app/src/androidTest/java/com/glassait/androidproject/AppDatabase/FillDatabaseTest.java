@@ -95,12 +95,48 @@ public class FillDatabaseTest {
         mUserDao.insert(user)
                 .subscribe()
                 .dispose();
+        user = new User(
+                "Nathalie",
+                "Portman",
+                "portmain@hotmain.com",
+                "+33012345789",
+                new Address(
+                        APP_CONTEXT,
+                        "64 Rue Manuel",
+                        "59000",
+                        "Lille",
+                        "France"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 8;
+        mUserDao.insert(user)
+                .subscribe()
+                .dispose();
+        user = new User(
+                "Killian",
+                "Dos",
+                "killiandos@hotmail.com",
+                "+33012345789",
+                new Address(
+                        APP_CONTEXT,
+                        "Bd Professeur Louis Vialleton",
+                        "34000",
+                        "Montpellier",
+                        "France"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 9;
+        mUserDao.insert(user)
+                .subscribe()
+                .dispose();
     }
 
     @Test
     public void fillWithOffer() {
         final User[] user = new User[1];
-        for (int i = 5; i < 8; i++) {
+        for (int i = 5; i < 10; i++) {
             mUserDao.getUserFromUid(i)
                     .subscribe(u -> user[0] = u)
                     .dispose();
