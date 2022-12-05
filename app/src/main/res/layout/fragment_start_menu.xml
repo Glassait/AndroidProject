@@ -21,7 +21,19 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 android:id="@+id/start_menu_title" />
 
+        <ImageView
+            android:id="@+id/imageIv_startmenu"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@+id/signin_signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/start_menu_title" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/signin_signup"
                 android:layout_height="200dp"
                 style="@style/Box"
                 app:layout_constraintBottom_toBottomOf="parent"
