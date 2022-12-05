@@ -1,6 +1,7 @@
 package com.glassait.androidproject.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -380,12 +381,19 @@ public class SignUpFragment extends Fragment {
         // TODO: Change the complete part in the subscribe when the second activity is created
         mUserDao.insert(user)
                 .subscribe(
-                        () -> Toast.makeText(
-                                           mRoot.getContext(),
-                                           "User insert in database",
-                                           Toast.LENGTH_SHORT
-                                   )
-                                   .show(),
+                        () -> {
+                            Toast.makeText(
+                                         mRoot.getContext(),
+                                         "User insert in database",
+                                         Toast.LENGTH_SHORT
+                                 )
+                                 .show();
+                            Intent intent = new Intent(
+                                    mRoot.getContext(),
+                                    ScanningActivity.class
+                            );
+                            startActivity(intent);
+                        },
                         throwable -> Toast.makeText(
                                                   mRoot.getContext(),
                                                   R.string.error_went_wrong_database,

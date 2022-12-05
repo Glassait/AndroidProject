@@ -21,11 +21,5 @@ public class MainActivity extends AppCompatActivity {
         LocalData.getInstance();
 
         setContentView(R.layout.activity_main);
-
-        Intent intent = new Intent(
-                this,
-                ScanningActivity.class
-        );
-        startActivity(intent);
     }
 }
