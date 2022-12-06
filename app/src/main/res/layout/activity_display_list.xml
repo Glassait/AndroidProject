@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.DisplayListActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/item_list_view"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:paddingTop="15dp"
+            android:foregroundGravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/items_header" />
+
+        <ListView
+            android:id="@+id/price_list_View"
+            android:paddingTop="15dp"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/items_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/items"
+            android:textColor="#93C3EE"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:id="@+id/price_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/price_header"
+            android:gravity="center"
+            android:textColor="#93C3EE"
+
+            android:textSize="20sp"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</FrameLayout>

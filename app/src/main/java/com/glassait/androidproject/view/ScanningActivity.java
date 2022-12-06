@@ -123,14 +123,14 @@ public class ScanningActivity extends AppCompatActivity {
             );
             startActivity(intent);
         });
-        /** adjust here to transfer to list activity
+        //transfer to list activity
         listBtn.setOnClickListener(v -> {
             Intent intent = new Intent(
                     getApplicationContext(),
                     CompareActivity.class
             );
             startActivity(intent);
-        });*/
+        });
     }
 
     private void detectResultFromImage() {

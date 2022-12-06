@@ -19,4 +19,11 @@
     <string name="error_incorrect_email">Incorrect email</string>
     <string name="upper_label_postal_code">Postcode</string>
     <string name="error_incorrect_phone">Incorrect phone number</string>
+    <string name="item">Item:</string>
+    <string name="item_name">item name</string>
+    <string name="_20dkk">20dkk</string>
+    <string name="price">Price:</string>
+    <string name="text">Text</string>
+    <string name="items">Items</string>
+    <string name="price_header">Price</string>
 </resources>
