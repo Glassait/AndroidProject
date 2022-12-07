@@ -1,5 +1,6 @@
 package com.glassait.androidproject.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,10 +23,15 @@ public class StartMenuFragment extends Fragment {
                 false
         );
         TextView signUp = root.findViewById(R.id.start_menu_sign_up_button);
+        TextView signIn = root.findViewById(R.id.start_menu_sign_in_button);
 
         NavController navController = NavHostFragment.findNavController(this);
         // Navigate to the sign up fragment
         signUp.setOnClickListener(view -> navController.navigate(R.id.sign_up));
+        signIn.setOnClickListener(view -> {
+            Intent  intent = new Intent(getContext(), DisplayListActivity.class);
+            startActivity(intent);
+        });
 
         return root;
     }
