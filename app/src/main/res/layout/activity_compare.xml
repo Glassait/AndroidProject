@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
-    tools:context=".view.CompareActivity">
+    tools:context=".view.main.CompareActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/primary_light"
-        android:text="Visualize my purchase"
+        android:text="@string/text_visualize_my_purchase"
         android:textAlignment="center"
         android:textColor="@color/box_light"
         app:layout_constraintEnd_toEndOf="parent"
@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/piechart"
+        android:id="@+id/compare_activity_pie_chart"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,8 +32,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textView" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,105 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    tools:context=".view.ScanningActivity">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:context=".view.main.ScanningActivity">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Barcodescanner"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:textAlignment="center"
-            android:textColor="@color/box_light"
-            android:backgroundTint="@color/primary_light"/>
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-
-            <!--Button to take the picture from camera with camera-->
-            <!--<com.google.android.material.button.MaterialButton
-                android:id="@+id/cameraBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Camera"
-                android:layout_weight="1"
-                android:layout_marginEnd="5dp"/>-->
-
-        </LinearLayout>
+                android:text="@string/text_barcodeScanner"
+                style="@style/TextAppearance.MaterialComponents.Headline6"
+                android:textAlignment="center"
+                android:textColor="@color/box_light"
+                android:backgroundTint="@color/primary_light" />
 
         <ImageView
-            android:id="@+id/imageIv"
-            android:layout_width="match_parent"
-            android:src="@drawable/logo"
-            android:adjustViewBounds="true"
-            android:layout_height="wrap_content" />
+                android:id="@+id/imageIv"
+                android:layout_width="match_parent"
+                android:src="@drawable/logo"
+                android:adjustViewBounds="true"
+                android:layout_height="wrap_content"
+                tools:ignore="ContentDescription" />
 
         <!--Button to scan the image took by camera-->
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/scanBtn"
-            style="@style/materialButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:text="Scan"
-            app:backgroundTint="@color/primary_light" />
+                android:id="@+id/scanBtn"
+                style="@style/materialButton"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:text="@string/text_scan"
+                app:backgroundTint="@color/primary_light" />
 
         <!--TextView: Label-->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextAppearance.MaterialComponents.Body1"
-            android:text="Result:"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.MaterialComponents.Body1"
+                android:text="@string/text_result" />
 
-        <!--TextView: Shows the scannend result from barcode-->
+        <!--TextView: Shows the scan end result from barcode-->
         <TextView
-            android:id="@+id/resultTv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+                android:id="@+id/resultTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_alignParentBottom="true">
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
 
             <!--Button to go and see items in a chart-->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/compare_btn"
-                style="@style/materialButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="Chart"
-                app:backgroundTint="@color/primary_light"
-                android:visibility="gone"
-                />
+                    android:id="@+id/compare_btn"
+                    style="@style/materialButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_chart"
+                    app:backgroundTint="@color/primary_light"
+                    android:visibility="gone" />
 
             <!--Button to go and see items in a list-->
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/displayListBtn"
-                style="@style/materialButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
-                android:layout_weight="1"
-                android:text="List"
-                app:backgroundTint="@color/primary_light"
-                android:visibility="gone"
-                />
+                    android:id="@+id/displayListBtn"
+                    style="@style/materialButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:text="@string/text_list"
+                    app:backgroundTint="@color/primary_light"
+                    android:visibility="gone" />
 
         </LinearLayout>
 

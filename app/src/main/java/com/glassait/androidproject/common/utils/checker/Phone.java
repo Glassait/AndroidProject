@@ -1,4 +1,4 @@
-package com.glassait.androidproject.common.utils;
+package com.glassait.androidproject.common.utils.checker;
 
 /**
  * Is class is for handle the check of the phone number during register process

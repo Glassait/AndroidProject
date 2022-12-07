@@ -6,20 +6,47 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.LocalData;
+import com.glassait.androidproject.common.utils.file.GetUserFromFile;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.glassait.androidproject.model.database.Builder;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.glassait.androidproject.model.entity.User;
+import com.glassait.androidproject.view.main.ScanningActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Build the database
         Builder.getInstance()
                .buildDatabase(this);
-        LocalData.getInstance();
+        // Initialize the singleton
+        StoreLocalData.getInstance();
 
+        // Automatic-connection part
+        GetUserFromFile getUser = new GetUserFromFile(getApplicationContext());
+        Thread          thread  = new Thread(getUser);
+        thread.start();
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        User user = getUser.getUser();
+
+        if (user != null) {
+            Intent intent = new Intent(
+                    getApplicationContext(),
+                    ScanningActivity.class
+            );
+
+            user.address.getLocation(getApplicationContext());
+            StoreLocalData.getInstance()
+                          .setUser(user);
+            startActivity(intent);
+        }
+
+        // View part
         setContentView(R.layout.activity_main);
     }
 }

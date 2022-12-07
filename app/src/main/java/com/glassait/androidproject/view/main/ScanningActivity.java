@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.main;
 
 import android.Manifest;
 import android.app.Activity;
@@ -26,10 +26,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.LocalData;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
 import com.google.android.material.button.MaterialButton;
 import com.google.mlkit.vision.barcode.BarcodeScanner;
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions;
@@ -41,24 +38,16 @@ import java.util.List;
 
 public class ScanningActivity extends AppCompatActivity {
     // to handle the permissions
-    private static final int CAMERA_REQUEST_CODE = 101;
-
+    private static final int            CAMERA_REQUEST_CODE = 101;
     // array of required permissions
-    private String[] cameraPermissions;
-
+    private              String[]       cameraPermissions;
     // Uri from the barcode
-    private Uri imageUri = null;
-
+    private              Uri            imageUri            = null;
     // UI Views
-    private ImageView      imageIv;
-    private MaterialButton scanBtn;
-    private TextView       resultTv;
-
-    private BarcodeScannerOptions barcodeScannerOptions;
-    private BarcodeScanner        barcodeScanner;
-
-    //
-    private static final String TAG = "MAIN_TAG";
+    private              ImageView      mImageIv;
+    private              TextView       mResultTv;
+    private              BarcodeScanner mBarcodeScanner;
+    private static final String         TAG                 = "MAIN_TAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,27 +55,27 @@ public class ScanningActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanning);
 
         // init UI Views
-        imageIv = findViewById(R.id.imageIv);
-        scanBtn = findViewById(R.id.scanBtn);
-        resultTv = findViewById(R.id.resultTv);
+        mImageIv = findViewById(R.id.imageIv);
+        MaterialButton mScanBtn = findViewById(R.id.scanBtn);
+        mResultTv = findViewById(R.id.resultTv);
 
         // initialize requested permissions
         cameraPermissions =
                 new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
         // initialize barcode scanner
-        barcodeScannerOptions =
+        BarcodeScannerOptions barcodeScannerOptions =
                 new BarcodeScannerOptions.Builder().setBarcodeFormats(Barcode.FORMAT_ALL_FORMATS)
                                                    .build();
-        barcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions);
+        mBarcodeScanner = BarcodeScanning.getClient(barcodeScannerOptions);
 
         // initialize buttons for next activity
         MaterialButton compareBtn = findViewById(R.id.compare_btn);
-        MaterialButton listBtn = findViewById(R.id.displayListBtn);
+        MaterialButton listBtn    = findViewById(R.id.displayListBtn);
 
 
         // handle scanBtn click
-        scanBtn.setOnClickListener(v -> {
+        mScanBtn.setOnClickListener(v -> {
             checkCameraPermissions();
             int cameraPermission = ContextCompat.checkSelfPermission(
                     ScanningActivity.this,
@@ -139,27 +128,14 @@ public class ScanningActivity extends AppCompatActivity {
                     this,
                     imageUri
             );
-            Task<List<Barcode>> barcodeResult = barcodeScanner.process(inputImage)
-                                                              .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
-                                                                  @Override
-                                                                  public void onSuccess(
-                                                                          List<Barcode> barcodes) {
-                                                                      extractBarCodeQRCodeInfo(barcodes);
-                                                                  }
-                                                              })
-                                                              .addOnFailureListener(new OnFailureListener() {
-                                                                  @Override
-                                                                  public void onFailure(
-                                                                          @NonNull Exception e) {
-                                                                      Toast.makeText(
-                                                                                   ScanningActivity.this,
-                                                                                   "Failed scanning due to "
-                                                                                           + e.getMessage(),
-                                                                                   Toast.LENGTH_SHORT
-                                                                           )
-                                                                           .show();
-                                                                  }
-                                                              });
+            mBarcodeScanner.process(inputImage)
+                           .addOnSuccessListener(this::extractBarCodeQRCodeInfo)
+                           .addOnFailureListener(e -> Toast.makeText(
+                                                                   ScanningActivity.this,
+                                                                   "Failed scanning due to " + e.getMessage(),
+                                                                   Toast.LENGTH_SHORT
+                                                           )
+                                                           .show());
         } catch (Exception e) {
             Toast.makeText(
                          this,
@@ -181,9 +157,10 @@ public class ScanningActivity extends AppCompatActivity {
                     "extractBarCodeQRCodeInfo: rawValue: " + rawValue
             );
 
-            resultTv.setText("Scanned: " + rawValue);
-            LocalData.getInstance()
-                     .setScanningCode(rawValue);
+            String text = "Scanned: " + rawValue;
+            mResultTv.setText(text);
+            StoreLocalData.getInstance()
+                          .setScanningCode(rawValue);
         }
     }
 
@@ -224,7 +201,7 @@ public class ScanningActivity extends AppCompatActivity {
                                         TAG,
                                         "onActivityResult: imageUri: " + imageUri
                                 );
-                                imageIv.setImageURI(imageUri);
+                                mImageIv.setImageURI(imageUri);
                             } else {
                                 // cancelled
                                 Toast.makeText(

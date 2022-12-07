@@ -19,4 +19,22 @@
     <string name="error_incorrect_email">Mail incorrecte</string>
     <string name="upper_label_postal_code">Code Postal</string>
     <string name="error_incorrect_phone">Téléphone incorrecte</string>
+    <string name="item">Produit:</string>
+    <string name="item_name">Nom du produit</string>
+    <string name="price">Prix:</string>
+    <string name="text">Texte</string>
+    <string name="items">Produits</string>
+    <string name="price_header">Prix</string>
+    <string name="error_failed_to_connect">Erreur de connexion, email invalide</string>
+    <string name="upper_title_connection">Connexion</string>
+    <string name="text_new_phone">Il semblerait que vous tentez de vous connecter avec un nouveau téléphone.</string>
+    <string name="text_email_send">Un email a été envoyé à l’adresse mail renseignée. Vous pouvez retourné à l\'écran de connexion</string>
+    <string name="text_barcodeScanner">Lecteur de codes-barres</string>
+    <string name="text_scan">Scan</string>
+    <string name="text_result">Résultat:</string>
+    <string name="text_list">Liste</string>
+    <string name="text_chart">Graphique</string>
+    <string name="text_visualize_my_purchase">Visualisation de mon achat</string>
+    <string name="test_spending_by_category">Dépense par catégorie</string>
+    <string name="text_category">Catégorie</string>
 </resources>

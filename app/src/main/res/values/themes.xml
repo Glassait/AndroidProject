@@ -23,6 +23,7 @@
     </style>
 
     <style name="Text.normal">
+        <item name="android:textSize">20sp</item>
         <item name="android:layout_marginStart">15dp</item>
         <item name="android:layout_marginEnd">15dp</item>
     </style>
@@ -38,6 +39,7 @@
 
     <style name="TitleParameters"
             parent="@style/BoldParameters">
+        <item name="android:textSize">60sp</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_height">100dp</item>
         <item name="android:layout_marginTop">75dp</item>
@@ -99,6 +101,7 @@
     <!-- Button background -->
     <style name="Button"
             parent="@style/Text">
+        <item name="android:textSize">30sp</item>
         <item name="android:width">300dp</item>
         <item name="android:height">65dp</item>
         <item name="android:gravity">center</item>
@@ -129,5 +132,10 @@
     <style name="returnButton"
             parent="@style/RoundButton">
         <item name="android:background">@drawable/back_button_light</item>
+    </style>
+
+    <style name="materialButton"
+            parent="@style/Button.full">
+        <item name="android:backgroundTint">@color/primary_light</item>
     </style>
 </resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="upper_title_welcome">Bienvendio</string>
+    <string name="upper_text_sign_up">Inscríbete</string>
+    <string name="upper_text_sign_in">Registrarse</string>
+    <string name="upper_label_last_name">Apellido</string>
+    <string name="upper_label_first_name">Nombre</string>
+    <string name="upper_label_email">Correo electrónico</string>
+    <string name="upper_label_phone">Teléfono</string>
+    <string name="upper_label_address">Dirección</string>
+    <string name="upper_label_city">Ciudad</string>
+    <string name="upper_label_country">País</string>
+    <string name="upper_label_password">Contraseña</string>
+    <string name="text_accept_eula">Al hacer clic en el botón de registro, acepta el CLUF.</string>
+    <string name="error_went_wrong_database">Algo ha ido mal con la base de datos</string>
+    <string name="error_all_fields_not_filled">No se han rellenado todos los campos.</string>
+    <string name="error_email_already_used">Correo electrónico ya utilizado</string>
+    <string name="error_cannot_be_empty">No puede estar vacío</string>
+    <string name="error_incorrect_email">Correo electrónico incorrecto</string>
+    <string name="upper_label_postal_code">Código postal</string>
+    <string name="error_incorrect_phone">Número de teléfono incorrecto</string>
+    <string name="item">Artículo:</string>
+    <string name="item_name">nombre del artículo</string>
+    <string name="price">Precio:</string>
+    <string name="text">Texto</string>
+    <string name="items">Artículos</string>
+    <string name="price_header">Precio</string>
+    <string name="error_failed_to_connect">No se ha podido conectar, correo electrónico incorrecto</string>
+    <string name="upper_title_connection">Conexión</string>
+    <string name="text_new_phone">Parece que estás intentando conectarte con un teléfono nuevo.</string>
+    <string name="text_email_send">Se ha enviado un correo electrónico a la dirección indicada. Puede volver a la pantalla de conexión.</string>
+    <string name="text_barcodeScanner">Escáner de códigos de barras</string>
+    <string name="text_scan">Escanear</string>
+    <string name="text_result">Resultado:</string>
+    <string name="text_list">Lista</string>
+    <string name="text_chart">Gráfico</string>
+    <string name="text_visualize_my_purchase">Visualizar mi compra</string>
+    <string name="test_spending_by_category">Gasto por categoría</string>
+    <string name="text_category">Categoría de gastos</string>
+</resources>

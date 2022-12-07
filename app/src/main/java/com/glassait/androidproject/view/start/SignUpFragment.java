@@ -3,7 +3,6 @@ package com.glassait.androidproject.view.start;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,24 +10,29 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.common.utils.Email;
-import com.glassait.androidproject.common.utils.Phone;
+import com.glassait.androidproject.common.utils.button.BackButton;
+import com.glassait.androidproject.common.utils.checker.Address;
+import com.glassait.androidproject.common.utils.checker.Phone;
+import com.glassait.androidproject.common.utils.file.Cache;
+import com.glassait.androidproject.common.utils.secret.Secret;
+import com.glassait.androidproject.common.utils.secret.StoreLocalData;
+import com.glassait.androidproject.common.utils.validator.EmailValidator;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
-import com.glassait.androidproject.view.ScanningActivity;
+import com.glassait.androidproject.view.main.ScanningActivity;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.UUID;
 
-public class SignUpFragment extends Fragment {
+public class SignUpFragment extends EmailValidator {
     // Database part
     private final AppDatabase         mAppDatabase      = Builder.getInstance()
                                                                  .getAppDatabase();
@@ -44,7 +48,6 @@ public class SignUpFragment extends Fragment {
     private       EditText            mCityEt;
     private       EditText            mCountryEt;
     // Common part
-    private final Email               mEmail            = new Email();
     private final Phone               mPhone            = new Phone();
     private final ArrayList<EditText> editTextArrayList = new ArrayList<>();
 
@@ -56,18 +59,16 @@ public class SignUpFragment extends Fragment {
                 container,
                 false
         );
-        new com.glassait.androidproject.common.utils.UUID(
-                mRoot.getContext(),
-                "test"
-        );
-
-        TextView backButton = mRoot.findViewById(R.id.sign_up_back_btn);
 
         NavController navController = NavHostFragment.findNavController(this);
-        backButton.setOnClickListener(view -> navController.navigate(R.id.startMenu));
+
+        new BackButton(
+                mRoot,
+                v -> navController.navigate(R.id.start_menu_fragment)
+        );
 
         // First name editText
-        mFirstNameEt = mRoot.findViewById(R.id.sign_up_first_name_et);
+        mFirstNameEt = mRoot.findViewById(R.id.fragment_sign_up_first_name_et);
         editTextArrayList.add(mFirstNameEt);
         mFirstNameEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -76,7 +77,7 @@ public class SignUpFragment extends Fragment {
         ));
 
         // Last name editText
-        mLastNameEt = mRoot.findViewById(R.id.sign_up_last_name_et);
+        mLastNameEt = mRoot.findViewById(R.id.fragment_sign_up_last_name_et);
         editTextArrayList.add(mLastNameEt);
         mLastNameEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -85,27 +86,24 @@ public class SignUpFragment extends Fragment {
         ));
 
         // Email editText
-        mEmailEt = mRoot.findViewById(R.id.sign_up_email_et);
+        mEmailEt = mRoot.findViewById(R.id.fragment_sign_up_email_et);
         editTextArrayList.add(mEmailEt);
-        mEmailEt.setOnKeyListener((v, key, event) -> {
-            if (event.getAction() == KeyEvent.ACTION_UP || key == 67) {
-                checkEmail();
-            }
-            return false;
+        mEmailEt.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) checkEmail(
+                    mEmailEt,
+                    mRoot
+            );
         });
 
         // Phone editText
-        mPhoneEt = mRoot.findViewById(R.id.sign_up_phone_et);
+        mPhoneEt = mRoot.findViewById(R.id.fragment_sign_up_phone_et);
         editTextArrayList.add(mPhoneEt);
-        mPhoneEt.setOnKeyListener((v, key, event) -> {
-            if (event.getAction() == KeyEvent.ACTION_UP || key == 67) {
-                checkPhone();
-            }
-            return false;
+        mPhoneEt.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) checkPhone();
         });
 
         // Address editText
-        mAddressEt = mRoot.findViewById(R.id.sign_up_address_et);
+        mAddressEt = mRoot.findViewById(R.id.fragment_sign_up_address_et);
         editTextArrayList.add(mAddressEt);
         mAddressEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -114,7 +112,7 @@ public class SignUpFragment extends Fragment {
         ));
 
         // Postal code editText
-        mPostCodeEt = mRoot.findViewById(R.id.sign_up_postal_code_et);
+        mPostCodeEt = mRoot.findViewById(R.id.fragment_sign_up_postal_code_et);
         editTextArrayList.add(mPostCodeEt);
         mPostCodeEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -123,7 +121,7 @@ public class SignUpFragment extends Fragment {
         ));
 
         // City editText
-        mCityEt = mRoot.findViewById(R.id.sign_up_city_et);
+        mCityEt = mRoot.findViewById(R.id.fragment_sign_up_city_et);
         editTextArrayList.add(mCityEt);
         mCityEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -132,7 +130,7 @@ public class SignUpFragment extends Fragment {
         ));
 
         // Country editText
-        mCountryEt = mRoot.findViewById(R.id.sign_up_country_et);
+        mCountryEt = mRoot.findViewById(R.id.fragment_sign_up_country_et);
         editTextArrayList.add(mCountryEt);
         mCountryEt.setOnFocusChangeListener((v, hasFocus) -> onFocusChange(
                 v,
@@ -140,8 +138,8 @@ public class SignUpFragment extends Fragment {
                 mCountryEt
         ));
 
-        TextView mSignUpButton = mRoot.findViewById(R.id.sign_up_register_btn);
-        mSignUpButton.setOnClickListener(this::onClickRegister);
+        TextView signUpButton = mRoot.findViewById(R.id.fragment_sign_up_register_btn);
+        signUpButton.setOnClickListener(this::onClickListener);
 
         return mRoot;
     }
@@ -159,12 +157,12 @@ public class SignUpFragment extends Fragment {
      *
      * @see #checkIfEmailIsAlreadyUse()
      * @see #checkIfAllEtAreFilled()
-     * @see #checkEmail()
+     * @see #checkEmail(EditText, View)
      * @see #checkPhone()
      * @see #createAndInsertUserInDb()
      * @see Toast#makeText(Context, int, int)
      */
-    private void onClickRegister(View view) {
+    private void onClickListener(View view) {
         if (checkIfEmailIsAlreadyUse()) {
             Toast.makeText(
                          mRoot.getContext(),
@@ -175,7 +173,10 @@ public class SignUpFragment extends Fragment {
             mEmailEt.setError(mRoot.getResources()
                                    .getString(R.string.error_email_already_used));
         } else if (checkIfAllEtAreFilled()) {
-            if (checkEmail()) {
+            if (checkEmail(
+                    mEmailEt,
+                    mRoot
+            )) {
                 if (checkPhone()) {
                     createAndInsertUserInDb();
                 } else {
@@ -202,28 +203,6 @@ public class SignUpFragment extends Fragment {
                  )
                  .show();
         }
-    }
-
-    /**
-     * Check if the EditText field is filled.
-     * <p>
-     * If the length of the string get from the EditText is equals to 0 then we set an error on the
-     * EditText.
-     *
-     * @param et The editText to check
-     *
-     * @return True if the editText is filled, false otherwise
-     *
-     * @see EditText#setError(CharSequence)
-     */
-    private boolean checkIfEtIsFilled(@NonNull EditText et) {
-        if (et.getText()
-              .toString()
-              .length() == 0) {
-            et.setError(getString(R.string.error_cannot_be_empty));
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -256,8 +235,7 @@ public class SignUpFragment extends Fragment {
     private boolean checkIfEmailIsAlreadyUse() {
         final User[] user = new User[1];
         if (checkIfEtIsFilled(mEmailEt)) {
-            mUserDao.getUserFromEmail(mEmailEt.getText()
-                                              .toString())
+            mUserDao.getUserFromEmail(email.getEmail())
                     .subscribe(
                             //Success
                             userGet -> user[0] = userGet,
@@ -283,32 +261,6 @@ public class SignUpFragment extends Fragment {
      */
     private void onFocusChange(View ignoredView, boolean hasFocus, EditText input) {
         if (!hasFocus) checkIfEtIsFilled(input);
-    }
-
-    /**
-     * Check if the email is correctly formatted and encode it.
-     * <p>
-     * If not set an error on the input and return false.
-     * <p>
-     * Use the {@link Email#checkEmail()} to realise the check
-     *
-     * @return True if the email is correctly formatted, false otherwise
-     *
-     * @see Email#checkEmail()
-     * @see Email#setEmail(String)
-     * @see Email#encode(String)
-     * @see EditText#setError(CharSequence)
-     */
-    private boolean checkEmail() {
-        mEmail.setEmail(mEmail.encode(mEmailEt.getText()
-                                              .toString()));
-        if (!mEmail.checkEmail()) {
-            mEmailEt.setError(mRoot.getResources()
-                                   .getString(R.string.error_incorrect_email) + ": "
-                    + "id@domain_name.domain_extension");
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -343,58 +295,82 @@ public class SignUpFragment extends Fragment {
      * Create also a uuid for the user and store it in a file.
      * <p>
      * If the insert is successful/fail then display a {@link Toast} message
+     * <p><br>
+     * The function is also creating a file with the email and the uuid of the user for automatic
+     * connection. The data is stored in JSONObject shape.
      *
-     * @see User#User(String, String, String, String, String, String, String, UUID)
+     * @see User#User(EditText, EditText, String, EditText, Address, UUID)
      * @see UserDao#insert(User)
-     * @see com.glassait.androidproject.common.utils.UUID#UUID(Context, String)
-     * @see com.glassait.androidproject.common.utils.UUID#generateUUID()
-     * @see com.glassait.androidproject.common.utils.UUID#storeUUIDInFile()
-     * @see com.glassait.androidproject.common.utils.UUID#getUuid()
+     * @see com.glassait.androidproject.common.utils.file.UUID#UUID(Context, String)
+     * @see com.glassait.androidproject.common.utils.file.UUID#generateUUID()
+     * @see com.glassait.androidproject.common.utils.file.UUID#storeUUID()
+     * @see com.glassait.androidproject.common.utils.file.UUID#getUuid()
      * @see Toast#makeText(Context, int, int)
+     * @see JSONObject#JSONObject()
+     * @see JSONObject#put(String, int)
+     * @see Cache#Cache(String, Context)
+     * @see Cache#createFile()
+     * @see Cache#storeDataInFile(String)
      */
     private void createAndInsertUserInDb() {
-        com.glassait.androidproject.common.utils.UUID uuid =
-                new com.glassait.androidproject.common.utils.UUID(
+        com.glassait.androidproject.common.utils.file.UUID uuid =
+                new com.glassait.androidproject.common.utils.file.UUID(
                         mRoot.getContext(),
-                        mEmail.getEmail()
+                        email.getEmail()
                 );
         uuid.generateUUID();
-        uuid.storeUUIDInFile();
+        uuid.storeUUID();
 
         User user = new User(
-                mFirstNameEt.getText()
-                            .toString(),
-                mLastNameEt.getText()
-                           .toString(),
-                mEmailEt.getText()
-                        .toString(),
-                mPhoneEt.getText()
-                        .toString(),
-                mAddressEt.getText()
-                          .toString(),
-                mCityEt.getText()
-                       .toString(),
-                mCountryEt.getText()
-                          .toString(),
+                mFirstNameEt,
+                mLastNameEt,
+                email.getEmail(),
+                mPhoneEt,
+                new Address(
+                        mRoot.getContext(),
+                        mAddressEt,
+                        mPostCodeEt,
+                        mCityEt,
+                        mCountryEt
+                ),
                 uuid.getUuid()
         );
 
-        // TODO: Change the complete part in the subscribe when the second activity is created
         mUserDao.insert(user)
                 .subscribe(
+                        //Success
                         () -> {
-                            Toast.makeText(
-                                         mRoot.getContext(),
-                                         "User insert in database",
-                                         Toast.LENGTH_SHORT
-                                 )
-                                 .show();
+                            // Store user id in file for auto connection
+                            JSONObject data = new JSONObject().put(
+                                                                      "email",
+                                                                      user.email
+                                                              )
+                                                              .put(
+                                                                      "uuid",
+                                                                      user.uuid
+                                                              )
+                                                              .put(
+                                                                      "uid",
+                                                                      user.uid
+                                                              );
+                            Cache cache = new Cache(
+                                    Secret.USER_FILE,
+                                    mRoot.getContext()
+                            );
+                            cache.createFile();
+                            cache.storeDataInFile(data.toString());
+
+                            StoreLocalData.getInstance()
+                                          .setUser(user);
+
+                            // Launch the second activity
                             Intent intent = new Intent(
                                     mRoot.getContext(),
                                     ScanningActivity.class
                             );
                             startActivity(intent);
                         },
+                        //Failure
                         throwable -> Toast.makeText(
                                                   mRoot.getContext(),
                                                   R.string.error_went_wrong_database,

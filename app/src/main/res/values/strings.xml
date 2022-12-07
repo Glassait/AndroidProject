@@ -1,5 +1,6 @@
 <resources>
-    <string name="name.app" translatable="false">Tool Changer</string>
+    <string name="name.app"
+            translatable="false">Supermarket Analyzer</string>
     <string name="upper_title_welcome">Welcome</string>
     <string name="upper_text_sign_up">Sign Up</string>
     <string name="upper_text_sign_in">Sign In</string>
@@ -21,9 +22,22 @@
     <string name="error_incorrect_phone">Incorrect phone number</string>
     <string name="item">Item:</string>
     <string name="item_name">item name</string>
-    <string name="_20dkk">20dkk</string>
+    <string name="_20dkk"
+            translatable="false">20dkk</string>
     <string name="price">Price:</string>
     <string name="text">Text</string>
     <string name="items">Items</string>
     <string name="price_header">Price</string>
+    <string name="error_failed_to_connect">Failed to connect, wrong email given</string>
+    <string name="upper_title_connection">Connection</string>
+    <string name="text_new_phone">It looks like you are trying to connect with a new phone.</string>
+    <string name="text_email_send">An email was sent to the email address provided. You can return to the connection screen.</string>
+    <string name="text_barcodeScanner">Barcode Scanner</string>
+    <string name="text_scan">Scan</string>
+    <string name="text_result">Result:</string>
+    <string name="text_list">List</string>
+    <string name="text_chart">Chart</string>
+    <string name="text_visualize_my_purchase">Visualize my purchase</string>
+    <string name="test_spending_by_category">Spending by Category</string>
+    <string name="text_category">Expense Category</string>
 </resources>

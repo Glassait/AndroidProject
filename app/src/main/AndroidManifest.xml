@@ -15,25 +15,25 @@
             android:theme="@style/Theme.AndroidProject"
             tools:replace="android:label">
         <activity
-                android:name=".view.CompareActivity"
+                android:name=".view.main.CompareActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
                     android:value="" />
         </activity>
         <activity
-                android:name=".view.ScanningActivity"
+                android:name=".view.main.ScanningActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
                     android:value="" />
         </activity>
         <activity
-            android:name=".view.DisplayListActivity"
-            android:exported="false">
+                android:name=".view.main.DisplayListActivity"
+                android:exported="false">
             <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
+                    android:name="android.app.lib_name"
+                    android:value="" />
         </activity>
         <activity
                 android:name=".view.start.MainActivity"

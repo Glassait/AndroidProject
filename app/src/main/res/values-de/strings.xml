@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="upper_title_welcome">Willkommen</string>
+    <string name="upper_text_sign_up">Registrieren</string>
+    <string name="upper_text_sign_in">Anmelden</string>
+    <string name="upper_label_last_name">Nachname</string>
+    <string name="upper_label_first_name">Vornamen</string>
+    <string name="upper_label_email">E-Mail</string>
+    <string name="upper_label_phone">Telefon</string>
+    <string name="upper_label_address">Adresse</string>
+    <string name="upper_label_city">Stadt</string>
+    <string name="upper_label_country">Land</string>
+    <string name="upper_label_password">Passwort</string>
+    <string name="text_accept_eula">Wenn Sie auf die Schaltfläche \"Anmelden\" klicken, akzeptieren Sie die AGBs</string>
+    <string name="error_went_wrong_database">In der Datenbank ist ein Fehler aufgetreten</string>
+    <string name="error_all_fields_not_filled">Nicht alle Felder sind ausgefüllt!</string>
+    <string name="error_email_already_used">E-Mail bereits verwendet</string>
+    <string name="error_cannot_be_empty">Darf nicht leer sein</string>
+    <string name="error_incorrect_email">Fehlerhafte E-Mail</string>
+    <string name="upper_label_postal_code">Postleitzahl</string>
+    <string name="error_incorrect_phone">Falsche Telefonnummer</string>
+    <string name="item">Artikel:</string>
+    <string name="item_name">Artikelbezeichnung</string>
+    <string name="price">Preis:</string>
+    <string name="text">Text</string>
+    <string name="items">Artikel</string>
+    <string name="price_header">Preis</string>
+    <string name="error_failed_to_connect">Verbindung fehlgeschlagen, falsche E-Mailadresse angegeben</string>
+    <string name="upper_title_connection">Verbindung</string>
+    <string name="text_new_phone">Es sieht so aus, als würden Sie versuchen, eine Verbindung mit einem neuen Telefon herzustellen.</string>
+    <string name="text_email_send">Es wurde eine E-Mail an die angegebene E-Mail Adresse gesendet. Sie können zum Bildschirm \"Verbindung\" zurückkehren.</string>
+    <string name="text_barcodeScanner">Barcode-Scanner</string>
+    <string name="text_scan">Scannen</string>
+    <string name="text_result">Ergebnis:</string>
+    <string name="text_list">Liste</string>
+    <string name="text_chart">Grafik</string>
+    <string name="text_visualize_my_purchase">Meinen Kauf visualisieren</string>
+    <string name="test_spending_by_category">Ausgaben nach Kategorie</string>
+    <string name="text_category">Ausgabenkategorie</string>
+</resources>

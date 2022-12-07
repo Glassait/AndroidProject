@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="upper_title_welcome">Benvenuto</string>
+    <string name="upper_text_sign_up">Iscriviti</string>
+    <string name="upper_text_sign_in">Accedi</string>
+    <string name="upper_label_last_name">Cognome</string>
+    <string name="upper_label_first_name">Nome</string>
+    <string name="upper_label_email">Email</string>
+    <string name="upper_label_phone">Telefono</string>
+    <string name="upper_label_address">Indirizzo</string>
+    <string name="upper_label_city">Città</string>
+    <string name="upper_label_country">Paese</string>
+    <string name="upper_label_password">Password</string>
+    <string name="text_accept_eula">Facendo clic sul pulsante di iscrizione si accetta l\'EULA.</string>
+    <string name="error_went_wrong_database">Qualcosa è andato storto con il database</string>
+    <string name="error_all_fields_not_filled">Non tutti i campi sono compilati!</string>
+    <string name="error_email_already_used">Email già utilizzata</string>
+    <string name="error_cannot_be_empty">Non può essere vuoto</string>
+    <string name="error_incorrect_email">Email non corretta</string>
+    <string name="upper_label_postal_code">Codice postale</string>
+    <string name="error_incorrect_phone">Numero di telefono errato</string>
+    <string name="item">Articolo:</string>
+    <string name="item_name">nome dell\'articolo</string>
+    <string name="price">Prezzo:</string>
+    <string name="text">Testo</string>
+    <string name="items">Articoli</string>
+    <string name="price_header">Prezzo</string>
+    <string name="error_failed_to_connect">Connessione fallita, email sbagliata</string>
+    <string name="upper_title_connection">Connessione</string>
+    <string name="text_new_phone">Sembra che si stia cercando di connettersi con un nuovo telefono.</string>
+    <string name="text_email_send">È stata inviata un\'e-mail all\'indirizzo e-mail fornito. È possibile tornare alla schermata di connessione.</string>
+    <string name="text_barcodeScanner">Scanner per codici a barre</string>
+    <string name="text_scan">Scansione</string>
+    <string name="text_result">Risultato:</string>
+    <string name="text_list">Elenco</string>
+    <string name="text_chart">Grafico</string>
+    <string name="text_visualize_my_purchase">Visualizzare il mio acquisto</string>
+    <string name="test_spending_by_category">Spesa per categoria</string>
+    <string name="text_category">Categoria di spesa</string>
+</resources>
