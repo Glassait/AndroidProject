@@ -15,4 +15,5 @@
     <color name="on_box_night">#FFFFFF</color>
     <color name="error">#B00020</color>
     <color name="on_error">#FFFFFF</color>
+    <color name="transparent">#00D0D0D0</color>
 </resources>

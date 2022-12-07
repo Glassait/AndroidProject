@@ -1,40 +1,104 @@
 <resources>
-
-    <style name="Theme.AndroidProject" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <!-- Generic -->
+    <style name="Theme.AndroidProject"
+            parent="@style/Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:background">@color/background_light</item>
         <item name="android:textColor">@color/on_background_light</item>
     </style>
 
-    <style name="Text">
+    <style name="Theme.AndroidProject.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Text -->
+    <style name="TextParameters">
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <style name="Text"
+            parent="@style/TextParameters">
         <item name="android:textColor">@color/on_background_light</item>
+        <item name="android:background">@color/transparent</item>
     </style>
 
-    <style name="Text.bold24">
-        <item name="android:textSize">24sp</item>
+    <style name="Text.normal">
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="Text.light">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="BoldParameters"
+            parent="@style/Text">
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="Text.regular30">
-        <item name="android:textSize">30sp</item>
-    </style>
-
-    <style name="Text.Title">
-        <item name="android:textColor">@color/primary_light</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">70sp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="TitleParameters"
+            parent="@style/BoldParameters">
         <item name="android:textAlignment">center</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginTop">75dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
     </style>
 
+    <style name="Title"
+            parent="@style/TitleParameters">
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+
+    <!-- Input -->
+    <style name="InputParameters"
+            parent="@style/Text">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="Text.label"
+            parent="@style/InputParameters">
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+
+    <style name="EditTextParameters"
+            parent="@style/InputParameters">
+        <item name="android:layout_height">60dp</item>
+        <item name="layout_goneMarginBottom">30dp</item>
+        <item name="android:textSize">33sp</item>
+        <item name="android:textColorHint">#757575</item>
+    </style>
+
+    <style name="editText"
+            parent="@style/EditTextParameters">
+        <item name="android:background">@drawable/edit_text_background_light</item>
+    </style>
+
+    <style name="editText.disabled">
+        <item name="android:textColor">@color/primary_light</item>
+        <item name="android:background">@color/transparent</item>
+    </style>
+
+    <!-- Main background box -->
     <style name="Box">
-        <item name="android:background">@drawable/box_border_light</item>
-        <item name="android:textColor">@color/on_box_light_2</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="Button">
-        <item name="android:textSize">30sp</item>
+    <style name="Box.top_radius">
+        <item name="android:background">@drawable/box_border_top_radius_light</item>
+    </style>
+
+    <style name="Box.full_radius">
+        <item name="android:background">@drawable/box_border_full_radius_light</item>
+    </style>
+
+    <!-- Button background -->
+    <style name="Button"
+            parent="@style/Text">
         <item name="android:width">300dp</item>
         <item name="android:height">65dp</item>
         <item name="android:gravity">center</item>
@@ -42,28 +106,28 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
     </style>
 
-    <style name="fullButton" parent="Button">
+    <style name="Button.full">
         <item name="android:background">@drawable/full_button_light</item>
         <item name="android:textColor">@color/on_primary_light</item>
     </style>
 
-    <style name="materialButton" parent="fullButton">
-        <item name="android:backgroundTint">@color/primary_light</item>
-    </style>
-
-    <style name="emptyButton" parent="Button">
+    <style name="Button.empty"
+            parent="@style/Button">
         <item name="android:background">@drawable/empty_button_light</item>
         <item name="android:textColor">@color/on_box_light</item>
     </style>
 
-    <style name="ReturnButton">
-        <item name="android:layout_width">70dp</item>
-        <item name="android:layout_height">70dp</item>
+    <style name="RoundButton">
+        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_height">50dp</item>
     </style>
 
-    <style name="arrowButton" parent="ReturnButton">
+    <style name="returnButton"
+            parent="@style/RoundButton">
         <item name="android:background">@drawable/back_button_light</item>
     </style>
 </resources>

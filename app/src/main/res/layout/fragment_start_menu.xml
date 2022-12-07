@@ -1,62 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.StartMenuFragment">
+        tools:context=".view.start.StartMenuFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
         <TextView
+                android:id="@+id/fragment_start_menu_title_tv"
                 android:text="@string/upper_title_welcome"
-                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/Title"
                 app:layout_constraintStart_toStartOf="parent"
-                style="@style/Text.Title"
-                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="85dp"
-                app:layout_constraintHorizontal_bias="0.0"
-                android:id="@+id/start_menu_title" />
+                android:autoSizeTextType="uniform" />
 
         <ImageView
-            android:id="@+id/imageIv_startmenu"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/logo"
-            app:layout_constraintBottom_toTopOf="@+id/signin_signup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/start_menu_title" />
+                android:id="@+id/fragment_start_menu_IV"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/logo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/signin_signup"
-                android:layout_height="200dp"
-                style="@style/Box"
+                android:layout_height="220dp"
+                style="@style/Box.top_radius"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/constraintLayout">
 
             <TextView
                     android:text="@string/upper_text_sign_up"
-                    android:id="@+id/start_menu_sign_up_button"
-                    style="@style/fullButton"
+                    android:id="@+id/fragment_start_menu_sign_up_button"
+                    style="@style/Button.full"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/start_menu_sign_in_button" />
+                    app:layout_constraintBottom_toTopOf="@+id/fragment_start_menu_sign_in_button"
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginBottom="15dp" />
 
             <TextView
                     android:text="@string/upper_text_sign_in"
-                    android:id="@+id/start_menu_sign_in_button"
-                    style="@style/emptyButton"
+                    android:id="@+id/fragment_start_menu_sign_in_button"
+                    style="@style/Button.empty"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/start_menu_sign_up_button" />
+                    app:layout_constraintTop_toBottomOf="@+id/fragment_start_menu_sign_up_button"
+                    android:autoSizeTextType="uniform"
+                    android:layout_marginTop="15dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</ScrollView>

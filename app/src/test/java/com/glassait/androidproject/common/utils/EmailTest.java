@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import com.glassait.androidproject.common.utils.checker.Email;
+
 import org.junit.Test;
 
 public class EmailTest {

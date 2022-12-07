@@ -36,7 +36,7 @@
                 android:value="" />
         </activity>
         <activity
-                android:name=".view.MainActivity"
+                android:name=".view.start.MainActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.glassait.androidproject.view;
+package com.glassait.androidproject.view.start;
 
 import android.content.Intent;
 import android.os.Bundle;

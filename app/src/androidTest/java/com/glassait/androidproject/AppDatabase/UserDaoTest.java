@@ -1,90 +1,221 @@
 package com.glassait.androidproject.AppDatabase;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-import androidx.test.filters.LargeTest;
+import androidx.test.filters.MediumTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import com.glassait.androidproject.common.utils.checker.Address;
 import com.glassait.androidproject.model.dao.UserDao;
 import com.glassait.androidproject.model.database.AppDatabase;
 import com.glassait.androidproject.model.database.Builder;
 import com.glassait.androidproject.model.entity.User;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.List;
 import java.util.UUID;
 
-import kotlin.jvm.JvmStatic;
-
 @RunWith(AndroidJUnit4.class)
-@LargeTest
+@MediumTest
 public class UserDaoTest {
-    private static final Context     APP_CONTEXT;
-    private static final Builder     BUILDER;
-    private final        UserDao     mUserDao = APP_DATABASE.userDao();
-    private static final User        USER     = new User(
-            "First name",
-            "Last name",
-            "boitemail@gmail.com",
-            "0000000000",
-            "15 road field",
-            "city",
-            "country",
-            UUID.randomUUID()
-    );
+    private static final Context     APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
+                                                                          .getTargetContext();
+    private static final Builder     BUILDER     = Builder.getInstance();
     private static final AppDatabase APP_DATABASE;
+    private final        UserDao     mUserDao    = APP_DATABASE.userDao();
 
     static {
-        USER.uid = 1;
-        APP_CONTEXT = InstrumentationRegistry.getInstrumentation()
-                                             .getTargetContext();
-        BUILDER = Builder.getInstance();
         BUILDER.buildDatabase(APP_CONTEXT);
         APP_DATABASE = BUILDER.getAppDatabase();
     }
 
     /**
-     * Insert the user into the database before each test
      * Test the insert function of {@link UserDao}
      *
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#insert(User)
      * @see UserDao#getAll()
      */
-    @Before
-    public void userDAO_insert() {
-        mUserDao.insert(USER)
+    @Test
+    public void insert() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 1;
+
+        final boolean[] userIsInsert = {false};
+
+        mUserDao.insert(user)
+                .subscribe(
+                        () -> userIsInsert[0] = true,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertTrue(userIsInsert[0]);
+        assertTrue(mUserDao.getAll()
+                           .size() > 0);
+    }
+
+    /**
+     * Try to insert a null user into the database
+     * Test the insert function of {@link UserDao}
+     *
+     * @see User#User(String, String, String, String, Address, UUID)
+     * @see UserDao#insert(User)
+     * @see UserDao#getAll()
+     */
+    @Test
+    public void insertWithNullUser() {
+        final boolean[] userIsInsert = {false};
+        int numberOfUsersBefore = mUserDao.getAll()
+                                          .size();
+
+        mUserDao.insert(null)
+                .subscribe(
+                        () -> userIsInsert[0] = true,
+                        throwable -> userIsInsert[0] = false
+                )
+                .dispose();
+
+        assertFalse(userIsInsert[0]);
+        assertTrue(mUserDao.getAll()
+                           .size() > 0);
+        assertEquals(
+                numberOfUsersBefore,
+                mUserDao.getAll()
+                        .size()
+        );
+    }
+
+    /**
+     * Test the update function of {@link UserDao}
+     * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
+     *
+     * @see UserDao#update(User)
+     * @see UserDao#getUserFromEmail(String)
+     */
+    @Test
+    public void updateOneElement() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 1;
+
+        String expectedName = "New name";
+        user.firstName = expectedName;
+        final boolean[] userIsUpdate = {false};
+
+        mUserDao.update(user)
+                .subscribe(
+                        () -> userIsUpdate[0] = true,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        final User[] modifiedUser = new User[1];
+        mUserDao.getUserFromEmail(user.email)
+                .subscribe(
+                        u -> modifiedUser[0] = u,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertTrue(userIsUpdate[0]);
+        assertEquals(
+                expectedName,
+                modifiedUser[0].firstName
+        );
+    }
+
+    /**
+     * Test the update function of {@link UserDao}
+     * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
+     *
+     * @see UserDao#update(User)
+     * @see UserDao#getUserFromEmail(String)
+     */
+    @Test
+    public void updateMultipleElements() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 1;
+        mUserDao.insert(user)
                 .subscribe()
                 .dispose();
-    }
 
-    /**
-     * Clear the database after each test
-     *
-     * @see AppDatabase#clearAllTables()
-     */
-    @After
-    public void afterEachText() {
-        APP_DATABASE.clearAllTables();
-    }
+        String expectedFirstName = "New name";
+        String expectedLastName  = "New last name";
+        user.firstName = expectedFirstName;
+        user.lastName = expectedLastName;
+        final boolean[] userIsUpdate = {false};
 
-    /**
-     * Close the database after all test
-     *
-     * @see AppDatabase#close()
-     */
-    @AfterClass
-    @JvmStatic
-    public static void close() {
-        System.out.println("after class");
-        APP_DATABASE.close();
+        mUserDao.update(user)
+                .subscribe(
+                        () -> userIsUpdate[0] = true,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        final User[] modifiedUser = new User[1];
+        mUserDao.getUserFromEmail(user.email)
+                .subscribe(
+                        u -> modifiedUser[0] = u,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertTrue(userIsUpdate[0]);
+        assertEquals(
+                expectedFirstName,
+                modifiedUser[0].firstName
+        );
+        assertEquals(
+                expectedLastName,
+                modifiedUser[0].lastName
+        );
     }
 
     /**
@@ -94,57 +225,59 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_update() {
-        String expectedName = "New name";
+    public void updateWithNullUser() {
+        final boolean[] userIsUpdate = {false};
 
-        USER.firstName = expectedName;
-        mUserDao.update(USER)
-                .subscribe()
-                .dispose();
-        final User[] modifiedUser = new User[1];
-
-        mUserDao.getUserFromEmail(USER.email)
+        mUserDao.update(null)
                 .subscribe(
-                        user -> modifiedUser[0] = user,
+                        () -> userIsUpdate[0] = true,
+                        throwable -> userIsUpdate[0] = false
+                )
+                .dispose();
+
+        assertFalse(userIsUpdate[0]);
+    }
+
+    /**
+     * Test the getUserFromEmail function of {@link UserDao}
+     * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
+     *
+     * @see User#User(String, String, String, String, Address, UUID)
+     * @see UserDao#getUserFromEmail(String)
+     */
+    @Test
+    public void getUserFromEmail() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 1;
+
+        final User[] userGet = new User[1];
+        mUserDao.getUserFromEmail(user.email)
+                .subscribe(
+                        u -> userGet[0] = u,
                         Throwable::printStackTrace
                 )
                 .dispose();
 
         assertEquals(
-                expectedName,
-                modifiedUser[0].firstName
+                user.email,
+                userGet[0].email
         );
-    }
-
-    /**
-     * Test the getAll function of {@link UserDao}
-     *
-     * @see UserDao#getAll()
-     */
-    @Test
-    public void userDAO_getAll() {
-        int expectedLength = 1;
         assertEquals(
-                expectedLength,
-                mUserDao.getAll()
-                        .size()
-        );
-    }
-
-    /**
-     * Test the getUserFromEmail function of {@link UserDao}
-     *
-     * @see UserDao#getUserFromEmail(String)
-     */
-    @Test
-    public void userDAO_getUserFromEmail() {
-        final User[] user = new User[1];
-        mUserDao.getUserFromEmail(USER.email)
-                .subscribe(userGet -> user[0] = userGet)
-                .dispose();
-        assertEquals(
-                USER.email,
-                user[0].email
+                user.lastName,
+                userGet[0].lastName
         );
     }
 
@@ -154,7 +287,7 @@ public class UserDaoTest {
      * @see UserDao#getUserFromEmail(String)
      */
     @Test
-    public void userDAO_getUserFromEmailWithErrorHandling() {
+    public void getUserFromEmailWithErrorHandling() {
         final User[] user = new User[1];
         mUserDao.getUserFromEmail("newemail@mail.com")
                 .subscribe(
@@ -163,34 +296,145 @@ public class UserDaoTest {
                 )
                 .dispose();
 
-        if (user[0] == null) {
-            System.out.println("User not found");
-            assertNull(user[0]);
-        } else {
-            System.out.println("User found");
-            assertEquals(
-                    USER.email,
-                    user[0].email
-            );
-        }
+        assertNull(user[0]);
     }
 
     /**
+     * Test the getUserFromUid function of {@link UserDao}
+     * Set the user uid to 1 because the constructor set to 0 and SQLLite start at 1
+     *
+     * @see User#User(String, String, String, String, Address, UUID)
+     * @see UserDao#getUserFromUid(int)
+     * @see UserDao#insert(User)
+     */
+    @Test
+    public void getUserFromUid() {
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
+        );
+        user.uid = 2;
+        mUserDao.insert(user)
+                .subscribe(
+                        () -> System.out.println("User insert"),
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        final User[] userGet = new User[1];
+        mUserDao.getUserFromUid(user.uid)
+                .subscribe(
+                        u -> userGet[0] = u,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertEquals(
+                user.email,
+                userGet[0].email
+        );
+        assertEquals(
+                user.lastName,
+                userGet[0].lastName
+        );
+    }
+
+    /**
+     * Extend the previous test with error handling
+     *
+     * @see UserDao#getUserFromUid(int)
+     */
+    @Test
+    public void getUserFromUidWithErrorHandling() {
+        final User[] user = new User[1];
+        mUserDao.getUserFromUid(0)
+                .subscribe(
+                        userGet -> user[0] = userGet,
+                        throwable -> user[0] = null
+                )
+                .dispose();
+
+        assertNull(user[0]);
+    }
+
+    /**
+     * Delete one test user
      * Test the delete function of {@link UserDao}
      *
+     * @see User#User(String, String, String, String, Address, UUID)
      * @see UserDao#delete(User)
      * @see UserDao#getAll()
      */
     @Test
-    public void userDAO_delete() {
-        int expectedLength = 0;
-        mUserDao.delete(USER)
-                .subscribe()
-                .dispose();
-        assertEquals(
-                expectedLength,
-                mUserDao.getAll()
-                        .size()
+    public void deleteOneUser() {
+        int numberOfUsersBefore = mUserDao.getAll()
+                                          .size();
+        User user = new User(
+                "First name",
+                "Last name",
+                "boitemail@gmail.com",
+                "0000000000",
+                new Address(
+                        APP_CONTEXT,
+                        "15 road field",
+                        "75000",
+                        "city",
+                        "country"
+                ),
+                UUID.randomUUID()
         );
+        user.uid = 1;
+
+        final boolean[] userIsDeleted = {false};
+        mUserDao.delete(user)
+                .subscribe(
+                        () -> userIsDeleted[0] = true,
+                        Throwable::printStackTrace
+                )
+                .dispose();
+
+        assertTrue(userIsDeleted[0]);
+        assertTrue(numberOfUsersBefore >= mUserDao.getAll()
+                                                  .size());
+    }
+
+    /**
+     * Delete all test users
+     * Test the delete function of {@link UserDao}
+     *
+     * @see User#User(String, String, String, String, Address, UUID)
+     * @see UserDao#delete(User)
+     * @see UserDao#getAll()
+     */
+    @Test
+    public void deleteAllTestUsers() {
+        List<User> listOfUsers         = mUserDao.getAll();
+        int        numberOfUsersBefore = listOfUsers.size();
+
+        for (User user : listOfUsers) {
+            if (user.email.equals("boitemail@gmail.com")) {
+                final boolean[] userIsDeleted = {false};
+                mUserDao.delete(user)
+                        .subscribe(
+                                () -> userIsDeleted[0] = true,
+                                Throwable::printStackTrace
+                        )
+                        .dispose();
+                assertTrue(userIsDeleted[0]);
+            }
+        }
+
+        assertTrue(numberOfUsersBefore > mUserDao.getAll()
+                                                 .size());
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text.normal">
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+        <item name="android:autoSizeMaxTextSize">35dp</item>
+        <item name="android:autoSizeMinTextSize">25sp</item>
+    </style>
+
+    <style name="Text.normal.little">
+        <item name="android:autoSizeMaxTextSize">25dp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+    </style>
+
+    <style name="Text.light">
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+    </style>
+
+    <style name="Text.link"
+            parent="@style/Text.light">
+        <item name="android:autoSizeMaxTextSize">25sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+    </style>
+
+    <style name="Text.bold"
+            parent="@style/BoldParameters">
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:autoSizeMinTextSize">15sp</item>
+    </style>
+
+    <style name="TitleParameters"
+            parent="@style/BoldParameters">
+        <item name="android:autoSizeMinTextSize">35sp</item>
+        <item name="android:autoSizeMaxTextSize">70sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_marginTop">75dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="InputParameters"
+            parent="@style/Text">
+        <item name="android:autoSizeMinTextSize">20sp</item>
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_marginStart">15dp</item>
+        <item name="android:layout_marginEnd">15dp</item>
+    </style>
+
+    <style name="Button"
+            parent="@style/Text">
+        <item name="android:autoSizeMaxTextSize">35sp</item>
+        <item name="android:autoSizeMinTextSize">25sp</item>
+        <item name="android:width">300dp</item>
+        <item name="android:height">65dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">30dp</item>
+        <item name="android:layout_marginBottom">30dp</item>
+    </style>
+</resources>

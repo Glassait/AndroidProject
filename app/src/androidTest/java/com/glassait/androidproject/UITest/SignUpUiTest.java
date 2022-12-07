@@ -11,7 +11,7 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.glassait.androidproject.R;
-import com.glassait.androidproject.view.MainActivity;
+import com.glassait.androidproject.view.start.MainActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -26,52 +26,52 @@ public class SignUpUiTest {
     @Test
     public void signUp() {
         // Go to the sign up fragment
-        onView(withId(R.id.start_menu_sign_up_button)).perform(click());
+        onView(withId(R.id.fragment_start_menu_sign_up_button)).perform(click());
 
         // Filled all EditText
-        onView(withId(R.id.sign_up_first_name_et)).perform(
+        onView(withId(R.id.fragment_sign_up_first_name_et)).perform(
                 scrollTo(),
                 typeText("Tendzin")
         );
 
-        onView(withId(R.id.sign_up_last_name_et)).perform(
+        onView(withId(R.id.fragment_sign_up_last_name_et)).perform(
                 scrollTo(),
                 typeText("Roffler")
         );
 
-        onView(withId(R.id.sign_up_email_et)).perform(
+        onView(withId(R.id.fragment_sign_up_email_et)).perform(
                 scrollTo(),
                 typeText("mailbox@gmail.com")
         );
 
-        onView(withId(R.id.sign_up_phone_et)).perform(
+        onView(withId(R.id.fragment_sign_up_phone_et)).perform(
                 scrollTo(),
                 typeText("+330123456789")
         );
 
-        onView(withId(R.id.sign_up_address_et)).perform(
+        onView(withId(R.id.fragment_sign_up_address_et)).perform(
                 scrollTo(),
                 typeText("1 street of Jeanne")
         );
 
-        onView(withId(R.id.sign_up_postal_code_et)).perform(
+        onView(withId(R.id.fragment_sign_up_postal_code_et)).perform(
                 scrollTo(),
                 typeText("75000")
         );
 
-        onView(withId(R.id.sign_up_city_et)).perform(
+        onView(withId(R.id.fragment_sign_up_city_et)).perform(
                 scrollTo(),
                 typeText("Paris")
         );
 
-        onView(withId(R.id.sign_up_country_et)).perform(
+        onView(withId(R.id.fragment_sign_up_country_et)).perform(
                 scrollTo(),
                 typeText("France"),
                 closeSoftKeyboard()
         );
 
         // Click on the button
-        onView(withId(R.id.sign_up_register_btn)).perform(
+        onView(withId(R.id.fragment_sign_up_register_btn)).perform(
                 scrollTo(),
                 click()
         );

@@ -127,7 +127,7 @@ public class ScanningActivity extends AppCompatActivity {
         listBtn.setOnClickListener(v -> {
             Intent intent = new Intent(
                     getApplicationContext(),
-                    CompareActivity.class
+                    DisplayListActivity.class
             );
             startActivity(intent);
         });
